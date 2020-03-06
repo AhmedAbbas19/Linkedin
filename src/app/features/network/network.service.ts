@@ -50,6 +50,9 @@ export class NetworkService {
   }
   // getAll() {}
   getById(id: number) {
+    this.connected = [];
+    this.sent = [];
+    this.recived = [];
     for (const conn of this.connections) {
       if (id === conn.userOneId || id === conn.userTwoId) {
         let one = id === conn.userOneId ? id : conn.userTwoId;
@@ -65,7 +68,7 @@ export class NetworkService {
         }
       }
     }
-    return this.connectionSubject.next({
+    this.connectionSubject.next({
       connected: this.connected,
       sent: this.sent,
       recived: this.recived
@@ -74,12 +77,11 @@ export class NetworkService {
   changeStatus(oneId: number, twoId: number, newStatus: number) {
     for (const conn of this.connections) {
       if (
-        conn.userOneId === oneId ||
-        (conn.userOneId === twoId && conn.userTwoId === oneId) ||
-        conn.userTwoId === twoId
+        (conn.userOneId === oneId && conn.userTwoId === twoId) ||
+        (conn.userTwoId === oneId && conn.userOneId === twoId)
       ) {
         conn.status = newStatus;
-        this.getById(1);
+        this.getById(0);
         break;
       }
     }
