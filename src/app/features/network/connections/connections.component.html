@@ -1,1 +1,109 @@
-<p>connections works!</p>
+<div class="connections">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="connections__manager">
+          <ul class="taps connections__taps">
+            <li
+              class="tap"
+              [ngClass]="{ active: activeStatus === 1 }"
+              (click)="activeStatus = 1"
+            >
+              Connections ({{ connected.length }})
+            </li>
+            <li
+              class="tap"
+              [ngClass]="{ active: activeStatus === 2 }"
+              (click)="activeStatus = 2"
+            >
+              Recived ({{ RecivedConnections.length }})
+            </li>
+            <li
+              class="tap"
+              [ngClass]="{ active: activeStatus === 3 }"
+              (click)="activeStatus = 3"
+            >
+              Sent ({{ sentConnections.length }})
+            </li>
+          </ul>
+
+          <div class="connections__list">
+            <ul *ngIf="activeStatus === 1">
+              <li
+                class="conn-card connections__card"
+                *ngFor="let conn of connected"
+              >
+                <div class="conn-card__info">
+                  <img src="{{ conn.imagUrl }}" class="rounded-circle" alt="" />
+                  <div class="conn-card__content">
+                    <h6 class="conn-card__title">
+                      {{ conn.fname }} {{ conn.lname }}
+                    </h6>
+                    <p class="conn-card__disc">
+                      {{ conn.about }}
+                    </p>
+                  </div>
+                </div>
+                <button class="btn btn-outline-primary">Message</button>
+              </li>
+            </ul>
+            <ul *ngIf="activeStatus === 2">
+              <li
+                class="conn-card connections__card"
+                *ngFor="let conn of RecivedConnections"
+              >
+                <div class="conn-card__info">
+                  <img src="{{ conn.imagUrl }}" class="rounded-circle" alt="" />
+                  <div class="conn-card__content">
+                    <h6 class="conn-card__title">
+                      {{ conn.fname }} {{ conn.lname }}
+                    </h6>
+                    <p class="conn-card__disc">
+                      {{ conn.about }}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    class="btn btn-outline-primary"
+                    (click)="acceptInvitation(conn.id)"
+                  >
+                    Accept
+                  </button>
+                  <button
+                    class="btn btn-outline-secondary"
+                    (click)="declineInvitation(conn.id)"
+                  >
+                    Decline
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <ul *ngIf="activeStatus === 3">
+              <li
+                class="conn-card connections__card"
+                *ngFor="let conn of sentConnections"
+              >
+                <div class="conn-card__info">
+                  <img src="{{ conn.imagUrl }}" class="rounded-circle" alt="" />
+                  <div class="conn-card__content">
+                    <h6 class="conn-card__title">
+                      {{ conn.fname }} {{ conn.lname }}
+                    </h6>
+                    <p class="conn-card__disc">
+                      {{ conn.about }}
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <button class="btn btn-outline-secondary">Withdraw</button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>

@@ -1,45 +1,87 @@
 import { Injectable } from "@angular/core";
 import { Connection } from "src/_model/connection";
+import { User } from "src/_model/user";
+import { UserService } from "./../user/user.service";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class NetworkService {
   connections: Connection[];
-  constructor() {
+  connectionSubject: Subject<any>;
+  connected: User[] = [];
+  sent: User[] = [];
+  recived: User[] = [];
+  constructor(private userService: UserService) {
+    this.connectionSubject = new Subject<any>();
     this.connections = [
       {
-        userOneId: 1,
+        userOneId: 0,
+        userTwoId: 1,
+        status: 1,
+        actionUserId: 1
+      },
+      {
+        userOneId: 0,
         userTwoId: 2,
-        status: 0,
+        status: 1,
         actionUserId: 1
       },
       {
-        userOneId: 1,
-        userTwoId: 3,
-        status: 0,
-        actionUserId: 1
-      },
-      {
-        userOneId: 2,
+        userOneId: 0,
         userTwoId: 3,
         status: 1,
-        actionUserId: 2
+        actionUserId: 3
       },
       {
-        userOneId: 2,
+        userOneId: 0,
         userTwoId: 4,
         status: 0,
         actionUserId: 4
       },
       {
-        userOneId: 3,
-        userTwoId: 4,
+        userOneId: 0,
+        userTwoId: 5,
         status: 0,
-        actionUserId: 3
+        actionUserId: 0
       }
     ];
   }
-  getAll() {}
-  getById() {}
+  // getAll() {}
+  getById(id: number) {
+    for (const conn of this.connections) {
+      if (id === conn.userOneId || id === conn.userTwoId) {
+        let one = id === conn.userOneId ? id : conn.userTwoId;
+        let two = id === conn.userOneId ? conn.userTwoId : conn.userOneId;
+        if (conn.status === 1) {
+          this.connected.push(this.userService.getById(two));
+        } else if (conn.status === 0) {
+          if (conn.actionUserId === one) {
+            this.sent.push(this.userService.getById(two));
+          } else {
+            this.recived.push(this.userService.getById(two));
+          }
+        }
+      }
+    }
+    return this.connectionSubject.next({
+      connected: this.connected,
+      sent: this.sent,
+      recived: this.recived
+    });
+  }
+  changeStatus(oneId: number, twoId: number, newStatus: number) {
+    for (const conn of this.connections) {
+      if (
+        conn.userOneId === oneId ||
+        (conn.userOneId === twoId && conn.userTwoId === oneId) ||
+        conn.userTwoId === twoId
+      ) {
+        conn.status = newStatus;
+        this.getById(1);
+        break;
+      }
+    }
+  }
 }
