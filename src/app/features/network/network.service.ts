@@ -68,6 +68,9 @@ export class NetworkService {
         }
       }
     }
+    this.fireConnectionsChanges();
+  }
+  fireConnectionsChanges() {
     this.connectionSubject.next({
       connected: this.connected,
       sent: this.sent,
@@ -75,13 +78,30 @@ export class NetworkService {
     });
   }
   changeStatus(oneId: number, twoId: number, newStatus: number) {
+    console.log(this.connections);
     for (const conn of this.connections) {
       if (
         (conn.userOneId === oneId && conn.userTwoId === twoId) ||
         (conn.userTwoId === oneId && conn.userOneId === twoId)
       ) {
         conn.status = newStatus;
-        this.getById(0);
+        if (newStatus === 1) {
+          //Accept
+          this.connected.push(this.userService.getById(oneId));
+          let idx = this.recived.indexOf(this.userService.getById(oneId));
+          this.recived.splice(idx, 1);
+        } else if (newStatus === 2) {
+          //Decline
+          let idx = this.recived.indexOf(this.userService.getById(oneId));
+          this.recived.splice(idx, 1);
+        } else if (newStatus === 4) {
+          //Withdraw
+          let idx = this.sent.indexOf(this.userService.getById(oneId));
+          this.sent.splice(idx, 1);
+          let connIdx = this.connections.indexOf(conn);
+          this.connections.splice(connIdx, 1);
+        }
+        this.fireConnectionsChanges();
         break;
       }
     }

@@ -96,7 +96,12 @@
                   </div>
                 </div>
                 <div>
-                  <button class="btn btn-outline-secondary">Withdraw</button>
+                  <button
+                    class="btn btn-outline-secondary"
+                    (click)="withdrawInvitation(conn.id)"
+                  >
+                    Withdraw
+                  </button>
                 </div>
               </li>
             </ul>

@@ -22,10 +22,15 @@ export class ConnectionsComponent implements OnInit {
       this.RecivedConnections = recived;
     });
     this.networkService.getById(this.currentUserId);
-    console.log(this.connected);
+    // console.log(this.connected);
   }
   acceptInvitation(id: number) {
     this.networkService.changeStatus(id, this.currentUserId, 1);
   }
-  declineInvitation(id) {}
+  declineInvitation(id: number) {
+    this.networkService.changeStatus(id, this.currentUserId, 2);
+  }
+  withdrawInvitation(id: number) {
+    this.networkService.changeStatus(id, this.currentUserId, 4);
+  }
 }
