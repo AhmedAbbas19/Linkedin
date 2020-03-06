@@ -70,15 +70,7 @@ export class NetworkService {
     }
     this.fireConnectionsChanges();
   }
-  fireConnectionsChanges() {
-    this.connectionSubject.next({
-      connected: this.connected,
-      sent: this.sent,
-      recived: this.recived
-    });
-  }
   changeStatus(oneId: number, twoId: number, newStatus: number) {
-    console.log(this.connections);
     for (const conn of this.connections) {
       if (
         (conn.userOneId === oneId && conn.userTwoId === twoId) ||
@@ -105,5 +97,12 @@ export class NetworkService {
         break;
       }
     }
+  }
+  fireConnectionsChanges() {
+    this.connectionSubject.next({
+      connected: this.connected,
+      sent: this.sent,
+      recived: this.recived
+    });
   }
 }

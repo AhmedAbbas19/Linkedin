@@ -62,7 +62,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-blueblack custom-select-lg">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" routerLink="/">
       <img src="assets/logo-512.png" alt="" />
     </a>
     <button
@@ -91,7 +91,7 @@
       </form>
       <ul class="navbar-nav">
         <li class="nav-item ">
-          <a class="mr-3 nav-link" href="#"
+          <a class="mr-3 nav-link" routerLink="/"
             ><i class="fas nav_icon-font fa-home" aria-hidden="true"> </i>
             <div class="card-header-pills font-weight-normal nav-link-text">
               Home
@@ -100,7 +100,7 @@
           ></a>
         </li>
         <li class="nav-item">
-          <a class="mr-3 nav-link" href="#">
+          <a class="mr-3 nav-link" routerLink="mynetwork">
             <i class="fas nav_icon-font fa-user-friends" aria-hidden="true">
             </i>
             <div class=" font-weight-normal nav-link-text">My Network</div>
@@ -139,27 +139,31 @@
           <div
             class="dropdown-menu dropdown-menu-md-right dropdown-font p-3 "
             aria-labelledby="navbarDropdown"
+            style="width: 345px;"
           >
-            <div class="container dropdown-item" style="width: max-content;">
-              <div class="row">
-                <div class="col-5 p-0" style="width: 0rem;">
-                  <img
-                    src="assets/last-phot15.jpg"
-                    class="card-img-top dropdown_navbar_img rounded-circle img-thumbnail"
-                    alt="..."
-                  />
-                </div>
-                <div class="carousel-inner col p-0" style="width: max-content;">
-                  <h5 class="card-title nav_icon-font">Mo'men Mohamed</h5>
-                  <p class="card-text text-wrap">
-                    Student at Information Technology Institute (ITI)
-                  </p>
-                  <a href="#" class="font-weight-bolder form-check text-primary"
-                    >View Profile</a
-                  >
-                </div>
+            <div class="row">
+              <div class="col-3" style="width: 0rem;">
+                <img
+                  src="{{ user.imagUrl }}"
+                  class="card-img-top dropdown_navbar_img rounded-circle img-thumbnail"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-inner col" style="width: max-content;">
+                <h6 class="card-title nav_icon-font">
+                  {{ user.fname }} {{ user.lname }}
+                </h6>
+                <p class="card-text text-wrap">
+                  {{ user.about }}
+                </p>
+                <a
+                  [routerLink]="['profile', user.username]"
+                  class="font-weight-bolder form-check text-primary"
+                  >View Profile</a
+                >
               </div>
             </div>
+
             <ul class="list-group border-top">
               <a href="#"
                 ><li
