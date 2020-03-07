@@ -1,0 +1,50 @@
+<div class="mynetwork">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="mynetwork__may-know">
+          <p>Industry leaders in Egypt you may know</p>
+          <div class="mynetwork__list">
+            <div class="row">
+              <div class="col-md-3" *ngFor="let person of peopleMayKnow">
+                <div class="may-know-card">
+                  <div class="may-know-card__bg"></div>
+                  <img
+                    src="{{ person.imagUrl }}"
+                    alt=""
+                    class="may-know-card__img rounded-circle"
+                  />
+                  <h6 class="may-know-card__title">
+                    {{ person.fname }} {{ person.lname }}
+                  </h6>
+                  <p class="may-know-card__disc">
+                    {{ person.about }}
+                  </p>
+                  <span class="may-know-card__mutual"
+                    >35 Mutual Connections</span
+                  >
+                  <button class="btn btn-outline-primary may-know-card__btn">
+                    Connect
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="sidebar">
+          <p>Manage my network</p>
+          <ul class="sidebar__list">
+            <li class="sidebar__item">
+              <a [routerLink]="['connections']"
+                ><i class="fa fa-user-friends"></i> Connections</a
+              >
+              <span>{{ connected.length }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ $lightGray: #929292;
   &__taps {
     list-style: none;
     .tap {
+      cursor: pointer;
       background-color: $grayColor;
       display: inline-block;
       padding: 5px 11px;

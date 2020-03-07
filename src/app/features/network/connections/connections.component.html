@@ -1,7 +1,7 @@
 <div class="connections">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-9">
         <div class="connections__manager">
           <ul class="taps connections__taps">
             <li
@@ -29,6 +29,7 @@
 
           <div class="connections__list">
             <ul *ngIf="activeStatus === 1">
+              <span *ngIf="connected.length === 0">No connections yet</span>
               <li
                 class="conn-card connections__card"
                 *ngFor="let conn of connected"
@@ -48,6 +49,9 @@
               </li>
             </ul>
             <ul *ngIf="activeStatus === 2">
+              <span *ngIf="RecivedConnections.length === 0"
+                >No pinding invitations</span
+              >
               <li
                 class="conn-card connections__card"
                 *ngFor="let conn of RecivedConnections"
@@ -80,6 +84,9 @@
               </li>
             </ul>
             <ul *ngIf="activeStatus === 3">
+              <span *ngIf="sentConnections.length === 0"
+                >No sent invitations</span
+              >
               <li
                 class="conn-card connections__card"
                 *ngFor="let conn of sentConnections"
@@ -108,7 +115,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-3"></div>
     </div>
   </div>
 </div>

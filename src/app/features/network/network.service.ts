@@ -48,7 +48,6 @@ export class NetworkService {
       }
     ];
   }
-  // getAll() {}
   getById(id: number) {
     this.connected = [];
     this.sent = [];

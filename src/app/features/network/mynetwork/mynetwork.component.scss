@@ -1,0 +1,79 @@
+$primaryColor: #016197;
+$grayColor: #d5dde2;
+$darkGray: #666;
+$lightGray: #929292;
+.mynetwork {
+  &__may-know {
+    background-color: #fff;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 2px 1px 5px #d0d0d0;
+    .may-know-card {
+      border: 1px solid #d6d6d6;
+      text-align: center;
+      padding: 12px;
+      position: relative;
+      z-index: 0;
+      margin-bottom: 10px;
+      &__bg {
+        width: 100%;
+        height: 60px;
+        background-color: #abb3e2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+      }
+      &__img {
+        border: 1px solid #d6d6d6;
+        padding: 3px;
+        margin-bottom: 8px;
+        z-index: 9999;
+        position: relative;
+        background-color: #fff;
+      }
+      &__disc {
+        color: $lightGray;
+        font-size: 14px;
+        height: 30px;
+      }
+      &__mutual {
+        color: $darkGray;
+        font-size: 12px;
+      }
+      &__btn {
+        margin-top: 8px;
+        width: 100%;
+      }
+    }
+  }
+  .col-md-3 {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .sidebar {
+    background-color: #fff;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 2px 1px 5px #d0d0d0;
+    &__list {
+      list-style: none;
+    }
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      a {
+        color: $darkGray;
+        text-decoration: none;
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+}

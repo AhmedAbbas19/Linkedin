@@ -182,6 +182,131 @@ export class UserService {
           { id: 0, title: "CSS3" },
           { id: 0, title: "C#" }
         ]
+      },
+      {
+        id: 7,
+        fname: "Mohamed",
+        lname: "Salah",
+        imagUrl: "assets/last-phot15.jpg",
+        about: "Football player at Liverpool",
+        email: "Mo11@gmail.com",
+        password: "123",
+        username: "Mosalah",
+        edu: [
+          {
+            id: 0,
+            title: "Basion Mentality School",
+            degree: "Bachelor",
+            specialization: "Arts",
+            startDate: "2015",
+            endDate: "2019"
+          }
+        ],
+        skils: [
+          { id: 0, title: "HTML" },
+          { id: 0, title: "CSS3" },
+          { id: 0, title: "C#" }
+        ]
+      },
+      {
+        id: 8,
+        fname: "Scarlet",
+        lname: "Johanson",
+        imagUrl: "assets/last-phot15.jpg",
+        about: "Actress",
+        email: "scarL@gmail.com",
+        password: "123",
+        username: "ScarletDaAna",
+        edu: [
+          {
+            id: 0,
+            title: "MIT Institute",
+            degree: "Bachelor",
+            specialization: "Arts",
+            startDate: "2015",
+            endDate: "2019"
+          }
+        ],
+        skils: [
+          { id: 0, title: "HTML" },
+          { id: 0, title: "CSS3" },
+          { id: 0, title: "C#" }
+        ]
+      },
+      {
+        id: 9,
+        fname: "Hassan",
+        lname: "Shakoosh",
+        imagUrl: "assets/last-phot15.jpg",
+        about: "Singer",
+        email: "HaniShaker@gmail.com",
+        password: "123",
+        username: "Hassan",
+        edu: [
+          {
+            id: 0,
+            title: "Cairo University",
+            degree: "Bachelor",
+            specialization: "Arts",
+            startDate: "2015",
+            endDate: "2019"
+          }
+        ],
+        skils: [
+          { id: 0, title: "HTML" },
+          { id: 0, title: "CSS3" },
+          { id: 0, title: "C#" }
+        ]
+      },
+      {
+        id: 10,
+        fname: "Marwan",
+        lname: "Mohsen",
+        imagUrl: "assets/last-phot15.jpg",
+        about: "3 Times Ballon D'or Winner",
+        email: "Marwan@gmail.com",
+        password: "123",
+        username: "Memo",
+        edu: [
+          {
+            id: 0,
+            title: "Ain Shams University",
+            degree: "Bachelor",
+            specialization: "Arts",
+            startDate: "2015",
+            endDate: "2019"
+          }
+        ],
+        skils: [
+          { id: 0, title: "HTML" },
+          { id: 0, title: "CSS3" },
+          { id: 0, title: "C#" }
+        ]
+      },
+      {
+        id: 11,
+        fname: "Adel",
+        lname: "Shakal",
+        imagUrl: "assets/last-phot15.jpg",
+        about: "Artist",
+        email: "Adel@gmail.com",
+        password: "123",
+        username: "Elzaama",
+        edu: [
+          {
+            id: 0,
+            title: "Elna7o University",
+            degree: "Bachelor",
+            specialization: "Arts",
+            startDate: "2015",
+            endDate: "2019"
+          }
+        ],
+        skils: [
+          { id: 0, title: "HTML" },
+          { id: 0, title: "CSS3" },
+          { id: 0, title: "C#" }
+        ]
       }
     ];
   }
