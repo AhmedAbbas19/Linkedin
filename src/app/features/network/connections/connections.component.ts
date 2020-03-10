@@ -14,6 +14,7 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   RecivedConnections: User[];
   activeStatus: number = 1;
   currentUserId: number = 0;
+  peopleMayKnow: User[];
   netWorkSubscribtion: Subscription;
   constructor(private networkService: NetworkService) {}
   ngOnInit() {
@@ -26,7 +27,7 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
       }
     );
     this.networkService.getById(this.currentUserId);
-    // console.log(this.connected);
+    this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
   }
   acceptInvitation(id: number) {
     this.networkService.changeStatus(id, this.currentUserId, 1);
@@ -36,6 +37,11 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   }
   withdrawInvitation(id: number) {
     this.networkService.changeStatus(id, this.currentUserId, 4);
+  }
+  sendInvitation(id: number) {
+    this.networkService.sendInvitation(this.currentUserId, id);
+    const idx = this.peopleMayKnow.findIndex(u => u.id === id);
+    this.peopleMayKnow.splice(idx, 1);
   }
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();

@@ -2,13 +2,45 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9">
+        <ul class="mynetwork__pending" *ngIf="RecivedConnections.length">
+          <p>Pending invitations</p>
+          <li class="pending-item" *ngFor="let user of RecivedConnections">
+            <div class="pending-item__info">
+              <img src="{{ user.imagUrl }}" alt="" srcset="" />
+              <h6>{{ user.fname }} {{ user.lname }}</h6>
+            </div>
+            <div class="pending-item__control">
+              <i
+                class="far fa-times-circle decline-icon"
+                (click)="declineInvitation(user.id)"
+              ></i>
+              <i
+                class="far fa-check-circle accept-icon"
+                (click)="acceptInvitation(user.id)"
+              ></i>
+            </div>
+          </li>
+        </ul>
         <div class="mynetwork__may-know">
           <p>Industry leaders in Egypt you may know</p>
+          <span *ngIf="peopleMayKnow.length === 0">No usres to show</span>
           <div class="mynetwork__list">
             <div class="row">
               <div class="col-md-3" *ngFor="let person of peopleMayKnow">
                 <div class="may-know-card">
-                  <div class="may-know-card__bg"></div>
+                  <div
+                    class="may-know-card__bg"
+                    [ngStyle]="{
+                      backgroundColor:
+                        'rgba(' +
+                        getRandomNumber() +
+                        ', ' +
+                        getRandomNumber() +
+                        ', ' +
+                        getRandomNumber() +
+                        ', 0.5)'
+                    }"
+                  ></div>
                   <img
                     src="{{ person.imagUrl }}"
                     alt=""
@@ -23,7 +55,10 @@
                   <span class="may-know-card__mutual"
                     >35 Mutual Connections</span
                   >
-                  <button class="btn btn-outline-primary may-know-card__btn">
+                  <button
+                    class="btn btn-outline-primary may-know-card__btn"
+                    (click)="sendInvitation(person.id)"
+                  >
                     Connect
                   </button>
                 </div>

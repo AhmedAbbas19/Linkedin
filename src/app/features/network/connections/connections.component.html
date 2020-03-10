@@ -1,7 +1,7 @@
 <div class="connections">
   <div class="container">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div class="connections__manager">
           <ul class="taps connections__taps">
             <li
@@ -115,7 +115,38 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-md-4">
+        <div class="connections__may-know">
+          <p>People you may know</p>
+          <ul>
+            <li
+              class="may-know"
+              *ngFor="let person of peopleMayKnow.slice(0, 3)"
+            >
+              <div class="may-know__info">
+                <img src="{{ person.imagUrl }}" class="rounded-circle" alt="" />
+                <div class="may-know__content">
+                  <h6 class="may-know__title">
+                    {{ person.fname }} {{ person.lname }}
+                  </h6>
+                  <p class="may-know__disc">
+                    {{ person.about }}
+                  </p>
+                </div>
+              </div>
+              <button
+                class="btn btn-outline-primary connect-btn"
+                (click)="sendInvitation(person.id)"
+              >
+                Connect
+              </button>
+            </li>
+          </ul>
+          <span routerLink="/mynetwork" class="view-all"
+            >View all recommendations</span
+          >
+        </div>
+      </div>
     </div>
   </div>
 </div>
