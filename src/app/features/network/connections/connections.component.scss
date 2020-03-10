@@ -59,4 +59,53 @@ $lightGray: #929292;
   .btn {
     margin-right: 5px;
   }
+  &__may-know {
+    background-color: #fff;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 2px 1px 5px #d0d0d0;
+    ul {
+      list-style: none;
+    }
+    .may-know {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      &:not(:last-child) {
+        border-bottom: 1px solid $grayColor;
+      }
+      img {
+        max-width: 45px;
+      }
+      &__info {
+        display: flex;
+        align-items: center;
+      }
+      &__content {
+        margin-left: 10px;
+        h6 {
+          font-size: 14px;
+          margin: 0;
+        }
+        p {
+          color: $lightGray;
+          font-size: 14px;
+          margin: 0;
+          max-width: 153px;
+        }
+      }
+      .connect-btn {
+        padding: 4px 8px;
+        font-size: 14px;
+      }
+    }
+    .view-all {
+      color: $primaryColor;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
 }

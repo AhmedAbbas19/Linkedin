@@ -30,20 +30,24 @@ export class MynetworkComponent implements OnInit, OnDestroy {
       }
     );
     this.networkService.getById(this.currentUserId);
-    this.peopleMayKnow = this.userService.getAll().filter(u => {
-      let flag = true;
-      if (
-        this.connected.indexOf(u) !== -1 ||
-        this.sentConnections.indexOf(u) !== -1 ||
-        this.RecivedConnections.indexOf(u) !== -1 ||
-        u.id === this.currentUserId
-      ) {
-        flag = false;
-      }
-      return flag;
-    });
+    this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
   }
 
+  sendInvitation(id: number) {
+    this.networkService.sendInvitation(this.currentUserId, id);
+    const idx = this.peopleMayKnow.findIndex(u => u.id === id);
+    this.peopleMayKnow.splice(idx, 1);
+  }
+
+  acceptInvitation(id: number) {
+    this.networkService.changeStatus(id, this.currentUserId, 1);
+  }
+  declineInvitation(id: number) {
+    this.networkService.changeStatus(id, this.currentUserId, 2);
+  }
+  getRandomNumber() {
+    return Math.ceil(Math.random() * 254);
+  }
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();
   }

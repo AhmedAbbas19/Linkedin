@@ -45,6 +45,18 @@ export class NetworkService {
         userTwoId: 5,
         status: 0,
         actionUserId: 0
+      },
+      {
+        userOneId: 0,
+        userTwoId: 7,
+        status: 0,
+        actionUserId: 7
+      },
+      {
+        userOneId: 9,
+        userTwoId: 0,
+        status: 0,
+        actionUserId: 9
       }
     ];
   }
@@ -102,6 +114,29 @@ export class NetworkService {
       connected: this.connected,
       sent: this.sent,
       recived: this.recived
+    });
+  }
+  sendInvitation(oneId: number, twoId: number) {
+    this.connections.push({
+      userOneId: oneId,
+      userTwoId: twoId,
+      status: 0,
+      actionUserId: oneId
+    });
+    this.sent.push(this.userService.getById(twoId));
+  }
+  getMayKnow(id: number) {
+    return this.userService.getAll().filter(u => {
+      let flag = true;
+      if (
+        this.connected.indexOf(u) !== -1 ||
+        this.sent.indexOf(u) !== -1 ||
+        this.recived.indexOf(u) !== -1 ||
+        u.id === id
+      ) {
+        flag = false;
+      }
+      return flag;
     });
   }
 }
