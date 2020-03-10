@@ -9,6 +9,11 @@ import { PeopleMayKnowComponent } from "./features/network/people-may-know/peopl
 import { MynetworkComponent } from "./features/network/mynetwork/mynetwork.component";
 import { SearchComponent } from "./features/search/search.component";
 
+import { NotificationComponent } from "./features/notification/notification.component";
+
+import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,16 +22,19 @@ import { SearchComponent } from "./features/search/search.component";
     ConnectionsComponent,
     PeopleMayKnowComponent,
     MynetworkComponent,
-    SearchComponent
+    SearchComponent,
+    NotificationComponent,
+    NewsfeedComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      // { path: "mynetwork", component: ConnectionsComponent },
+      { path: "", component: NewsfeedComponent },
       { path: "mynetwork", component: MynetworkComponent },
       { path: "mynetwork/connections", component: ConnectionsComponent },
       { path: "profile/:username", component: UserProfileComponent },
-      { path: "search/:searchVal", component: SearchComponent }
+      { path: "search/:searchVal", component: SearchComponent },
+      { path: "notification", component: NotificationComponent }
     ])
   ],
   providers: [],

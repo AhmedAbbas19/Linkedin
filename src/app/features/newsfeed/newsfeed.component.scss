@@ -1,0 +1,108 @@
+.profile {
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  box-shadow: 3px 3px 5px 0px rgba(209, 201, 209, 1);
+  position: relative;
+  z-index: 0;
+  background-color: #fff;
+  border: 1px solid #dcdcdc;
+  &--Image {
+    background-color: #016197;
+    position: absolute;
+    height: 58px;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  &--info {
+    border-bottom: 1px solid #dcdcdc;
+    height: fit-content;
+    padding-bottom: 0px;
+    padding: 15px;
+    width: 220px;
+    text-align: center;
+    z-index: 999;
+    img {
+      background-color: #fff;
+      max-width: 80px;
+      border-radius: 50%;
+      border: 1px solid #e2e2e2;
+      padding: 2px;
+    }
+  }
+  &--content {
+    padding: 15px;
+    border-bottom: 1px solid #dcdcdc;
+  }
+  &--text {
+    color: lightslategrey;
+    padding-top: 1rem;
+    &__h2 {
+      font-size: 16px;
+      color: black;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &__h3 {
+      font-size: 12px;
+      color: #666666;
+      font-weight: 400;
+    }
+    &__P {
+      text-decoration: none;
+      color: #666666;
+      font-weight: 400;
+      font-size: 12px;
+    }
+    &__num {
+      color: #00669e;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    &--blacktext {
+      color: black;
+      font-weight: 700;
+      font-size: 12px;
+      i {
+        color: #f3e21b;
+        margin-right: 5px;
+      }
+    }
+  }
+  &--doubletext {
+    display: flex;
+    flex-direction: column;
+  }
+  &--premium {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0px 10px 0px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &--saved {
+    cursor: pointer;
+    text-align: left;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &--numtext {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    padding-bottom: 10px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

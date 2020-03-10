@@ -3,6 +3,6 @@ export interface Post {
   id?: number;
   content?: string;
   imagUrl?: string;
-  author?: User;
+  authorId?: number;
   date?: string;
 }

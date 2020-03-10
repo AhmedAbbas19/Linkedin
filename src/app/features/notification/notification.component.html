@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 p-4 bg-white m-3 p-1">
+      <div *ngFor="let notification of notifications" class="card mb-9">
+        <a href="{{ notification.url }}">
+          <div class="row no-gutters">
+            <div class="col-md-2">
+              <img
+                src="{{ notification.image }}"
+                class="card-img m-3"
+                style="border-radius: 50%;max-width: 80px;"
+              />
+            </div>
+            <div class="col-md-10">
+              <div class="card-body">
+                <p class="card-text">
+                  {{ notification.text }}
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">{{ notification.created }}</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
