@@ -7,7 +7,11 @@ import { UserProfileComponent } from "./features/user/user-profile/user-profile.
 import { ConnectionsComponent } from "./features/network/connections/connections.component";
 import { PeopleMayKnowComponent } from "./features/network/people-may-know/people-may-know.component";
 import { MynetworkComponent } from "./features/network/mynetwork/mynetwork.component";
+
+import { NotificationComponent } from "./features/notification/notification.component";
+
 import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
+
 
 @NgModule({
   declarations: [
@@ -17,6 +21,7 @@ import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
     ConnectionsComponent,
     PeopleMayKnowComponent,
     MynetworkComponent,
+    NotificationComponent,
     NewsfeedComponent
   ],
   imports: [
@@ -25,7 +30,8 @@ import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
       { path: "", component: NewsfeedComponent },
       { path: "mynetwork", component: MynetworkComponent },
       { path: "mynetwork/connections", component: ConnectionsComponent },
-      { path: "profile/:username", component: UserProfileComponent }
+      { path: "profile/:username", component: UserProfileComponent },
+      { path: "notification", component: NotificationComponent }
     ])
   ],
   providers: [],
