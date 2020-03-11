@@ -13,7 +13,6 @@ import { NotificationComponent } from "./features/notification/notification.comp
 
 import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -307,6 +307,56 @@ export class UserService {
           { id: 0, title: "CSS3" },
           { id: 0, title: "C#" }
         ]
+      },
+      {
+        id: 12,
+        fname: "Elon",
+        lname: "Musk",
+        imagUrl: "assets/musk.jpg",
+        about: "Innovator",
+        email: "elon@gmail.com",
+        password: "123",
+        username: "elonmusk",
+        edu: [
+          {
+            id: 0,
+            title: "MIT University",
+            degree: "Bachelor",
+            specialization: "Computer Science",
+            startDate: "2015",
+            endDate: "2019"
+          }
+        ],
+        skils: [
+          { id: 0, title: "HTML" },
+          { id: 0, title: "CSS3" },
+          { id: 0, title: "C#" }
+        ]
+      },
+      {
+        id: 13,
+        fname: "Thanos",
+        lname: "",
+        imagUrl: "assets/thanos.jpg",
+        about: "I'm Inevitable",
+        email: "thanos@gmail.com",
+        password: "123",
+        username: "thanos",
+        edu: [
+          {
+            id: 0,
+            title: "Life University",
+            degree: "Bachelor",
+            specialization: "Killer",
+            startDate: "2015",
+            endDate: "2019"
+          }
+        ],
+        skils: [
+          { id: 0, title: "HTML" },
+          { id: 0, title: "CSS3" },
+          { id: 0, title: "C#" }
+        ]
       }
     ];
   }

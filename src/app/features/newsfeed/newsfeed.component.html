@@ -44,49 +44,61 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div class="create-post"></div>
         <ul class="newsfeed__posts-list">
-          <li class="post">
+          <li class="post" *ngFor="let post of posts">
             <div class="post__header">
               <div class="meta post__meta">
                 <img src="assets/salah.jpg" alt="" class="meta__img" />
-                <h6 class="meta__author-name">Mohamed Salah</h6>
-                <p class="meta__author-about">Web Developer</p>
-                <span class="meta__date">3/10/2020</span>
+                <div class="meta__info">
+                  <h6 class="meta__author-name">
+                    Ahmed Abbas
+                  </h6>
+                  <p class="meta__author-about">
+                    {{ "Artist" }}
+                  </p>
+                  <span class="meta__date">{{ "3/10/2020" }}</span>
+                </div>
               </div>
-              <i class="fa fa-pen meta__control"></i>
+              <i class="fa fa-ellipsis-h meta__control"></i>
             </div>
             <div class="body post__body">
               <p class="body__content">
-                I'm the post body
+                {{ post.content }}
               </p>
-              <img src="assets/last-phot17.jpg" alt="" class="body__img" />
-            </div>
-            <div class="post__reacts"></div>
-            <div class="comments"></div>
-          </li>
-          <li class="post">
-            <div class="post__header">
-              <div class="meta post__meta">
-                <img src="assets/salah.jpg" alt="" class="meta__img" />
-                <h6 class="meta__author-name">Mohamed Salah</h6>
-                <p class="meta__author-about">Web Developer</p>
-                <span class="meta__date">3/10/2020</span>
+              <div class="body__img">
+                <img src="{{ post.imagUrl }}" alt="" />
               </div>
-              <i class="fa fa-pen meta__control"></i>
             </div>
-            <div class="body post__body">
-              <p class="body__content">
-                I'm the post body
-              </p>
-              <img src="assets/last-phot17.jpg" alt="" class="body__img" />
+            <div class="reacts post__reacts">
+              <div class="reacts__counter">
+                <i class="fa fa-thumbs-up like"></i>
+                <i class="fa fa-heart love"></i>
+                <i class="fa fa-lightbulb insightful"></i>
+                <span>1.5K</span>
+              </div>
+              <div class="reacts__action">
+                <i class="fa fa-thumbs-up like"></i>
+                <span>Like</span>
+                <i class="fa fa-comment comment"></i>
+                <span>Comment</span>
+                <i class="fa fa-share share"></i>
+                <span>Share</span>
+              </div>
             </div>
-            <div class="post__reacts"></div>
-            <div class="comments"></div>
+            <div class="post__comments">
+              <img src="assets/salah.jpg" alt="" srcset="" />
+              <input
+                type="text"
+                name="comment"
+                id=""
+                placeholder="Add a comment"
+              />
+            </div>
           </li>
         </ul>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
       </div>
     </div>
   </div>

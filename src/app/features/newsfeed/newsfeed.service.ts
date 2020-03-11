@@ -13,64 +13,58 @@ export class NewsfeedService {
         date: "3/10/2020",
         authorId: 0,
         content: "Hello there I'm creating Linkedin",
-        imagUrl: "assets/last-phot17.jpg"
+        imagUrl: "assets/shop-product3.png"
       },
       {
         id: 1,
         date: "2/10/2020",
-        authorId: 0,
+        authorId: 8,
         content: "Hello there I'm creating Linkedin"
       },
       {
         id: 2,
         date: "3/10/2020",
-        authorId: 1,
+        authorId: 10,
         content: "Goooooooood Morning Vietnaaam!",
-        imagUrl: "assets/last-phot17.jpg"
+        imagUrl: "assets/photo-item1.jpg"
       },
       {
         id: 3,
         date: "3/10/2020",
-        authorId: 2,
+        authorId: 5,
         content: "Hello there I'm creating Linkedin",
-        imagUrl: "assets/last-phot17.jpg"
+        imagUrl: "assets/photo-item3.jpg"
       },
       {
         id: 4,
         date: "3/10/2020",
-        authorId: 3,
+        authorId: 9,
         content: "Hello there I'm creating Linkedin"
       },
       {
         id: 5,
         date: "3/10/2020",
-        authorId: 2,
+        authorId: 4,
         content: "Hello there I'm creating Linkedin",
-        imagUrl: "assets/last-phot17.jpg"
+        imagUrl: "assets/photo-item5.jpg"
       },
       {
         id: 6,
         date: "3/10/2020",
         authorId: 5,
         content: "Hello there I'm creating Linkedin",
-        imagUrl: "assets/last-phot17.jpg"
+        imagUrl: "assets/shop-product3.png"
       },
       {
         id: 7,
         date: "3/10/2020",
-        authorId: 8,
+        authorId: 6,
         content: "Hello there I'm creating Linkedin",
-        imagUrl: "assets/last-phot17.jpg"
+        imagUrl: "assets/photo-item1.jpg"
       }
     ];
   }
   getAll() {
     return this.posts;
-  }
-  getById(id: number) {
-    return this.posts.find(p => p.id === id);
-  }
-  getByAuthorId(AuthId: number) {
-    return this.posts.find(p => p.id === AuthId);
   }
 }

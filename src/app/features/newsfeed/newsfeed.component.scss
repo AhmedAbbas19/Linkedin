@@ -1,5 +1,5 @@
 .profile {
-  margin: 2%;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   width: 220px;
@@ -103,6 +103,124 @@
     padding-bottom: 10px;
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+.newsfeed {
+  &__posts-list {
+    list-style: none;
+  }
+  .post {
+    background-color: #fff;
+    margin-top: 30px;
+    border-radius: 4px;
+    box-shadow: 2px 1px 5px #d0d0d0;
+    &__header {
+      padding: 15px 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        &__info {
+          margin-left: 12px;
+        }
+        &__img {
+          max-width: 70px;
+          border-radius: 50%;
+        }
+        &__author {
+          &-name {
+            margin: 0;
+          }
+          &-about {
+            font-size: 12px;
+            color: #929292;
+            margin: 0;
+          }
+        }
+        &__date {
+          font-size: 12px;
+          color: #929292;
+          margin: 0;
+        }
+      }
+      i {
+        color: #5f5f5f;
+      }
+    }
+    .body {
+      &__content {
+        padding: 0 15px;
+        font-size: 14px;
+      }
+      &__img {
+        text-align: center;
+        img {
+          max-width: 100%;
+          max-height: 440px;
+        }
+      }
+    }
+    &__reacts {
+      padding: 0 15px 15px;
+      .reacts {
+        &__counter {
+          margin: 10px 0;
+          padding-bottom: 4px;
+          border-bottom: 1px solid #dadada;
+          i {
+            padding: 2px;
+          }
+          span {
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 8px;
+            color: #656565;
+          }
+          .like {
+            color: #016197;
+          }
+          .love {
+            color: #d60808;
+          }
+          .insightful {
+            color: #d6c108;
+          }
+        }
+        &__action {
+          color: #5f5f5f;
+          i {
+            margin-right: 5px;
+          }
+          span {
+            font-weight: 600;
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+    &__comments {
+      padding: 0 15px 15px;
+      margin-top: 5px;
+      img {
+        max-width: 45px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+      input {
+        width: 90%;
+        border-radius: 35px;
+        border: 1px solid #c5c5c5;
+        padding: 8px 18px;
+        &:focus {
+          outline: none;
+        }
+      }
     }
   }
 }
