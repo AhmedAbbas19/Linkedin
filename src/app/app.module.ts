@@ -12,6 +12,7 @@ import { SearchComponent } from "./features/search/search.component";
 import { NotificationComponent } from "./features/notification/notification.component";
 
 import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
     MynetworkComponent,
     SearchComponent,
     NotificationComponent,
-    NewsfeedComponent
+    NewsfeedComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
