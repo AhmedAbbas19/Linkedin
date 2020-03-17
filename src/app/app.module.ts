@@ -8,10 +8,12 @@ import { ConnectionsComponent } from "./features/network/connections/connections
 import { PeopleMayKnowComponent } from "./features/network/people-may-know/people-may-know.component";
 import { MynetworkComponent } from "./features/network/mynetwork/mynetwork.component";
 import { SearchComponent } from "./features/search/search.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { NotificationComponent } from "./features/notification/notification.component";
 
 import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
+import { LoginComponent } from "./features/login/login.component";
 
 @NgModule({
   declarations: [
@@ -23,17 +25,21 @@ import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
     MynetworkComponent,
     SearchComponent,
     NotificationComponent,
-    NewsfeedComponent
+    NewsfeedComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: "", component: NewsfeedComponent },
       { path: "mynetwork", component: MynetworkComponent },
       { path: "mynetwork/connections", component: ConnectionsComponent },
       { path: "profile/:username", component: UserProfileComponent },
       { path: "search/:searchVal", component: SearchComponent },
-      { path: "notification", component: NotificationComponent }
+      { path: "notification", component: NotificationComponent },
+      { path: "login", component: LoginComponent }
     ])
   ],
   providers: [],
