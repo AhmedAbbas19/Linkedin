@@ -1,1 +1,61 @@
-<p>auth works!</p>
+<div class="auth" [ngStyle]="{ backgroundColor: loginMode ? '' : '#0a869b' }">
+  <div class="signup-form">
+    <form [formGroup]="authForm" (ngSubmit)="submitHandler()">
+      <img src="assets/LinkedIn-Logos/LI-Logo.png" class="img" alt="" />
+      <h2>{{ loginMode ? "Sign in" : "Sign up" }}</h2>
+      <p class="hint-text">
+        {{
+          loginMode
+            ? "Sign in to stay updated on your professional world."
+            : "Make the most of your professional life"
+        }}
+      </p>
+
+      <div class="form-group">
+        <input
+          [ngClass]="{
+            'is-invalid':
+              authForm.get('email').invalid && authForm.get('email').touched
+          }"
+          type="email"
+          class="form-control"
+          name="email"
+          placeholder="Email"
+          autofocus
+          formControlName="email"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          [ngClass]="{
+            'is-invalid':
+              authForm.get('password').invalid &&
+              authForm.get('password').touched
+          }"
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </div>
+      <div class="form-group" *ngIf="loginMode">
+        <label class="checkbox-inline"
+          ><input type="checkbox" required="required" /> Remember me
+        </label>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          <!-- [disabled]="authForm.invalid" -->
+          {{ loginMode ? "Sign in" : "Sign up" }}
+        </button>
+      </div>
+      <div class="text-center">
+        {{ loginMode ? "New to LinkedIn?" : "Already on Linkedin?" }}
+        <span class="switcher-btn" (click)="loginMode = !loginMode">{{
+          loginMode ? "Join now" : "Sign in"
+        }}</span>
+      </div>
+    </form>
+  </div>
+</div>
