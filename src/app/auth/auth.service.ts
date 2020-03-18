@@ -14,11 +14,10 @@ interface AuthResponse {
   registered?: boolean;
 }
 
-@Injectable({
-  providedIn: "root"
-})
+@Injectable()
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+  activeUser = this.user.asObservable();
   tokenExpirationTimer: any;
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -46,7 +45,6 @@ export class AuthService {
       this.autoLogout(expirationDuration);
     }
   }
-
   login(email: string, password: string) {
     return this.http
       .post<AuthResponse>(
@@ -99,13 +97,14 @@ export class AuthService {
     );
     const user = new User(
       resp.email,
-      resp.localId,
+      // resp.localId,
+      "11",
       resp.idToken,
       expirationDate
     );
     this.user.next(user);
-    // this.autoLogout(+resp.expiresIn * 1000);
-    // localStorage.setItem("userData", JSON.stringify(user));
+    this.autoLogout(+resp.expiresIn * 1000);
+    localStorage.setItem("userData", JSON.stringify(user));
     this.router.navigate(["/home"]);
   }
 }

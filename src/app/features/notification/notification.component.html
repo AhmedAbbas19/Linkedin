@@ -1,29 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-9 p-4 bg-white m-3 p-1">
-      <div *ngFor="let notification of notifications" class="card mb-9">
-        <a href="{{ notification.url }}">
-          <div class="row no-gutters">
-            <div class="col-md-2">
-              <img
-                src="{{ notification.image }}"
-                class="card-img m-3"
-                style="border-radius: 50%;max-width: 80px;"
-              />
-            </div>
-            <div class="col-md-10">
-              <div class="card-body">
-                <p class="card-text">
-                  {{ notification.text }}
-                </p>
-                <p class="card-text">
-                  <small class="text-muted">{{ notification.created }}</small>
-                </p>
+<div class="notifications">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="section">
+          <h5>Nofications</h5>
+          <ul class="section__list">
+            <li
+              class="sec-item section__item"
+              *ngFor="let notif of notifications"
+            >
+              <div class="sec-item__content">
+                <img src="{{ notif.image }}" alt="" class="sec-item__img" />
+                <div class="sec-item__info">
+                  <p class="sec-item__place m-0">
+                    {{ notif.text }}
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
-        </a>
+              <div class="sec-item__control">
+                <i class="fa fa-ellipsis-h meta__control"></i>
+                <span class="sec-item__duration">{{ notif.created }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
+      <div class="col-md-4"></div>
     </div>
   </div>
 </div>

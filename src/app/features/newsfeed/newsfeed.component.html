@@ -5,10 +5,12 @@
         <div class="profile mx-auto">
           <div class="profile--Image"></div>
           <div class="profile--info ">
-            <img src="assets/salah.jpg" alt="" srcset="" />
+            <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
             <div class="profile--text ">
-              <h6 class="profile--text__h2">Mohamed Salah</h6>
-              <div class="profile--text__h3">Software Developer -.net</div>
+              <h6 class="profile--text__h2">
+                {{ activeUser.fname }} {{ activeUser.lname }}
+              </h6>
+              <div class="profile--text__h3">{{ activeUser.about }}</div>
             </div>
           </div>
           <div class="profile--content">

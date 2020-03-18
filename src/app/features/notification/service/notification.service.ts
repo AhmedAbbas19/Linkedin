@@ -13,7 +13,7 @@ export class NotificationService {
         "like : This is a wider card with supporting text below as a natural",
       image: "https://picsum.photos/200?v=" + Math.random(),
       url: "/post/123",
-      created: "15/6/2016 1:30 pm"
+      created: "1h"
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export class NotificationService {
         "comment : This is a wider card with supporting text below as a natural",
       image: "https://picsum.photos/200?v=" + Math.random(),
       url: "/comment/123",
-      created: "15/6/2016 1:30 pm"
+      created: "18h"
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export class NotificationService {
         "share : This is a wider card with supporting text below as a natural",
       image: "https://picsum.photos/200?v=" + Math.random(),
       url: "/post/123",
-      created: "15/6/2016 1:30 pm"
+      created: "1d"
     },
     {
       id: 4,
@@ -40,7 +40,7 @@ export class NotificationService {
         "update : This is a wider card with supporting text below as a natural",
       image: "https://picsum.photos/200?v=" + Math.random(),
       url: "/post/123",
-      created: "15/6/2016 1:30 pm"
+      created: "2d"
     },
     {
       id: 5,
@@ -49,12 +49,12 @@ export class NotificationService {
         "profile : This is a wider card with supporting text below as a natural",
       image: "https://picsum.photos/200?v=" + Math.random(),
       url: "/profile/123",
-      created: "15/6/2016 1:30 pm"
+      created: "15/6/2016 1:30pm"
     }
   ];
   constructor() {}
 
-  getNotification() {
+  getAll() {
     return this.notifications;
   }
 
