@@ -1,15 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "./../user/user.service";
 import { ActivatedRoute } from "@angular/router";
+import { User } from "src/_model/user";
 @Component({
   selector: "app-search",
   templateUrl: "./search.component.html",
   styleUrls: ["./search.component.scss"]
 })
 export class SearchComponent implements OnInit {
-  users;
+  users: User[];
   searchVal = "";
-  result = [];
+  result: User[];
   constructor(
     private userService: UserService,
     private route: ActivatedRoute
@@ -23,7 +24,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  search(val) {
+  search(val: string) {
     this.result = [];
     this.users.map(user => {
       if (
