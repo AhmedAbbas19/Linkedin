@@ -1,31 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9 p-4 bg-white m-3 p-1">
-      <div *ngFor="let user of result" class="card mb-9">
-        <a href="/profile/{{ user.id }}" class="text-decoration-none">
-          <div class="row no-gutters">
-            <div class="col-md-2">
-              <img
-                src="{{ user.imagUrl }}"
-                class="card-img m-3"
-                style="border-radius: 50%;max-width: 80px;"
-              />
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h2 class="text-dark">{{ user.fname + " " + user.lname }}</h2>
-                <p class="card-text">
+    <div class="col-md-8 connections__manager">
+      <div class="connections__list">
+        <ul>
+          <p *ngIf="result.length" class="search-title">
+            Showing {{ result.length }} results for
+            <span>"{{ searchVal }}"</span>
+          </p>
+          <p *ngIf="result.length === 0" class="search-title">
+            No result to show for <span>"{{ searchVal }}"</span>
+          </p>
+          <li class="conn-card connections__card" *ngFor="let user of result">
+            <div class="conn-card__info">
+              <img src="{{ user.imagUrl }}" class="rounded-circle" alt="" />
+              <div class="conn-card__content">
+                <h6 class="conn-card__title">
+                  {{ user.fname }} {{ user.lname }}
+                </h6>
+                <p class="conn-card__disc">
                   {{ user.about }}
                 </p>
               </div>
             </div>
-            <div class="col-md-2 pt-5">
-              <button type="button" class="btn btn-outline-info">
-                Connect
-              </button>
-            </div>
-          </div>
-        </a>
+            <button class="btn btn-outline-primary">Message</button>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

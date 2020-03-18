@@ -16,6 +16,7 @@ import { AuthService } from "src/app/auth/auth.service";
 
 import { AuthComponent } from "./auth/auth.component";
 import { HttpClientModule } from "@angular/common/http";
+import { AuthGuard } from "./auth/auth.guard";
 
 @NgModule({
   declarations: [
@@ -34,12 +35,32 @@ import { HttpClientModule } from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: "home", component: NewsfeedComponent },
-      { path: "mynetwork", component: MynetworkComponent },
-      { path: "mynetwork/connections", component: ConnectionsComponent },
-      { path: "profile/:username", component: UserProfileComponent },
-      { path: "search/:searchVal", component: SearchComponent },
-      { path: "notification", component: NotificationComponent },
+      { path: "home", component: NewsfeedComponent, canActivate: [AuthGuard] },
+      {
+        path: "mynetwork",
+        component: MynetworkComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "mynetwork/connections",
+        component: ConnectionsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "profile/:username",
+        component: UserProfileComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "search/:searchVal",
+        component: SearchComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "notification",
+        component: NotificationComponent,
+        canActivate: [AuthGuard]
+      },
       { path: "auth", component: AuthComponent },
       { path: "", redirectTo: "home", pathMatch: "full" }
     ])
