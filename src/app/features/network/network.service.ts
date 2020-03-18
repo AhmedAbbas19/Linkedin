@@ -17,50 +17,50 @@ export class NetworkService {
     this.connectionSubject = new Subject<any>();
     this.connections = [
       {
-        userOneId: 0,
-        userTwoId: 1,
+        userOneId: "0",
+        userTwoId: "1",
         status: 1,
-        actionUserId: 1
+        actionUserId: "1"
       },
       {
-        userOneId: 0,
-        userTwoId: 2,
+        userOneId: "0",
+        userTwoId: "2",
         status: 1,
-        actionUserId: 1
+        actionUserId: "1"
       },
       {
-        userOneId: 0,
-        userTwoId: 3,
+        userOneId: "0",
+        userTwoId: "3",
         status: 1,
-        actionUserId: 3
+        actionUserId: "3"
       },
       {
-        userOneId: 0,
-        userTwoId: 4,
+        userOneId: "0",
+        userTwoId: "4",
         status: 0,
-        actionUserId: 4
+        actionUserId: "4"
       },
       {
-        userOneId: 0,
-        userTwoId: 5,
+        userOneId: "0",
+        userTwoId: "5",
         status: 0,
-        actionUserId: 0
+        actionUserId: "0"
       },
       {
-        userOneId: 0,
-        userTwoId: 7,
+        userOneId: "0",
+        userTwoId: "7",
         status: 0,
-        actionUserId: 7
+        actionUserId: "7"
       },
       {
-        userOneId: 9,
-        userTwoId: 0,
+        userOneId: "9",
+        userTwoId: "0",
         status: 0,
-        actionUserId: 9
+        actionUserId: "9"
       }
     ];
   }
-  getById(id: number) {
+  getById(id: string) {
     this.connected = [];
     this.sent = [];
     this.recived = [];
@@ -81,7 +81,7 @@ export class NetworkService {
     }
     this.fireConnectionsChanges();
   }
-  changeStatus(oneId: number, twoId: number, newStatus: number) {
+  changeStatus(oneId: string, twoId: string, newStatus: number) {
     for (const conn of this.connections) {
       if (
         (conn.userOneId === oneId && conn.userTwoId === twoId) ||
@@ -116,7 +116,7 @@ export class NetworkService {
       recived: this.recived
     });
   }
-  sendInvitation(oneId: number, twoId: number) {
+  sendInvitation(oneId: string, twoId: string) {
     this.connections.push({
       userOneId: oneId,
       userTwoId: twoId,
@@ -125,7 +125,7 @@ export class NetworkService {
     });
     this.sent.push(this.userService.getById(twoId));
   }
-  getMayKnow(id: number) {
+  getMayKnow(id: string) {
     return this.userService.getAll().filter(u => {
       let flag = true;
       if (

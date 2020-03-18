@@ -4,7 +4,7 @@ import { Certificate } from "./certificate";
 import { WorkExp } from "./workExp";
 
 export interface User {
-  id?: number;
+  id?: string;
   fname?: string;
   lname?: string;
   username?: string;

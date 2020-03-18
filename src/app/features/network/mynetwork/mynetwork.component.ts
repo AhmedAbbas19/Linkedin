@@ -15,7 +15,7 @@ export class MynetworkComponent implements OnInit, OnDestroy {
   sentConnections: User[];
   RecivedConnections: User[];
   peopleMayKnow: User[];
-  currentUserId;
+  currentUserId: string;
   private userSub: Subscription;
   netWorkSubscribtion: Subscription;
   constructor(
@@ -41,16 +41,16 @@ export class MynetworkComponent implements OnInit, OnDestroy {
     });
   }
 
-  sendInvitation(id: number) {
+  sendInvitation(id: string) {
     this.networkService.sendInvitation(this.currentUserId, id);
     const idx = this.peopleMayKnow.findIndex(u => u.id === id);
     this.peopleMayKnow.splice(idx, 1);
   }
 
-  acceptInvitation(id: number) {
+  acceptInvitation(id: string) {
     this.networkService.changeStatus(id, this.currentUserId, 1);
   }
-  declineInvitation(id: number) {
+  declineInvitation(id: string) {
     this.networkService.changeStatus(id, this.currentUserId, 2);
   }
   getRandomNumber() {

@@ -14,7 +14,7 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   sentConnections: User[];
   RecivedConnections: User[];
   activeStatus: number = 1;
-  currentUserId;
+  currentUserId: string;
   private userSub: Subscription;
   peopleMayKnow: User[];
   netWorkSubscribtion: Subscription;
@@ -38,16 +38,16 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
       this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
     });
   }
-  acceptInvitation(id: number) {
+  acceptInvitation(id: string) {
     this.networkService.changeStatus(id, this.currentUserId, 1);
   }
-  declineInvitation(id: number) {
+  declineInvitation(id: string) {
     this.networkService.changeStatus(id, this.currentUserId, 2);
   }
-  withdrawInvitation(id: number) {
+  withdrawInvitation(id: string) {
     this.networkService.changeStatus(id, this.currentUserId, 4);
   }
-  sendInvitation(id: number) {
+  sendInvitation(id: string) {
     this.networkService.sendInvitation(this.currentUserId, id);
     const idx = this.peopleMayKnow.findIndex(u => u.id === id);
     this.peopleMayKnow.splice(idx, 1);

@@ -1,5 +1,5 @@
 export interface WorkExp {
-  id?: number;
+  id?: string;
   workPlace?: string;
   jobTitle?: string;
   startDate?: string;

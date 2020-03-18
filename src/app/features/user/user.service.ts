@@ -9,7 +9,7 @@ export class UserService {
   constructor() {
     this.users = [
       {
-        id: 0,
+        id: "0",
         fname: "Ahmed",
         lname: "Abbas",
         imagUrl: "assets/last-phot15.jpg",
@@ -19,7 +19,7 @@ export class UserService {
         username: "Ahmeddabbas",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "FCI Cairo University",
             degree: "Bachelor",
             specialization: "Computer Science",
@@ -28,13 +28,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 1,
+        id: "1",
         fname: "Abdullah",
         lname: "Ragab",
         imagUrl: "assets/last-phot15.jpg",
@@ -44,7 +44,7 @@ export class UserService {
         username: "Abdullah",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "FCI Minia University",
             degree: "Bachelor",
             specialization: "Computer Science",
@@ -53,13 +53,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "XD" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "XD" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 2,
+        id: "2",
         fname: "Amir",
         lname: "Mohamed",
         imagUrl: "assets/last-phot15.jpg",
@@ -69,7 +69,7 @@ export class UserService {
         username: "AmirM",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Faculty Of Engineering Suiz University",
             degree: "Bachelor",
             specialization: "Gas",
@@ -78,13 +78,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 3,
+        id: "3",
         fname: "Ahmed",
         lname: "Mostafa",
         imagUrl: "assets/last-phot15.jpg",
@@ -94,7 +94,7 @@ export class UserService {
         username: "Mostafa",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Mansura University",
             degree: "Bachelor",
             specialization: "Kahraba 11",
@@ -103,13 +103,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 4,
+        id: "4",
         fname: "Hossam",
         lname: "Hassan",
         imagUrl: "assets/last-phot15.jpg",
@@ -119,7 +119,7 @@ export class UserService {
         username: "Hossam Hassan",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Ain Shams University",
             degree: "Bachelor",
             specialization: "Commerce",
@@ -128,13 +128,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 5,
+        id: "5",
         fname: "Bassam",
         lname: "Ahmed",
         imagUrl: "assets/last-phot15.jpg",
@@ -144,7 +144,7 @@ export class UserService {
         username: "BassamB",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Alsun Ain Shams University",
             degree: "Bachelor",
             specialization: "Commerce",
@@ -153,13 +153,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 6,
+        id: "6",
         fname: "Leonardo",
         lname: "Di Caprio",
         imagUrl: "assets/leonardo.jpg",
@@ -169,7 +169,7 @@ export class UserService {
         username: "LDC",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Harvard University",
             degree: "Bachelor",
             specialization: "Arts",
@@ -178,13 +178,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 7,
+        id: "7",
         fname: "Mohamed",
         lname: "Salah",
         imagUrl: "assets/salah.jpg",
@@ -194,7 +194,7 @@ export class UserService {
         username: "Mosalah",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Basion Mentality School",
             degree: "Bachelor",
             specialization: "Arts",
@@ -203,13 +203,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 8,
+        id: "8",
         fname: "Scarlet",
         lname: "Johanson",
         imagUrl: "assets/photo-item10.jpg",
@@ -219,7 +219,7 @@ export class UserService {
         username: "ScarletDaAna",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "MIT Institute",
             degree: "Bachelor",
             specialization: "Arts",
@@ -228,13 +228,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 9,
+        id: "9",
         fname: "Hassan",
         lname: "Shakoosh",
         imagUrl: "assets/shakosh.jpg",
@@ -244,7 +244,7 @@ export class UserService {
         username: "Hassan",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Cairo University",
             degree: "Bachelor",
             specialization: "Arts",
@@ -253,13 +253,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 10,
+        id: "10",
         fname: "Marwan",
         lname: "Mohsen",
         imagUrl: "assets/marwan.jpg",
@@ -269,7 +269,7 @@ export class UserService {
         username: "Memo",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Ain Shams University",
             degree: "Bachelor",
             specialization: "Arts",
@@ -278,13 +278,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 11,
+        id: "11",
         fname: "Adel",
         lname: "Shakal",
         imagUrl: "assets/shakal.jpeg",
@@ -294,7 +294,7 @@ export class UserService {
         username: "Elzaama",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Elna7o University",
             degree: "Bachelor",
             specialization: "Arts",
@@ -303,13 +303,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 12,
+        id: "12",
         fname: "Elon",
         lname: "Musk",
         imagUrl: "assets/musk.jpg",
@@ -319,7 +319,7 @@ export class UserService {
         username: "elonmusk",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "MIT University",
             degree: "Bachelor",
             specialization: "Computer Science",
@@ -328,13 +328,13 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       },
       {
-        id: 13,
+        id: "13",
         fname: "Thanos",
         lname: "",
         imagUrl: "assets/thanos.jpg",
@@ -344,7 +344,7 @@ export class UserService {
         username: "thanos",
         edu: [
           {
-            id: 0,
+            id: "0",
             title: "Life University",
             degree: "Bachelor",
             specialization: "Killer",
@@ -353,9 +353,9 @@ export class UserService {
           }
         ],
         skils: [
-          { id: 0, title: "HTML" },
-          { id: 0, title: "CSS3" },
-          { id: 0, title: "C#" }
+          { id: "0", title: "HTML" },
+          { id: "0", title: "CSS3" },
+          { id: "0", title: "C#" }
         ]
       }
     ];
