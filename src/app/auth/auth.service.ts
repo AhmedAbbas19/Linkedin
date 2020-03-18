@@ -98,7 +98,7 @@ export class AuthService {
     const user = new User(
       resp.email,
       // resp.localId,
-      "11",
+      "0",
       resp.idToken,
       expirationDate
     );

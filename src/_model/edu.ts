@@ -1,5 +1,5 @@
 export interface Edu {
-  id?: number;
+  id?: string;
   title?: string;
   specialization?: string;
   startDate?: string;

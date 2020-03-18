@@ -1,8 +1,7 @@
-import { User } from "./user";
 export interface Post {
-  id?: number;
+  id?: string;
   content?: string;
   imagUrl?: string;
-  authorId?: number;
+  authorId?: string;
   date?: string;
 }

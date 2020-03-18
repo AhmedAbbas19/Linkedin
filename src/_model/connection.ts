@@ -1,8 +1,8 @@
 import { ConnectionStatus } from "src/_enums/connectionStatus";
 
 export interface Connection {
-  userOneId?: number;
-  userTwoId?: number;
+  userOneId?: string;
+  userTwoId?: string;
   status?: ConnectionStatus;
-  actionUserId?: number;
+  actionUserId?: string;
 }

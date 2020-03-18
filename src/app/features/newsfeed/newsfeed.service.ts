@@ -9,19 +9,6 @@ export class NewsfeedService {
   constructor() {
     this.posts = [
       {
-        id: 0,
-        date: "3/10/2020",
-        authorId: 0,
-        content: "Hello there I'm creating Linkedin",
-        imagUrl: "assets/shop-product3.png"
-      },
-      {
-        id: 1,
-        date: "2/10/2020",
-        authorId: 8,
-        content: "Hello there I'm creating Linkedin"
-      },
-      {
         id: 2,
         date: "3/10/2020",
         authorId: 10,
@@ -34,6 +21,19 @@ export class NewsfeedService {
         authorId: 5,
         content: "Hello there I'm creating Linkedin",
         imagUrl: "assets/photo-item3.jpg"
+      },
+      {
+        id: 0,
+        date: "3/10/2020",
+        authorId: 0,
+        content: "Hello there I'm creating Linkedin",
+        imagUrl: "assets/shop-product3.png"
+      },
+      {
+        id: 1,
+        date: "2/10/2020",
+        authorId: 8,
+        content: "Hello there I'm creating Linkedin"
       },
       {
         id: 4,
