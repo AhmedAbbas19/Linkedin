@@ -5,7 +5,6 @@ import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./core/header/header.component";
 import { UserProfileComponent } from "./features/user/user-profile/user-profile.component";
 import { ConnectionsComponent } from "./features/network/connections/connections.component";
-import { PeopleMayKnowComponent } from "./features/network/people-may-know/people-may-know.component";
 import { MynetworkComponent } from "./features/network/mynetwork/mynetwork.component";
 import { SearchComponent } from "./features/search/search.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -13,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NotificationComponent } from "./features/notification/notification.component";
 
 import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
+import { AuthService } from "src/app/auth/auth.service";
 
 import { AuthComponent } from "./auth/auth.component";
 import { HttpClientModule } from "@angular/common/http";
@@ -23,7 +23,6 @@ import { HttpClientModule } from "@angular/common/http";
     HeaderComponent,
     UserProfileComponent,
     ConnectionsComponent,
-    PeopleMayKnowComponent,
     MynetworkComponent,
     SearchComponent,
     NotificationComponent,
@@ -45,7 +44,7 @@ import { HttpClientModule } from "@angular/common/http";
       { path: "", redirectTo: "home", pathMatch: "full" }
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

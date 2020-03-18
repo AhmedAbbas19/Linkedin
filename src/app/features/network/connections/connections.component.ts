@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { User } from "src/_model/user";
 import { NetworkService } from "./../network.service";
 import { Subscription } from "rxjs";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-connections",
@@ -13,21 +14,29 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   sentConnections: User[];
   RecivedConnections: User[];
   activeStatus: number = 1;
-  currentUserId: number = 0;
+  currentUserId;
+  private userSub: Subscription;
   peopleMayKnow: User[];
   netWorkSubscribtion: Subscription;
-  constructor(private networkService: NetworkService) {}
+  constructor(
+    private networkService: NetworkService,
+    private authService: AuthService
+  ) {}
   ngOnInit() {
-    this.netWorkSubscribtion = this.networkService.connectionSubject.subscribe(
-      value => {
-        let { connected, sent, recived } = value;
-        this.connected = connected;
-        this.sentConnections = sent;
-        this.RecivedConnections = recived;
-      }
-    );
-    this.networkService.getById(this.currentUserId);
-    this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+    this.userSub = this.authService.activeUser.subscribe(user => {
+      this.currentUserId = user.id;
+      // this.currentUserId = 0;
+      this.netWorkSubscribtion = this.networkService.connectionSubject.subscribe(
+        value => {
+          let { connected, sent, recived } = value;
+          this.connected = connected;
+          this.sentConnections = sent;
+          this.RecivedConnections = recived;
+        }
+      );
+      this.networkService.getById(this.currentUserId);
+      this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+    });
   }
   acceptInvitation(id: number) {
     this.networkService.changeStatus(id, this.currentUserId, 1);
@@ -45,5 +54,6 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();
+    this.userSub.unsubscribe();
   }
 }

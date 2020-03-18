@@ -363,7 +363,7 @@ export class UserService {
   getAll(): User[] {
     return this.users;
   }
-  getById(id: number): User {
-    return this.users.filter(u => u.id === id)[0];
+  getById(id): User {
+    return this.users.find(u => u.id == id);
   }
 }

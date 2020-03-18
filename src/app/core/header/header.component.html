@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-blueblack custom-select-lg">
-  <!-- <div class="container">
+  <div class="container" *ngIf="isAuthenticated">
     <a class="navbar-brand" routerLink="/">
       <img src="assets/logo-512.png" alt="" />
     </a>
@@ -57,7 +57,6 @@
             <div class=" font-weight-normal nav-link-text">Notification</div>
           </a>
         </li>
-
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -69,7 +68,7 @@
             aria-expanded="false"
           >
             <img
-              src="assets/author-page.jpg"
+              src="{{ user.imagUrl }}"
               alt="..."
               class="navbar_img rounded-circle"
             />
@@ -104,17 +103,17 @@
             </div>
 
             <ul class="list-group border-top">
-              <a href="#"
+              <span (click)="onLogout()" class="logout"
                 ><li
                   class="border-0 form-check-label list-group list-group-item text-center text-muted"
                 >
                   Sign Out
-                </li></a
+                </li></span
               >
             </ul>
           </div>
         </li>
       </ul>
     </div>
-  </div> -->
+  </div>
 </nav>

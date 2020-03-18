@@ -35,11 +35,9 @@ export class AuthComponent implements OnInit {
     const { password } = this.authForm.value;
     this.authForm.reset();
     if (this.loginMode) {
-      console.log("Hey");
-
       this.authService.login(email, password).subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
         },
         ({ error }) => {
           console.log(error);
@@ -48,7 +46,7 @@ export class AuthComponent implements OnInit {
     } else {
       this.authService.signUp(email, password).subscribe(
         response => {
-          console.log(response);
+          // console.log(response);
         },
         ({ error }) => {
           console.log(error);

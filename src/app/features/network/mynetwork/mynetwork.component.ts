@@ -3,6 +3,7 @@ import { User } from "src/_model/user";
 import { Subscription } from "rxjs";
 import { NetworkService } from "../network.service";
 import { UserService } from "../../user/user.service";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-mynetwork",
@@ -14,23 +15,30 @@ export class MynetworkComponent implements OnInit, OnDestroy {
   sentConnections: User[];
   RecivedConnections: User[];
   peopleMayKnow: User[];
-  currentUserId: number = 0;
+  currentUserId;
+  private userSub: Subscription;
   netWorkSubscribtion: Subscription;
   constructor(
     private networkService: NetworkService,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {}
   ngOnInit() {
-    this.netWorkSubscribtion = this.networkService.connectionSubject.subscribe(
-      value => {
-        let { connected, sent, recived } = value;
-        this.connected = connected;
-        this.sentConnections = sent;
-        this.RecivedConnections = recived;
+    this.userSub = this.authService.activeUser.subscribe(user => {
+      if (user) {
+        this.currentUserId = user.id;
+        this.netWorkSubscribtion = this.networkService.connectionSubject.subscribe(
+          value => {
+            let { connected, sent, recived } = value;
+            this.connected = connected;
+            this.sentConnections = sent;
+            this.RecivedConnections = recived;
+          }
+        );
+        this.networkService.getById(this.currentUserId);
+        this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
       }
-    );
-    this.networkService.getById(this.currentUserId);
-    this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+    });
   }
 
   sendInvitation(id: number) {
@@ -50,5 +58,6 @@ export class MynetworkComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();
+    this.userSub.unsubscribe();
   }
 }

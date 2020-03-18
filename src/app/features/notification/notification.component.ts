@@ -12,6 +12,6 @@ export class NotificationComponent implements OnInit {
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit() {
-    this.notifications = this.notificationService.getNotification();
+    this.notifications = this.notificationService.getAll();
   }
 }
