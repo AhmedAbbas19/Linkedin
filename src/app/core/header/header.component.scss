@@ -2,7 +2,7 @@
 .navbar {
   background-color: #283e4a;
   font-size: 1rem;
-  padding: 34px 0 25px 0;
+  padding: 0;
 }
 .nav {
   padding-top: 1%;
@@ -137,4 +137,8 @@
 }
 .card-title {
   margin: 0;
+}
+.navbar-collapse {
+  z-index: 999;
+  background: #283e4a;
 }

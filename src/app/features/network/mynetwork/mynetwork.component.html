@@ -5,7 +5,10 @@
         <ul class="mynetwork__pending" *ngIf="RecivedConnections.length">
           <p>Pending invitations</p>
           <li class="pending-item" *ngFor="let user of RecivedConnections">
-            <div class="pending-item__info">
+            <div
+              class="pending-item__info cursor-pointer"
+              [routerLink]="['/profile', user.username]"
+            >
               <img src="{{ user.imagUrl }}" alt="" srcset="" />
               <h6>{{ user.fname }} {{ user.lname }}</h6>
             </div>
@@ -38,9 +41,13 @@
                   <img
                     src="{{ person.imagUrl }}"
                     alt=""
-                    class="may-know-card__img rounded-circle"
+                    class="may-know-card__img rounded-circle cursor-pointer"
+                    [routerLink]="['/profile', person.username]"
                   />
-                  <h6 class="may-know-card__title">
+                  <h6
+                    class="may-know-card__title cursor-pointer"
+                    [routerLink]="['/profile', person.username]"
+                  >
                     {{ person.fname }} {{ person.lname }}
                   </h6>
                   <p class="may-know-card__disc">
@@ -63,12 +70,13 @@
       </div>
       <div class="col-md-3">
         <div class="sidebar">
-          <p>Manage my network</p>
+          <p class="sidebar__title">Manage my network</p>
           <ul class="sidebar__list">
-            <li class="sidebar__item">
-              <a [routerLink]="['connections']"
-                ><i class="fa fa-user-friends"></i> Connections</a
-              >
+            <li
+              class="sidebar__item cursor-pointer"
+              [routerLink]="['connections']"
+            >
+              <span><i class="fa fa-user-friends"></i> Connections</span>
               <span>{{ connected.length }}</span>
             </li>
           </ul>

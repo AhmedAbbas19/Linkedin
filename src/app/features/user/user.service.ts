@@ -116,7 +116,7 @@ export class UserService {
         about: "Full Stack Web Developer",
         email: "Hossam@gmail.com",
         password: "123",
-        username: "Hossam Hassan",
+        username: "HossamHassan",
         edu: [
           {
             id: "0",
@@ -363,7 +363,10 @@ export class UserService {
   getAll(): User[] {
     return this.users;
   }
-  getById(id): User {
-    return this.users.find(u => u.id == id);
+  getById(id: string): User {
+    return this.users.find(u => u.id === id);
+  }
+  getByUsername(username: string): User {
+    return this.users.find(u => u.username === username);
   }
 }

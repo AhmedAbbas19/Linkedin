@@ -34,7 +34,10 @@
                 class="conn-card connections__card"
                 *ngFor="let conn of connected"
               >
-                <div class="conn-card__info">
+                <div
+                  class="conn-card__info cursor-pointer"
+                  [routerLink]="['/profile', conn.username]"
+                >
                   <img src="{{ conn.imagUrl }}" class="rounded-circle" alt="" />
                   <div class="conn-card__content">
                     <h6 class="conn-card__title">
@@ -56,7 +59,10 @@
                 class="conn-card connections__card"
                 *ngFor="let conn of RecivedConnections"
               >
-                <div class="conn-card__info">
+                <div
+                  class="conn-card__info cursor-pointer"
+                  [routerLink]="['/profile', conn.username]"
+                >
                   <img src="{{ conn.imagUrl }}" class="rounded-circle" alt="" />
                   <div class="conn-card__content">
                     <h6 class="conn-card__title">
@@ -91,7 +97,10 @@
                 class="conn-card connections__card"
                 *ngFor="let conn of sentConnections"
               >
-                <div class="conn-card__info">
+                <div
+                  class="conn-card__info cursor-pointer"
+                  [routerLink]="['/profile', conn.username]"
+                >
                   <img src="{{ conn.imagUrl }}" class="rounded-circle" alt="" />
                   <div class="conn-card__content">
                     <h6 class="conn-card__title">
@@ -123,7 +132,10 @@
               class="may-know"
               *ngFor="let person of peopleMayKnow.slice(0, 3)"
             >
-              <div class="may-know__info">
+              <div
+                class="may-know__info cursor-pointer"
+                [routerLink]="['/profile', person.username]"
+              >
                 <img src="{{ person.imagUrl }}" class="rounded-circle" alt="" />
                 <div class="may-know__content">
                   <h6 class="may-know__title">

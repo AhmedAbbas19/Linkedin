@@ -5,9 +5,16 @@
         <div class="profile mx-auto">
           <div class="profile--Image"></div>
           <div class="profile--info ">
-            <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
-            <div class="profile--text ">
-              <h6 class="profile--text__h2">
+            <img
+              src="{{ activeUser.imagUrl }}"
+              class="cursor-pointer"
+              [routerLink]="['/profile', activeUser.username]"
+            />
+            <div class="profile--text">
+              <h6
+                class="profile--text__h2 cursor-pointer"
+                [routerLink]="['/profile', activeUser.username]"
+              >
                 {{ activeUser.fname }} {{ activeUser.lname }}
               </h6>
               <div class="profile--text__h3">{{ activeUser.about }}</div>
@@ -90,7 +97,7 @@
               </div>
             </div>
             <div class="post__comments">
-              <img src="assets/salah.jpg" alt="" srcset="" />
+              <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
               <input
                 type="text"
                 name="comment"

@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 
 import { UserService } from "../user.service";
 import { User } from "src/_model/user";
+import { Subscription } from "rxjs";
+import { AuthService } from "src/app/auth/auth.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-user-profile",
@@ -10,9 +13,20 @@ import { User } from "src/_model/user";
 })
 export class UserProfileComponent implements OnInit {
   user: User;
-  constructor(public userService: UserService) {}
+  userSub: Subscription;
+  constructor(
+    public userService: UserService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.user = this.userService.users[0];
+    this.route.params.subscribe(res => {
+      this.user = this.userService.getByUsername(res.username);
+      if (!this.user) {
+        this.router.navigate(["not-found"]);
+      }
+    });
   }
 }
