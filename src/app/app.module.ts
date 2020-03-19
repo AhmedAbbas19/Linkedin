@@ -18,6 +18,9 @@ import { AuthService } from "src/app/auth/auth.service";
 import { AuthComponent } from "./auth/auth.component";
 import { HttpClientModule } from "@angular/common/http";
 import { AuthGuard } from "./auth/auth.guard";
+import { LandingPageComponent } from "./core/landing-page/landing-page.component";
+
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 
 @NgModule({
   declarations: [
@@ -30,13 +33,17 @@ import { AuthGuard } from "./auth/auth.guard";
     NotificationComponent,
     NewsfeedComponent,
     AuthComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LandingPageComponent
   ],
   imports: [
+    Ng2SearchPipeModule,
+    FormsModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
+      { path: "landing", component: LandingPageComponent },
       { path: "home", component: NewsfeedComponent, canActivate: [AuthGuard] },
       {
         path: "mynetwork",
@@ -65,7 +72,7 @@ import { AuthGuard } from "./auth/auth.guard";
       },
       { path: "auth", redirectTo: "auth/login", pathMatch: "full" },
       { path: "auth/:mode", component: AuthComponent },
-      { path: "", redirectTo: "home", pathMatch: "full" },
+      { path: "", redirectTo: "landing", pathMatch: "full" },
       { path: "not-found", component: NotFoundComponent },
       { path: "**", redirectTo: "not-found", pathMatch: "full" }
     ])
