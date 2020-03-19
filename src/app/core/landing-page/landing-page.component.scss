@@ -1,11 +1,3 @@
-html {
-  font-size: 62.5%;
-}
-
-.text-sm {
-  font-size: 14px;
-}
-
 .search {
   position: relative;
 }
@@ -14,7 +6,7 @@ html {
 .search__firstname,
 .search__lastname {
   border-radius: 5px;
-  font-size: 1rem;
+
   line-height: 1.5;
   font-weight: 350;
   color: rgba(0, 0, 0, 0.9);
@@ -23,7 +15,7 @@ html {
   width: 60%;
   transition: box-shadow 83ms;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.2);
-  height: 4.5rem;
+  height: 3rem;
 }
 .search__jobs:focus,
 .search__location:focus,
@@ -40,8 +32,8 @@ html {
 .fa-search,
 .fa-map-marker-alt {
   position: absolute;
-  font-size: 1.5rem;
-  padding: 1.5rem 0rem 0rem 1rem;
+  top: 15px;
+  left: 20px;
   color: gray;
 }
 
@@ -55,7 +47,7 @@ html {
   justify-content: space-between;
 }
 .header__logo .logo__img {
-  width: 20%;
+  max-width: 110px;
   cursor: pointer;
 }
 
@@ -68,8 +60,7 @@ html {
   display: flex;
   justify-content: space-between;
   position: relative;
-  padding: 4%;
-  padding-top: 1%;
+  padding-bottom: 32px;
 }
 .section__home .section__tabs {
   margin-left: 2rem;
@@ -80,7 +71,7 @@ html {
 
 .section__home .section__tabs .tabs__content .btn--rounded-primary {
   margin-top: 2rem;
-  font-size: 1.8rem;
+
   font-weight: 400;
 }
 .section__home .section__tabs .tabs__content .nav {
@@ -88,7 +79,6 @@ html {
   border-bottom: 0;
 }
 .section__home .section__tabs .tabs__content .nav-tabs {
-  font-size: 2rem;
   font-weight: 450;
 }
 .section__home .section__tabs .tabs__content .nav-link {
@@ -101,8 +91,9 @@ html {
 }
 .section__home .section__tabs .tabs__title {
   color: #0073b1;
-  font-size: 5rem;
+  font-size: 64px;
   font-weight: 300;
+  margin-bottom: 36px;
 }
 .section__home .section__img {
   width: 100%;
@@ -124,15 +115,9 @@ html {
   margin: 10px 0 20px 0;
   color: #0073b1;
   font-weight: 325;
-  font-size: 3rem;
 }
 .section__join .section__title .btn--rounded-primary {
   font-weight: normal;
-  font-size: 2rem;
-}
-
-.dropdown-menu {
-  font-size: 2rem;
 }
 
 .nav {
@@ -179,7 +164,7 @@ html {
 .nav__btn--join {
   color: rgba(0, 0, 0, 0.6);
   font-weight: 500;
-  font-size: calc(1rem + 0.5vw);
+
   height: 100%;
   width: 100%;
   background-color: transparent;
@@ -191,7 +176,7 @@ html {
 
 .nav__btn--sign {
   font-weight: 500;
-  font-size: 1.6rem;
+
   color: #2e7eab;
   transition: all 0.3s ease 0s;
 }
@@ -202,9 +187,6 @@ html {
     inset 0 0 0 1px rgba(0, 0, 0, 0);
 }
 
-.nav__text {
-  font-size: calc(12px + 0.5vw);
-}
 .nav__logo {
   width: 90%;
 }
@@ -235,7 +217,6 @@ html {
   width: 9rem;
 }
 .footer__text {
-  font-size: 1.3rem;
   color: #666666;
   font-weight: 500;
 }
@@ -257,7 +238,6 @@ html {
 }
 .footer-end__dropdown-item {
   color: #0073b0;
-  font-size: calc(0.6rem + 0.5vw);
 }
 .footer-end__dropdown-item:hover {
   color: white;
@@ -266,7 +246,6 @@ html {
 .footer-end__text {
   color: #9c9e9f;
   font-weight: 500;
-  font-size: 1.3rem;
 }
 .footer-end__brand {
   display: flex;
@@ -277,13 +256,11 @@ html {
 
 a {
   color: #485d69;
-  font-size: 13px;
 }
 
 #dropdownMenu2 {
   color: #485d69;
   font-weight: 100;
-  font-size: 13px;
 }
 
 .btn--primary {
@@ -313,7 +290,6 @@ a {
   color: #fff;
   font-weight: 600;
   font-family: inherit;
-  font-size: 2rem;
 }
 .btn--rounded-primary:hover {
   background-color: #006097;
@@ -331,10 +307,15 @@ a {
   color: rgba(0, 0, 0, 0.75);
   font-weight: 600;
   font-family: inherit;
-  font-size: 2rem;
 }
 .btn--rounded-transparent:hover {
   background-color: rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.75);
   cursor: pointer;
+}
+
+.mini-auth {
+  position: absolute;
+  z-index: 999;
+  right: 0;
 }

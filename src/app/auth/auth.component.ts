@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import {
   FormGroup,
   FormControl,
@@ -15,6 +15,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./auth.component.scss"]
 })
 export class AuthComponent implements OnInit {
+  @Input() sizeMode: string = "large";
   loginMode: boolean = true;
   isLoading = false;
   authForm: FormGroup;
@@ -33,7 +34,9 @@ export class AuthComponent implements OnInit {
       } else if (res.mode === "signup") {
         this.loginMode = false;
       } else {
-        this.router.navigate(["**"]);
+        if (this.sizeMode === "large") {
+          this.router.navigate(["**"]);
+        }
       }
     });
 
