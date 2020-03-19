@@ -5,18 +5,33 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  <div class="signup-form" *ngIf="!isLoading">
+
+  <div
+    class="signup-form"
+    *ngIf="!isLoading"
+    [ngStyle]="{ width: sizeMode === 'mini' ? '340px' : '500px' }"
+  >
     <form [formGroup]="authForm" (ngSubmit)="submitHandler()">
-      <img src="assets/LinkedIn-Logos/LI-Logo.png" class="img" alt="" />
-      <h2>{{ loginMode ? "Sign in" : "Sign up" }}</h2>
-      <p class="hint-text">
+      <img
+        src="assets/LinkedIn-Logos/LI-Logo.png"
+        class="img"
+        alt=""
+        *ngIf="sizeMode === 'large'"
+      />
+      <h2 *ngIf="sizeMode === 'large'">
+        {{ loginMode ? "Sign in" : "Sign up" }}
+      </h2>
+      <p class="hint-text" *ngIf="sizeMode === 'large'">
         {{
           loginMode
             ? "Sign in to stay updated on your professional world."
             : "Make the most of your professional life"
         }}
       </p>
-
+      <p class="hint-text" *ngIf="sizeMode === 'mini'">
+        Sign in for the full experience
+        <!-- <i class="fa fa-times"></i> -->
+      </p>
       <div class="form-group">
         <input
           [ngClass]="{
@@ -62,7 +77,7 @@
           {{ loginMode ? "Sign in" : "Sign up" }}
         </button>
       </div>
-      <div class="text-center">
+      <div class="text-center" *ngIf="sizeMode === 'large'">
         {{ loginMode ? "New to LinkedIn?" : "Already on Linkedin?" }}
         <span class="switcher-btn" (click)="switchMode()">{{
           loginMode ? "Join now" : "Sign in"

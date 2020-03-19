@@ -15,6 +15,11 @@ html {
 body {
   background-color: #f5f5f5;
 }
+button:active,
+button:focus,
+button:hover {
+  outline: none;
+}
 .container {
   max-width: 1188px;
 }

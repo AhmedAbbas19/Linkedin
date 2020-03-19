@@ -1,5 +1,5 @@
 .auth {
-  height: 91vh;
+  height: 96vh;
 }
 .form-control {
   height: 40px;
@@ -14,7 +14,7 @@
   border-radius: 3px;
 }
 .signup-form {
-  width: 500px;
+  // width: 500px;
   margin: 0 auto;
   padding: 32px 0;
   .switcher-btn {
@@ -32,7 +32,7 @@
 .signup-form h2:before,
 .signup-form h2:after {
   content: "";
-  height: 2px;
+  height: 1px;
   width: 30%;
   background: rgba(0, 0, 0, 0.6);
   position: absolute;
@@ -48,7 +48,12 @@
 .signup-form .hint-text {
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 30px;
-  text-align: center;
+  i {
+    position: absolute;
+    right: 32px;
+    top: 35px;
+    color: #006097;
+  }
 }
 .signup-form form {
   color: rgba(0, 0, 0, 0.8);
