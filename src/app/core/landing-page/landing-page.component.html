@@ -1,0 +1,328 @@
+<div class="header">
+  <div class="header__logo">
+    <img
+      src="./assets/home/linkedIn-logo.png"
+      class="logo__img img-fluid"
+      alt="Responsive image"
+    />
+  </div>
+
+  <div class="col-4 row nav__btns">
+    <!-- <div class="col">
+      <button class="nav__btn--join btn" type="button">Join now</button>
+    </div> -->
+    <span
+      (click)="registerNavigate()"
+      class="col nav__btn--sign btn btn-outline-primary m-2"
+      type="button"
+    >
+      Sign up
+    </span>
+    <span
+      (click)="loginNavigate()"
+      class="col nav__btn--sign btn btn-outline-primary m-2"
+      type="button"
+    >
+      Sign in
+    </span>
+  </div>
+</div>
+
+<div class="section__home">
+  <div class="section__tabs">
+    <h1 class="tabs__title ">Welcome to your professional community</h1>
+
+    <div class="tabs__content">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="job-tab"
+            data-toggle="tab"
+            href="#job"
+            role="tab"
+            aria-controls="job"
+            aria-selected="true"
+            >Job</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="people-tab"
+            data-toggle="tab"
+            href="#people"
+            role="tab"
+            aria-controls="people"
+            aria-selected="false"
+            >People</a
+          >
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="job"
+          role="tabpanel"
+          aria-labelledby="jobs-tab"
+        >
+          <br />
+          <div class="search">
+            <span class="fa fa-search"></span>
+            <input
+              type="search"
+              placeholder="Search job titles or companies"
+              id=""
+              class="search__jobs"
+            />
+          </div>
+          <br />
+          <div class="search">
+            <span class="fas fa-map-marker-alt"></span>
+            <input
+              type="search"
+              placeholder="Location"
+              id=""
+              class="search__location"
+            />
+          </div>
+          <button type="button" class=" btn btn--rounded-primary ">
+            Search Jobs
+          </button>
+        </div>
+        <div
+          class="tab-pane fade "
+          id="people"
+          role="tabpanel"
+          aria-labelledby="people-tab"
+        >
+          <br />
+          <div class="search">
+            <input
+              type="search"
+              placeholder="Firstname"
+              id=""
+              class="search__firstname"
+            />
+          </div>
+          <br />
+          <div class="search">
+            <input
+              type="search"
+              placeholder="Lastname"
+              id=""
+              class="search__lastname"
+            />
+          </div>
+          <button type="button" class=" btn btn--rounded-primary ">
+            Search People
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section__img">
+    <img
+      src="./assets/home/sec1.svg"
+      class="img-fluid img__content"
+      alt="Responsive image"
+    />
+  </div>
+</div>
+
+<div class="section__join">
+  <div class="section__title">
+    <h2 class="title__content">
+      Join your colleagues, classmates, and friends on LinkedIn.
+    </h2>
+    <span
+      (click)="registerNavigate()"
+      href=""
+      class="title__btn  btn btn--rounded-primary"
+      >Get started</span
+    >
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark">
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <div Class="col-md-2 col-lg-1 col-xl-1 col-xl-2 mx-auto mb-4">
+        <img
+          class="logo-footer"
+          src="assets/home/linkedIn-logo.png"
+          style="max-width: 100px;"
+        />
+      </div>
+      <!-- Grid column -->
+      <div class=" col-md-2 col-lg-2 col-xl-2 mx-auto mb-0 ">
+        <!-- Links -->
+        <h6>General</h6>
+        <br />
+        <p>
+          <a href="#!">Sign Up</a>
+        </p>
+        <p>
+          <a href="#!">Help Center</a>
+        </p>
+        <p>
+          <a href="#!">About</a>
+        </p>
+        <p>
+          <a href="#!">Press</a>
+        </p>
+        <p>
+          <a href="#!">Blog</a>
+        </p>
+        <p>
+          <a href="#!">Careers</a>
+        </p>
+        <p>
+          <a href="#!">Developers</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class=" col-md-3 col-lg-2 col-xl-2 mx-auto mb-0">
+        <!-- Links -->
+        <h6>Browse LinkedIn</h6>
+        <br />
+        <p>
+          <a href="#!">Learning</a>
+        </p>
+        <p>
+          <a href="#!">Jobs</a>
+        </p>
+        <p>
+          <a href="#!">Salary</a>
+        </p>
+        <p>
+          <a href="#!">Mobile</a>
+        </p>
+        <p>
+          <a href="#!">ProFinder</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class=" col-md-3 col-lg-2 col-xl-2 mx-auto mb-0">
+        <!-- Links -->
+        <h6>Business Solutions</h6>
+        <br />
+        <p>
+          <a href="#!">Talent</a>
+        </p>
+        <p>
+          <a href="#!">Marketing</a>
+        </p>
+        <p>
+          <a href="#!">Sales</a>
+        </p>
+        <p>
+          <a href="#!">Learning</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class=" col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
+        <!-- Links -->
+        <h6>Directories</h6>
+        <br />
+
+        <p>
+          <a href="#!">Members</a>
+        </p>
+        <p>
+          <a href="#!">Jobs</a>
+        </p>
+        <p>
+          <a href="#!">Companies</a>
+        </p>
+        <p>
+          <a href="#!">Salaries</a>
+        </p>
+        <p>
+          <a href="#!">Universities</a>
+        </p>
+        <p>
+          <a href="#!">Featured</a>
+        </p>
+        <p>
+          <a href="#!">Learning</a>
+        </p>
+        <p>
+          <a href="#!">Posts</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+  </div>
+  <!-- Footer Links -->
+</footer>
+<!-- Footer -->
+
+<hr />
+<!--Copyright-->
+
+<!-- Grid row -->
+<div class="d-flex flex-wrap justify-content-center align-items-center">
+  <!-- Grid column -->
+  <div class="ml-3">
+    <img
+      class="footer-end__logo"
+      src="assets/home/linkedin-black-logo.png"
+      width="70px"
+    />
+    <span class="text-center text-md-left">© 2020 </span>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">About</a>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">User Agreement</a>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">Privacy policy</a>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">Cookie Policy</a>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">Copyright Policy</a>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">Brand Policy</a>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">Guest Controls</a>
+  </div>
+  <!-- Grid column -->
+  <!-- Grid column -->
+  <div class="ml-3">
+    <a href="">Community Guidelines</a>
+  </div>
+</div>
+<!-- Grid row -->
+<!-- Copyright -->
