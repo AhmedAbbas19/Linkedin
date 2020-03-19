@@ -65,9 +65,9 @@ import { AuthGuard } from "./auth/auth.guard";
       },
       { path: "auth", redirectTo: "auth/login", pathMatch: "full" },
       { path: "auth/:mode", component: AuthComponent },
+      { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "not-found", component: NotFoundComponent },
-      { path: "**", redirectTo: "not-found", pathMatch: "full" },
-      { path: "", redirectTo: "home", pathMatch: "full" }
+      { path: "**", redirectTo: "not-found", pathMatch: "full" }
     ])
   ],
   providers: [AuthService],
