@@ -24,3 +24,13 @@ body {
   border-color: #f5c6cb;
   border-radius: 0;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-pointer {
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none;
+  }
+}
