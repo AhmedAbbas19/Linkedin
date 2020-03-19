@@ -10,6 +10,7 @@ import { SearchComponent } from "./features/search/search.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { NotificationComponent } from "./features/notification/notification.component";
+import { NotFoundComponent } from "./core/not-found/not-found.component";
 
 import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
 import { AuthService } from "src/app/auth/auth.service";
@@ -28,7 +29,8 @@ import { AuthGuard } from "./auth/auth.guard";
     SearchComponent,
     NotificationComponent,
     NewsfeedComponent,
-    AuthComponent
+    AuthComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,10 @@ import { AuthGuard } from "./auth/auth.guard";
         component: NotificationComponent,
         canActivate: [AuthGuard]
       },
-      { path: "auth", component: AuthComponent },
+      { path: "auth", redirectTo: "auth/login", pathMatch: "full" },
+      { path: "auth/:mode", component: AuthComponent },
+      { path: "not-found", component: NotFoundComponent },
+      { path: "**", redirectTo: "not-found", pathMatch: "full" },
       { path: "", redirectTo: "home", pathMatch: "full" }
     ])
   ],
