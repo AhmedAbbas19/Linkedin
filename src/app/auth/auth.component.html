@@ -1,5 +1,8 @@
 <div class="auth" [ngStyle]="{ backgroundColor: loginMode ? '' : '#0a869b' }">
-  <div class="signup-form">
+  <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="signup-form" *ngIf="!isLoading">
     <form [formGroup]="authForm" (ngSubmit)="submitHandler()">
       <img src="assets/LinkedIn-Logos/LI-Logo.png" class="img" alt="" />
       <h2>{{ loginMode ? "Sign in" : "Sign up" }}</h2>
@@ -24,6 +27,9 @@
           autofocus
           formControlName="email"
         />
+        <div class="alert alert-danger" *ngIf="authFormErrors['email']">
+          {{ authFormErrors["email"] }}
+        </div>
       </div>
       <div class="form-group">
         <input
@@ -38,6 +44,9 @@
           placeholder="Password"
           formControlName="password"
         />
+        <div class="alert alert-danger" *ngIf="authFormErrors['password']">
+          {{ authFormErrors["password"] }}
+        </div>
       </div>
       <div class="form-group" *ngIf="loginMode">
         <label class="checkbox-inline"
@@ -52,7 +61,7 @@
       </div>
       <div class="text-center">
         {{ loginMode ? "New to LinkedIn?" : "Already on Linkedin?" }}
-        <span class="switcher-btn" (click)="loginMode = !loginMode">{{
+        <span class="switcher-btn" (click)="switchMode()">{{
           loginMode ? "Join now" : "Sign in"
         }}</span>
       </div>

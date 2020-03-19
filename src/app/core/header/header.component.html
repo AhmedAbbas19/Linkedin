@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-blueblack custom-select-lg">
   <div class="container" *ngIf="isAuthenticated">
-    <a class="navbar-brand" routerLink="/">
+    <a class="navbar-brand" routerLink="/home">
       <img src="assets/logo-512.png" alt="" />
     </a>
     <button
@@ -30,7 +30,7 @@
       </div>
       <ul class="navbar-nav">
         <li class="nav-item ">
-          <a class="mr-3 nav-link" routerLink="/"
+          <a class="mr-3 nav-link" routerLink="/home"
             ><i class="fas nav_icon-font fa-home" aria-hidden="true"> </i>
             <div class="card-header-pills font-weight-normal nav-link-text">
               Home
@@ -46,7 +46,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="mr-3 nav-link" href="#">
+          <a class="mr-3 nav-link" routerLink="jobs">
             <i class="fas nav_icon-font fa-briefcase" aria-hidden="true"> </i>
             <div class=" font-weight-normal nav-link-text">Jobs</div>
           </a>
