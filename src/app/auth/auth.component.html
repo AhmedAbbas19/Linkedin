@@ -1,6 +1,9 @@
 <div class="auth" [ngStyle]="{ backgroundColor: loginMode ? '' : '#0a869b' }">
-  <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
-    <span class="sr-only">Loading...</span>
+  <div class="loading-spinner" *ngIf="isLoading">
+    <img src="assets/logo-512.png" alt="" />
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
   <div class="signup-form" *ngIf="!isLoading">
     <form [formGroup]="authForm" (ngSubmit)="submitHandler()">
