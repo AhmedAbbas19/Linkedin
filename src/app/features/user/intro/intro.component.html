@@ -1,0 +1,252 @@
+<!-- <app-intro-edit></app-intro-edit> -->
+<section id="SECTION_1">
+  <!---->
+
+  <div id="DIV_2">
+    <!---->
+  </div>
+  <div id="DIV_3">
+    <div id="DIV_4">
+      <div id="DIV_5">
+        <div id="DIV_6">
+          <div id="DIV_7">
+            <button id="BUTTON_8">
+              <img
+                width="128"
+                [src]="currentUser.imagUrl"
+                height="128"
+                alt="Edit photo"
+                id="IMG_9"
+              />
+            </button>
+            <div id="DIV_10">
+              <svg id="svg_12">
+                <path id="path_13"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <!---->
+      </div>
+      <div id="DIV_14">
+        <div id="DIV_15">
+          <section id="SECTION_16">
+            <button id="BUTTON_17">
+              <li id="LI-ICON_18">
+                <svg id="svg_19">
+                  <path id="path_20"></path>
+                </svg>
+              </li>
+              <span id="SPAN_21">Add profile section</span>
+            </button>
+            <!---->
+          </section>
+          <div id="DIV_22">
+            <div id="DIV_23">
+              <div
+                id="ARTDECO-DROPDOWN_24"
+                (click)="isOpened = !isOpened"
+                [ngClass]="{ 'dropdown--opened': isOpened }"
+              >
+                <div id="ARTDECO-DROPDOWN-TRIGGER_25">
+                  <button id="BUTTON_26">
+                    <!---->
+                    <span id="SPAN_27">More…</span>
+                    <!---->
+                  </button>
+                </div>
+                <div id="ARTDECO-DROPDOWN-CONTENT_28" class="dropdown-menu">
+                  <div id="DIV_29">
+                    <ul id="UL_30">
+                      <li id="LI_31">
+                        <div id="DIV_32">
+                          <div id="ARTDECO-DROPDOWN-ITEM_33">
+                            <svg id="svg_35">
+                              <path id="path_36"></path>
+                            </svg>
+                            <span id="SPAN_37">Share Profile via Message</span>
+                            <span id="SPAN_38">label_self_i18n</span>
+                          </div>
+                        </div>
+                      </li>
+                      <li id="LI-ICON_34">
+                        <div id="DIV_42">
+                          <div id="ARTDECO-DROPDOWN-ITEM_43">
+                            <!---->
+                            <svg id="svg_45">
+                              <path id="path_46"></path>
+                            </svg>
+                            <span id="SPAN_47">Save to PDF</span>
+                            <span id="SPAN_48">label_self_i18n</span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a data-toggle="modal" data-target="#intro-edit" id="A_49">
+            <i class="fa fa-pen"></i>
+          </a>
+          <app-intro-edit></app-intro-edit>
+        </div>
+      </div>
+    </div>
+    <div id="DIV_53">
+      <div id="DIV_54">
+        <ul id="UL_55">
+          <li id="LI_56">
+            {{ currentUser.fname + " " + currentUser.lname }}
+          </li>
+        </ul>
+        <h2 id="H2_60">
+          {{ currentUser.about }}
+        </h2>
+        <ul id="UL_61">
+          <li id="LI_62">
+            {{ currentUser.country.name }}
+          </li>
+          <!---->
+
+          <li id="LI_63">
+            <a
+              href="https://www.linkedin.com/search/results/people/?facetNetwork=%5B%22F%22%5D&amp;origin=MEMBER_PROFILE_CANNED_SEARCH"
+              id="A_64"
+            >
+              <span id="SPAN_65">82 connections</span></a
+            >
+          </li>
+          <li id="LI_66">
+            <a data-toggle="modal" data-target="#exampleModal" id="A_67">
+              <span id="SPAN_68">Contact info</span></a
+            >
+            <app-contact-info [currentUser]="currentUser"></app-contact-info>
+          </li>
+        </ul>
+      </div>
+      <div id="DIV_69">
+        <ul id="UL_70">
+          <li id="LI_71">
+            <a
+              href="https://www.linkedin.com/in/amir-mohammed-soliman-03ba411a1/#"
+              id="A_72"
+              ><img src="assets/iti.png" id="IMG_73" alt="" />
+              <span id="SPAN_74"
+                >Information Technology Institute (ITI)</span
+              ></a
+            >
+            <!---->
+          </li>
+          <!---->
+        </ul>
+      </div>
+    </div>
+    <div id="DIV_75">
+      <div id="DIV_76">
+        <!---->
+
+        <div id="ARTDECO-CAROUSEL_77">
+          <div id="ARTDECO-CAROUSEL-HEADING_78">
+            <!---->
+
+            <div id="DIV_79">
+              <button id="BUTTON_80" type="button"></button>
+              <li id="LI-ICON_81">
+                <svg id="svg_82">
+                  <path id="path_83"></path>
+                </svg>
+              </li>
+              <span id="SPAN_84"></span>
+              <button id="BUTTON_85" type="button"></button>
+              <li id="LI-ICON_86">
+                <svg id="svg_87">
+                  <path id="path_88"></path>
+                </svg>
+              </li>
+              <span id="SPAN_89"></span>
+            </div>
+            <!---->
+          </div>
+          <div id="ARTDECO-CAROUSEL-CONTENT_90">
+            <ul id="UL_91">
+              <li id="LI_92">
+                <div id="DIV_93">
+                  <section id="SECTION_94">
+                    <section id="SECTION_95">
+                      <!---->
+
+                      <div id="DIV_96">
+                        <a
+                          href="https://www.linkedin.com/in/amir-mohammed-soliman-03ba411a1/opportunities/job-opportunities/details/?profileUrn=urn%3Ali%3Afs_normalized_profile%3AACoAAC9RUu8ByjLjNWgIIYSBBMthEXdQ6jjFGgg"
+                          id="A_97"
+                        ></a>
+                        <div id="DIV_98">
+                          <div id="DIV_99">
+                            <div id="P_100">
+                              <div id="DIV_101">
+                                Open to job opportunities
+                                <!---->
+                              </div>
+                            </div>
+                          </div>
+                          <div id="P_102">
+                            <div id="DIV_103">
+                              Frontend Web Developer, Back End Developer, Web
+                              User Interface Developer, Javascript Developer and
+                              Web Developer roles
+                              <!---->
+                            </div>
+                          </div>
+                          <a id="A_104">
+                            <div id="DIV_105">
+                              See all details
+                              <!---->
+                            </div>
+                          </a>
+                        </div>
+                        <a
+                          href="https://www.linkedin.com/in/amir-mohammed-soliman-03ba411a1/opportunities/job-opportunities/edit/"
+                          id="A_106"
+                        >
+                          <i class="fa fa-pen"></i>
+                        </a>
+                      </div>
+                      <footer id="FOOTER_110">
+                        <li id="LI-ICON_111">
+                          <svg id="svg_112">
+                            <path id="path_113"></path>
+                          </svg>
+                        </li>
+                        <p id="P_114">
+                          <span id="SPAN_115">Only recruiters</span>
+                        </p>
+                      </footer>
+                    </section>
+                  </section>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="DIV_116">
+  <button id="BUTTON_117" type="button"></button>
+  <li id="LI-ICON_118">
+    <svg id="svg_119">
+      <path id="path_120"></path>
+    </svg>
+  </li>
+  <span id="SPAN_121"></span>
+  <button id="BUTTON_122" type="button"></button>
+  <li id="LI-ICON_123">
+    <svg id="svg_124">
+      <path id="path_125"></path>
+    </svg>
+  </li>
+  <span id="SPAN_126"></span>
+</div>

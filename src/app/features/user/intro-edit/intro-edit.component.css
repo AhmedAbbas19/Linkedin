@@ -1,0 +1,29 @@
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 727px;
+    margin: 1.75rem auto;
+  }
+}
+
+.bg-model {
+  background-image: url("../../../../assets/no-profile-bg.svg");
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  position: relative;
+}
+
+.image-model {
+  border-radius: 50%;
+  height: 152px;
+  width: 152px;
+  margin-top: -100px;
+  border: 5px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.my-body {
+  height: auto;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}

@@ -21,12 +21,24 @@ import { AuthGuard } from "./auth/auth.guard";
 import { LandingPageComponent } from "./core/landing-page/landing-page.component";
 
 import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { AboutComponent } from './features/user/about/about.component';
+import { AboutEditComponent } from './features/user/about-edit/about-edit.component';
+import { ContactInfoComponent } from './features/user/contact-info/contact-info.component';
+import { ExperienceComponent } from './features/user/experience/experience.component';
+import { IntroComponent } from './features/user/intro/intro.component';
+import { IntroEditComponent } from './features/user/intro-edit/intro-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UserProfileComponent,
+    AboutComponent,
+    AboutEditComponent,
+    ContactInfoComponent,
+    ExperienceComponent,
+    IntroComponent,
+    IntroEditComponent,
     ConnectionsComponent,
     MynetworkComponent,
     SearchComponent,
