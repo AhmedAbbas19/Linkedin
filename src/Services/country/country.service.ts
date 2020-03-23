@@ -8,7 +8,6 @@ export class CountryService {
   countries: Country[];
   constructor() {
     this.countries = [
-      { name: "Egypt" },
       { name: "Afghanistan" },
       { name: "Aland Islands" },
       { name: "Albania" },
@@ -73,6 +72,7 @@ export class CountryService {
       { name: "Dominica" },
       { name: "Dominican Republic" },
       { name: "Ecuador" },
+      { name: "Egypt" },
       { name: "El Salvador" },
       { name: "Equatorial Guinea" },
       { name: "Eritrea" },

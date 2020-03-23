@@ -16,6 +16,8 @@ export class UserService {
         about: "Full Stack Web Developer",
         email: "ahmeddabbas19@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "Ahmeddabbas",
         edu: [
           {
@@ -31,7 +33,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "1",
@@ -41,6 +56,8 @@ export class UserService {
         about: "Graphics Designer",
         email: "abdullah@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "Abdullah",
         edu: [
           {
@@ -56,7 +73,20 @@ export class UserService {
           { id: "0", title: "XD" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "2",
@@ -64,8 +94,10 @@ export class UserService {
         lname: "Mohamed",
         imagUrl: "assets/last-phot15.jpg",
         about: "Full Stack Web Developer",
-        email: "Amir@gmail.com",
+        email: "Amir.mohammed2121@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "AmirM",
         edu: [
           {
@@ -81,7 +113,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "3",
@@ -91,6 +136,8 @@ export class UserService {
         about: "Full Stack Web Developer",
         email: "ahmedMostafa@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "Mostafa",
         edu: [
           {
@@ -106,7 +153,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "4",
@@ -116,7 +176,9 @@ export class UserService {
         about: "Full Stack Web Developer",
         email: "Hossam@gmail.com",
         password: "123",
-        username: "HossamHassan",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
+        username: "Hossam Hassan",
         edu: [
           {
             id: "0",
@@ -131,7 +193,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "5",
@@ -141,6 +216,8 @@ export class UserService {
         about: "Full Stack Web Developer",
         email: "Bassam@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "BassamB",
         edu: [
           {
@@ -156,16 +233,31 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "6",
         fname: "Leonardo",
         lname: "Di Caprio",
-        imagUrl: "assets/leonardo.jpg",
+        imagUrl: "assets/last-phot15.jpg",
         about: "Actor",
         email: "Leo@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "LDC",
         edu: [
           {
@@ -181,7 +273,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "7",
@@ -191,6 +296,8 @@ export class UserService {
         about: "Football player at Liverpool",
         email: "Mo11@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "Mosalah",
         edu: [
           {
@@ -206,7 +313,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "8",
@@ -216,6 +336,8 @@ export class UserService {
         about: "Actress",
         email: "scarL@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "ScarletDaAna",
         edu: [
           {
@@ -231,7 +353,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "9",
@@ -241,6 +376,8 @@ export class UserService {
         about: "Singer",
         email: "HaniShaker@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "Hassan",
         edu: [
           {
@@ -256,7 +393,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "10",
@@ -266,6 +416,8 @@ export class UserService {
         about: "3 Times Ballon D'or Winner",
         email: "Marwan@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "Memo",
         edu: [
           {
@@ -281,7 +433,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "11",
@@ -291,6 +456,8 @@ export class UserService {
         about: "Artist",
         email: "Adel@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "Elzaama",
         edu: [
           {
@@ -306,7 +473,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "12",
@@ -316,6 +496,8 @@ export class UserService {
         about: "Innovator",
         email: "elon@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "elonmusk",
         edu: [
           {
@@ -331,7 +513,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       },
       {
         id: "13",
@@ -341,6 +536,8 @@ export class UserService {
         about: "I'm Inevitable",
         email: "thanos@gmail.com",
         password: "123",
+        country: { name: "Egypt" },
+        industry: { name: "Computer Software" },
         username: "thanos",
         edu: [
           {
@@ -356,7 +553,20 @@ export class UserService {
           { id: "0", title: "HTML" },
           { id: "0", title: "CSS3" },
           { id: "0", title: "C#" }
-        ]
+        ],
+        workExp: [
+          {
+            id: "1",
+            workPlace: "Information Technology Institute (ITI)",
+            jobTitle: "Trainee",
+            startDate: "Oct 2019",
+            endDate: "Present",
+            addres: "Smart Village, Cairo, Egypt"
+          }
+        ],
+        phoneNumber: "002-0102-164-9914",
+        address: "6 street 11, 6-October, Giza",
+        birthDate: new Date("1993-11-13")
       }
     ];
   }
@@ -368,5 +578,19 @@ export class UserService {
   }
   getByUsername(username: string): User {
     return this.users.find(u => u.username === username);
+  }
+  add(user: User) {
+    user.id = (this.users.length + 1).toString();
+    this.users.push(user);
+  }
+
+  save(user: User) {
+    const index = this.users.findIndex(u => u.id === user.id);
+    this.users[index] = user;
+  }
+
+  delete(id: string) {
+    const index = this.users.findIndex(u => u.id === id);
+    this.users.splice(index, 1);
   }
 }

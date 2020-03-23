@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class UserProfileComponent implements OnInit {
   user: User;
   userSub: Subscription;
+  activeUser: User;
   constructor(
     public userService: UserService,
     private authService: AuthService,
@@ -22,6 +23,9 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.authService.activeUser.subscribe(res => {
+      this.activeUser = this.userService.getById(res.id);
+    });
     this.route.params.subscribe(res => {
       this.user = this.userService.getByUsername(res.username);
       if (!this.user) {

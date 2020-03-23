@@ -14,7 +14,7 @@
           id="exampleModalLabel"
           style="color: rgba(0, 0, 0, 0.7);"
         >
-          {{ currentUser.fname + " " + currentUser.lname }}
+          {{ user.fname + " " + user.lname }}
         </h5>
         <button
           type="button"
@@ -31,7 +31,7 @@
         </h2>
         <section class="SECTION_1">
           <i class="fab fa-linkedin" style="float:left; font-size: 2em;"></i>
-          <header class="HEADER_6">{{ currentUser.fname }}'s Profile</header>
+          <header class="HEADER_6">{{ user.fname }}'s Profile</header>
           <div class="DIV_7">
             <a href="/">linkedin.com/in/amir-mohammed-soliman-03ba411a1</a>
           </div>
@@ -41,7 +41,7 @@
           <header class="HEADER_6">
             Phone
           </header>
-          <div class="DIV_7">{{ currentUser.phoneNumber }} (Mobile)</div>
+          <div class="DIV_7">{{ user.phoneNumber }} (Mobile)</div>
         </section>
         <section class="SECTION_1">
           <i
@@ -52,7 +52,7 @@
             Address
           </header>
           <div class="DIV_7">
-            {{ currentUser.address }}
+            {{ user.address }}
           </div>
         </section>
         <section class="SECTION_1">
@@ -62,12 +62,12 @@
           </header>
           <div class="DIV_7">
             <a
-              href="mailto:{{ currentUser.email }}"
+              href="mailto:{{ user.email }}"
               class="pv-contact-info__contact-link t-14 t-black t-normal"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {{ currentUser.email }}
+              {{ user.email }}
             </a>
           </div>
         </section>
@@ -81,7 +81,7 @@
           </header>
           <div class="DIV_7">
             {{
-              currentUser.birthDate.toLocaleString("en-AU", {
+              user.birthDate.toLocaleString("en-AU", {
                 month: "long",
                 day: "2-digit"
               })

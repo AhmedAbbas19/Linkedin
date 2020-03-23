@@ -1,10 +1,11 @@
 #SECTION_1 {
   bottom: 0px;
+  margin-top: 3rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0.2) 0px 2px 3px 0px;
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.9);
-  height: 521.984px;
+  height: auto;
   left: 0px;
   position: relative;
   right: 0px;
@@ -113,7 +114,6 @@
 #DIV_3 {
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.9);
-  height: 324px;
   text-decoration: none solid rgba(0, 0, 0, 0.9);
   width: 791.984px;
   column-rule-color: rgba(0, 0, 0, 0.9);

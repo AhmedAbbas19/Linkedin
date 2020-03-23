@@ -7,7 +7,7 @@ import { User } from "src/_model/user";
   styleUrls: ["./contact-info.component.css"]
 })
 export class ContactInfoComponent implements OnInit {
-  @Input() currentUser: User;
+  @Input() user: User;
   constructor() {}
 
   ngOnInit() {}

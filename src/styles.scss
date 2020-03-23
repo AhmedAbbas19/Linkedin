@@ -39,3 +39,21 @@ button:hover {
     outline: none;
   }
 }
+
+.btn-primary {
+  background-color: rgb(0, 115, 177) !important;
+  &:hover {
+    background-color: #006097 !important;
+  }
+}
+
+.btn,
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

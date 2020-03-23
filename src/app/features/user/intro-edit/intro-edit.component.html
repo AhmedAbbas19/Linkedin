@@ -19,62 +19,92 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="my-body">
-        <div class="bg-model"></div>
-        <div class="modal-body">
-          <img
-            src="assets/last-phot15.jpg"
-            alt="profile-image"
-            class="image-model"
-          />
-          <form>
+      <form [formGroup]="introForm" (ngSubmit)="onSubmit()">
+        <div class="my-body">
+          <div class="bg-model"></div>
+          <div class="modal-body">
+            <img [src]="user.imagUrl" alt="profile-image" class="image-model" />
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="fname">First Name *</label>
-                <input type="text" class="form-control" id="fname" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fname"
+                  formControlName="fname"
+                />
               </div>
               <div class="form-group col-md-6">
                 <label for="lname">Last Name *</label>
-                <input type="text" class="form-control" id="lname" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lname"
+                  formControlName="lname"
+                />
               </div>
             </div>
             <div class="form-group">
               <label for="headline">Headline *</label>
-              <textarea class="form-control" id="headline" rows="3"></textarea>
+              <textarea
+                class="form-control"
+                id="headline"
+                rows="3"
+                formControlName="about"
+              ></textarea>
             </div>
             <div class="form-group">
               <label for="current-position">Current Position</label>
-              <input type="text" class="form-control" id="current-position" />
+              <input
+                type="text"
+                class="form-control"
+                id="current-position"
+                formControlName="position"
+              />
             </div>
             <div class="form-group">
               <label for="country">Country/Region *</label>
-              <select class="custom-select" id="country">
+              <select
+                class="custom-select"
+                id="country"
+                formControlName="country"
+              >
                 <option
                   *ngFor="let country of countries; index as i"
-                  value="{{ i }}"
+                  value="{{ country.name }}"
                   >{{ country.name }}</option
                 >
               </select>
             </div>
             <div class="form-group">
               <label for="industry">Industry *</label>
-              <select class="custom-select" id="industry">
+              <select
+                class="custom-select"
+                id="industry"
+                formControlName="industry"
+              >
                 <option
                   *ngFor="let industry of industries; index as i"
-                  value="{{ i }}"
+                  value="{{ industry.name }}"
                   >{{ industry.name }}</option
                 >
               </select>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="border: none !important;"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

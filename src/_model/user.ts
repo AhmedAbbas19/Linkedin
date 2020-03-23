@@ -2,6 +2,8 @@ import { Skill } from "./skill";
 import { Edu } from "./edu";
 import { Certificate } from "./certificate";
 import { WorkExp } from "./workExp";
+import { Country } from "./country";
+import { Industry } from "src/_model/industry";
 
 export interface User {
   id?: string;
@@ -16,4 +18,9 @@ export interface User {
   workExp?: WorkExp[];
   skils?: Skill[];
   licenses?: Certificate[];
+  country?: Country;
+  phoneNumber?: string;
+  address?: string;
+  birthDate?: Date;
+  industry?: Industry;
 }
