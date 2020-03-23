@@ -87,6 +87,7 @@ export class AuthComponent implements OnInit {
   }
   switchMode() {
     this.loginMode = !this.loginMode;
+    this.authFormErrors = {};
     if (this.loginMode) {
       this.router.navigate(["auth/login"]);
     } else {

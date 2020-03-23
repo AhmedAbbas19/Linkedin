@@ -33,9 +33,9 @@
           <i class="fab fa-linkedin" style="float:left; font-size: 2em;"></i>
           <header class="HEADER_6">{{ user.fname }}'s Profile</header>
           <div class="DIV_7">
-            <a routerLink="/profile/{{ user.username }}" data-dismiss="modal">{{
-              this.href
-            }}</a>
+            <a [routerLink]="['/profile', user.username]" data-dismiss="modal">
+              linkedin.com/{{ user.username }}
+            </a>
           </div>
         </section>
         <section class="SECTION_1">
