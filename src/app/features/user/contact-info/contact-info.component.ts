@@ -8,6 +8,7 @@ import { User } from "src/_model/user";
 })
 export class ContactInfoComponent implements OnInit {
   @Input() user: User;
+  href = window.location.href;
   constructor() {}
 
   ngOnInit() {}

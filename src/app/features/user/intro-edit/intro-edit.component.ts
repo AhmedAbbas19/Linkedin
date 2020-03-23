@@ -19,8 +19,7 @@ export class IntroEditComponent implements OnInit {
   introForm = new FormGroup({
     fname: new FormControl(),
     lname: new FormControl(),
-    about: new FormControl(),
-    position: new FormControl(),
+    headline: new FormControl(),
     country: new FormControl(),
     industry: new FormControl()
   });
@@ -46,15 +45,20 @@ export class IntroEditComponent implements OnInit {
     this.introForm.setValue({
       fname: this.user.fname,
       lname: this.user.lname,
-      about: this.user.about,
-      position: this.user.workExp[0].jobTitle,
+      headline: this.user.headline,
       country: this.user.country.name,
       industry: this.user.industry.name
     });
   }
 
   onSubmit() {
-    this.user = this.introForm.getRawValue();
+    let u = this.introForm.getRawValue();
+    this.user.fname = u.fname;
+    this.user.lname = u.lname;
+    this.user.headline = u.headline;
+    this.user.country.name = u.country;
+    this.user.industry.name = u.industry;
+    this.userService.save(this.user);
     console.log(this.user);
   }
 }

@@ -19,7 +19,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form [formGroup]="introForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="introForm">
         <div class="my-body">
           <div class="bg-model"></div>
           <div class="modal-body">
@@ -50,17 +50,8 @@
                 class="form-control"
                 id="headline"
                 rows="3"
-                formControlName="about"
+                formControlName="headline"
               ></textarea>
-            </div>
-            <div class="form-group">
-              <label for="current-position">Current Position</label>
-              <input
-                type="text"
-                class="form-control"
-                id="current-position"
-                formControlName="position"
-              />
             </div>
             <div class="form-group">
               <label for="country">Country/Region *</label>
@@ -100,6 +91,8 @@
             type="submit"
             class="btn btn-primary"
             style="border: none !important;"
+            (click)="onSubmit()"
+            data-dismiss="modal"
           >
             Save changes
           </button>

@@ -14,6 +14,7 @@ export interface User {
   email?: string;
   password?: string;
   about?: string;
+  headline?: string;
   edu?: Edu[];
   workExp?: WorkExp[];
   skils?: Skill[];
