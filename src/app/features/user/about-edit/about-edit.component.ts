@@ -1,20 +1,21 @@
 import { Component, OnInit } from "@angular/core";
-
-import { UserService } from "../user.service";
 import { User } from "src/_model/user";
-import { Subscription } from "rxjs";
+import { UserService } from "../user.service";
 import { AuthService } from "src/app/auth/auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.scss"]
+  selector: "app-about-edit",
+  templateUrl: "./about-edit.component.html",
+  styleUrls: ["./about-edit.component.scss"]
 })
-export class UserProfileComponent implements OnInit {
+export class AboutEditComponent implements OnInit {
   user: User;
-  userSub: Subscription;
   activeUser: User;
+  aboutForm = new FormGroup({
+    about: new FormControl()
+  });
   constructor(
     public userService: UserService,
     private authService: AuthService,
@@ -32,5 +33,11 @@ export class UserProfileComponent implements OnInit {
         this.router.navigate(["not-found"]);
       }
     });
+    this.aboutForm.controls.about.setValue(this.user.about);
+  }
+  onSubmit() {
+    this.user.about = this.aboutForm.controls.about.value;
+    this.userService.save(this.user);
+    console.log(this.user);
   }
 }

@@ -1,19 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-
-import { UserService } from "../user.service";
 import { User } from "src/_model/user";
-import { Subscription } from "rxjs";
+import { UserService } from "../user.service";
 import { AuthService } from "src/app/auth/auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.scss"]
+  selector: "app-about",
+  templateUrl: "./about.component.html",
+  styleUrls: ["./about.component.scss"]
 })
-export class UserProfileComponent implements OnInit {
+export class AboutComponent implements OnInit {
   user: User;
-  userSub: Subscription;
   activeUser: User;
   constructor(
     public userService: UserService,

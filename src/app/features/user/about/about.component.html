@@ -1,0 +1,17 @@
+<div class="section mb-4">
+  <div class="d-flex">
+    <h5 class="d-inline-block">About</h5>
+    <a
+      data-toggle="modal"
+      data-target="#about-edit"
+      class="ml-auto"
+      *ngIf="user === activeUser"
+    >
+      <i class="fa fa-pen"></i>
+    </a>
+    <app-about-edit></app-about-edit>
+  </div>
+  <p>
+    {{ user.about }}
+  </p>
+</div>
