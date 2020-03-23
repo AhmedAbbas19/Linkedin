@@ -16,7 +16,7 @@ import { NewsfeedComponent } from "./features/newsfeed/newsfeed.component";
 import { AuthService } from "src/app/auth/auth.service";
 
 import { AuthComponent } from "./auth/auth.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthGuard } from "./auth/auth.guard";
 import { LandingPageComponent } from "./core/landing-page/landing-page.component";
 
@@ -27,6 +27,7 @@ import { ContactInfoComponent } from "./features/user/contact-info/contact-info.
 import { ExperienceComponent } from "./features/user/experience/experience.component";
 import { IntroComponent } from "./features/user/intro/intro.component";
 import { IntroEditComponent } from "./features/user/intro-edit/intro-edit.component";
+import { AuthInterceptorService } from "./auth/auth.interceptor.service";
 
 @NgModule({
   declarations: [
@@ -89,7 +90,14 @@ import { IntroEditComponent } from "./features/user/intro-edit/intro-edit.compon
       { path: "**", redirectTo: "not-found", pathMatch: "full" }
     ])
   ],
-  providers: [AuthService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
