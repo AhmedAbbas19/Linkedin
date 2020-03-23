@@ -32,8 +32,8 @@ export class AboutEditComponent implements OnInit {
       if (!this.user) {
         this.router.navigate(["not-found"]);
       }
+      this.aboutForm.controls.about.setValue(this.user.about);
     });
-    this.aboutForm.controls.about.setValue(this.user.about);
   }
   onSubmit() {
     this.user.about = this.aboutForm.controls.about.value;
