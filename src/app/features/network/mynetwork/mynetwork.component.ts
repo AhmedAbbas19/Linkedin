@@ -11,10 +11,10 @@ import { AuthService } from "src/app/auth/auth.service";
   styleUrls: ["./mynetwork.component.scss"]
 })
 export class MynetworkComponent implements OnInit, OnDestroy {
-  connected: User[];
-  sentConnections: User[];
-  RecivedConnections: User[];
-  peopleMayKnow: User[];
+  connected: User[] = [];
+  sentConnections: User[] = [];
+  RecivedConnections: User[] = [];
+  peopleMayKnow: User[] = [];
   currentUserId: string;
   private userSub: Subscription;
   netWorkSubscribtion: Subscription;
@@ -35,8 +35,19 @@ export class MynetworkComponent implements OnInit, OnDestroy {
             this.RecivedConnections = recived;
           }
         );
-        this.networkService.getById(this.currentUserId);
-        this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+        if (this.networkService.loaded) {
+          this.networkService.getById(this.currentUserId);
+          this.peopleMayKnow = this.networkService.getMayKnow(
+            this.currentUserId
+          );
+        } else {
+          setTimeout(() => {
+            this.networkService.getById(this.currentUserId);
+            this.peopleMayKnow = this.networkService.getMayKnow(
+              this.currentUserId
+            );
+          }, 1200);
+        }
       }
     });
   }

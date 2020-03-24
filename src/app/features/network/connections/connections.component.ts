@@ -10,13 +10,13 @@ import { AuthService } from "src/app/auth/auth.service";
   styleUrls: ["./connections.component.scss"]
 })
 export class ConnectionsComponent implements OnInit, OnDestroy {
-  connected: User[];
-  sentConnections: User[];
-  RecivedConnections: User[];
+  connected: User[] = [];
+  sentConnections: User[] = [];
+  RecivedConnections: User[] = [];
+  peopleMayKnow: User[] = [];
   activeStatus: number = 1;
   currentUserId: string;
   private userSub: Subscription;
-  peopleMayKnow: User[];
   netWorkSubscribtion: Subscription;
   constructor(
     private networkService: NetworkService,

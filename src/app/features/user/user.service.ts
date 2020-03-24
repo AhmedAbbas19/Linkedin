@@ -9,6 +9,7 @@ import { map } from "rxjs/operators";
 export class UserService {
   users: User[];
   dataBaseURL = "https://linkedin-cc585.firebaseio.com/";
+  loaded = false;
   constructor(private http: HttpClient) {
     this.users = [];
     this.http
@@ -20,12 +21,14 @@ export class UserService {
           }
         })
       )
-      .subscribe();
+      .subscribe(res => {
+        this.loaded = true;
+      });
   }
   getAll(): User[] {
     return this.users;
   }
-  getById(id: string): User {
+  getById(id: string) {
     return this.users.find(u => u.id === id);
   }
   getByUsername(username: string): User {

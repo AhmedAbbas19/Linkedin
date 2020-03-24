@@ -3,6 +3,8 @@ import { Connection } from "src/_model/connection";
 import { User } from "src/_model/user";
 import { UserService } from "./../user/user.service";
 import { Subject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -13,52 +15,23 @@ export class NetworkService {
   connected: User[] = [];
   sent: User[] = [];
   recived: User[] = [];
-  constructor(private userService: UserService) {
+  loaded = false;
+  dataBaseURL = "https://linkedin-cc585.firebaseio.com/";
+  constructor(private userService: UserService, private http: HttpClient) {
     this.connectionSubject = new Subject<any>();
-    this.connections = [
-      {
-        userOneId: "0",
-        userTwoId: "1",
-        status: 1,
-        actionUserId: "1"
-      },
-      {
-        userOneId: "0",
-        userTwoId: "2",
-        status: 1,
-        actionUserId: "1"
-      },
-      {
-        userOneId: "0",
-        userTwoId: "3",
-        status: 1,
-        actionUserId: "3"
-      },
-      {
-        userOneId: "0",
-        userTwoId: "4",
-        status: 0,
-        actionUserId: "4"
-      },
-      {
-        userOneId: "0",
-        userTwoId: "5",
-        status: 0,
-        actionUserId: "0"
-      },
-      {
-        userOneId: "0",
-        userTwoId: "7",
-        status: 0,
-        actionUserId: "7"
-      },
-      {
-        userOneId: "9",
-        userTwoId: "0",
-        status: 0,
-        actionUserId: "9"
-      }
-    ];
+    this.connections = [];
+    this.http
+      .get(this.dataBaseURL + "connections.json")
+      .pipe(
+        map(response => {
+          for (let key in response) {
+            this.connections.push({ ...response[key] });
+          }
+        })
+      )
+      .subscribe(res => {
+        this.loaded = true;
+      });
   }
   getById(id: string) {
     this.connected = [];
@@ -117,13 +90,17 @@ export class NetworkService {
     });
   }
   sendInvitation(oneId: string, twoId: string) {
-    this.connections.push({
+    const connection = {
       userOneId: oneId,
       userTwoId: twoId,
       status: 0,
       actionUserId: oneId
-    });
+    };
+    this.connections.push(connection);
     this.sent.push(this.userService.getById(twoId));
+    this.http
+      .post(this.dataBaseURL + "connections.json", connection)
+      .subscribe();
   }
   getMayKnow(id: string) {
     return this.userService.getAll().filter(u => {
