@@ -54,6 +54,57 @@
         </div>
       </div>
       <div class="col-md-6">
+        <!-- New Post -->
+        <div class="widget-post" aria-labelledby="post-header-title">
+          <div class="widget-post__header">
+            <h2 class="widget-post__title" id="post-header-title">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+              Write post
+            </h2>
+          </div>
+          <form
+            id="widget-form"
+            class="widget-post__form"
+            name="form"
+            aria-label="post widget"
+          >
+            <div class="widget-post__content">
+              <label for="post-content" class="sr-only"
+                >share your moments</label
+              >
+              <textarea
+                name="post"
+                id="post-content"
+                class="widget-post__textarea scroller"
+                placeholder="What is in your mind?"
+              ></textarea>
+            </div>
+
+            <div class="widget-post__actions post--actions">
+              <div class="post-actions__attachments">
+                <button
+                  type="button"
+                  class="btn post-actions__upload attachments--btn"
+                >
+                  <label for="upload-image" class="post-actions__label">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    Upload image
+                  </label>
+                </button>
+                <input
+                  type="file"
+                  id="upload-image"
+                  accept="image/*"
+                  multiple
+                />
+              </div>
+              <div class="post-actions__widget">
+                <button class="btn post-actions__publish">Post</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- End of new post -->
         <div class="create-post"></div>
         <ul class="newsfeed__posts-list">
           <li class="post" *ngFor="let post of posts">
