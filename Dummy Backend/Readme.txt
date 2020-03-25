@@ -1,0 +1,1 @@
+Open terminal in this folder and run "npm start"
