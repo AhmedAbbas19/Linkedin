@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { Connection } from "src/_model/connection";
 import { User } from "src/_model/user";
 import { UserService } from "./../user/user.service";
-import { Subject } from "rxjs";
+import { Subject, BehaviorSubject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -15,39 +15,40 @@ export class NetworkService {
   connected: User[] = [];
   sent: User[] = [];
   recived: User[] = [];
-  loaded = false;
-  dataBaseURL = "https://linkedin-cc585.firebaseio.com/";
+  dataBaseURL = "http://localhost:3000/connections";
+  dataLoaded = new BehaviorSubject<boolean>(false);
   constructor(private userService: UserService, private http: HttpClient) {
     this.connectionSubject = new Subject<any>();
     this.connections = [];
-    this.http
-      .get(this.dataBaseURL + "connections.json")
-      .pipe(
-        map(response => {
-          for (let key in response) {
-            this.connections.push({ ...response[key] });
-          }
-        })
-      )
-      .subscribe(res => {
-        this.loaded = true;
-      });
+    this.getConnections().subscribe(connections => {
+      this.connections = connections;
+      this.dataLoaded.next(true);
+    });
+  }
+  getConnections() {
+    return this.http.get<Connection[]>(this.dataBaseURL);
   }
   getById(id: string) {
-    this.connected = [];
     this.sent = [];
     this.recived = [];
+    this.connected = [];
     for (const conn of this.connections) {
       if (id === conn.userOneId || id === conn.userTwoId) {
         let one = id === conn.userOneId ? id : conn.userTwoId;
         let two = id === conn.userOneId ? conn.userTwoId : conn.userOneId;
         if (conn.status === 1) {
-          this.connected.push(this.userService.getById(two));
+          this.userService.getById(two).subscribe(user => {
+            this.connected.push(user);
+          });
         } else if (conn.status === 0) {
           if (conn.actionUserId === one) {
-            this.sent.push(this.userService.getById(two));
+            this.userService.getById(two).subscribe(user => {
+              this.sent.push(user);
+            });
           } else {
-            this.recived.push(this.userService.getById(two));
+            this.userService.getById(two).subscribe(user => {
+              this.recived.push(user);
+            });
           }
         }
       }
@@ -55,32 +56,32 @@ export class NetworkService {
     this.fireConnectionsChanges();
   }
   changeStatus(oneId: string, twoId: string, newStatus: number) {
-    for (const conn of this.connections) {
-      if (
-        (conn.userOneId === oneId && conn.userTwoId === twoId) ||
-        (conn.userTwoId === oneId && conn.userOneId === twoId)
-      ) {
-        conn.status = newStatus;
-        if (newStatus === 1) {
-          //Accept
-          this.connected.push(this.userService.getById(oneId));
-          let idx = this.recived.indexOf(this.userService.getById(oneId));
-          this.recived.splice(idx, 1);
-        } else if (newStatus === 2) {
-          //Decline
-          let idx = this.recived.indexOf(this.userService.getById(oneId));
-          this.recived.splice(idx, 1);
-        } else if (newStatus === 4) {
-          //Withdraw
-          let idx = this.sent.indexOf(this.userService.getById(oneId));
-          this.sent.splice(idx, 1);
-          let connIdx = this.connections.indexOf(conn);
-          this.connections.splice(connIdx, 1);
-        }
-        this.fireConnectionsChanges();
-        break;
-      }
-    }
+    // for (const conn of this.connections) {
+    //   if (
+    //     (conn.userOneId === oneId && conn.userTwoId === twoId) ||
+    //     (conn.userTwoId === oneId && conn.userOneId === twoId)
+    //   ) {
+    //     conn.status = newStatus;
+    //     if (newStatus === 1) {
+    //       //Accept
+    //       this.connected.push(this.userService.getById(oneId));
+    //       let idx = this.recived.indexOf(this.userService.getById(oneId));
+    //       this.recived.splice(idx, 1);
+    //     } else if (newStatus === 2) {
+    //       //Decline
+    //       let idx = this.recived.indexOf(this.userService.getById(oneId));
+    //       this.recived.splice(idx, 1);
+    //     } else if (newStatus === 4) {
+    //       //Withdraw
+    //       let idx = this.sent.indexOf(this.userService.getById(oneId));
+    //       this.sent.splice(idx, 1);
+    //       let connIdx = this.connections.indexOf(conn);
+    //       this.connections.splice(connIdx, 1);
+    //     }
+    //     this.fireConnectionsChanges();
+    //     break;
+    //   }
+    // }
   }
   fireConnectionsChanges() {
     this.connectionSubject.next({
@@ -97,10 +98,10 @@ export class NetworkService {
       actionUserId: oneId
     };
     this.connections.push(connection);
-    this.sent.push(this.userService.getById(twoId));
-    this.http
-      .post(this.dataBaseURL + "connections.json", connection)
-      .subscribe();
+    this.userService.getById(twoId).subscribe(user => {
+      this.sent.push(user);
+    });
+    this.http.post(this.dataBaseURL, connection).subscribe();
   }
   getMayKnow(id: string) {
     return this.userService.getAll().filter(u => {

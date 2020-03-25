@@ -10,8 +10,8 @@ import { AuthService } from "src/app/auth/auth.service";
   styleUrls: ["./intro.component.css"]
 })
 export class IntroComponent implements OnInit {
-  user: User;
-  activeUser: User;
+  user: User = null;
+  activeUser: User = null;
   isOpened = false;
 
   constructor(
@@ -22,14 +22,22 @@ export class IntroComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.activeUser.subscribe(res => {
-      this.activeUser = this.userService.getById(res.id);
-    });
-    this.route.params.subscribe(res => {
-      this.user = this.userService.getByUsername(res.username);
-      if (!this.user) {
-        this.router.navigate(["not-found"]);
+    this.authService.activeUser.subscribe(user => {
+      if (user) {
+        this.userService.getById(user.id).subscribe(user => {
+          this.activeUser = user;
+        });
       }
+    });
+    this.route.params.subscribe(param => {
+      this.userService.dataLoaded.subscribe(res => {
+        if (res) {
+          this.user = this.userService.getByUsername(param.username);
+          if (!this.user) {
+            this.router.navigate(["not-found"]);
+          }
+        }
+      });
     });
   }
 }

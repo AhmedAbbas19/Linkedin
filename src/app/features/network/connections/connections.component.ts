@@ -16,8 +16,9 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   peopleMayKnow: User[] = [];
   activeStatus: number = 1;
   currentUserId: string;
-  private userSub: Subscription;
+  userSub: Subscription;
   netWorkSubscribtion: Subscription;
+  loadingSub: Subscription;
   constructor(
     private networkService: NetworkService,
     private authService: AuthService
@@ -25,7 +26,6 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSub = this.authService.activeUser.subscribe(user => {
       this.currentUserId = user.id;
-      // this.currentUserId = 0;
       this.netWorkSubscribtion = this.networkService.connectionSubject.subscribe(
         value => {
           let { connected, sent, recived } = value;
@@ -34,8 +34,14 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
           this.RecivedConnections = recived;
         }
       );
-      this.networkService.getById(this.currentUserId);
-      this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+      this.loadingSub = this.networkService.dataLoaded.subscribe(res => {
+        if (res) {
+          this.networkService.getById(this.currentUserId);
+          this.peopleMayKnow = this.networkService.getMayKnow(
+            this.currentUserId
+          );
+        }
+      });
     });
   }
   acceptInvitation(id: string) {
@@ -55,5 +61,6 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();
     this.userSub.unsubscribe();
+    this.loadingSub.unsubscribe();
   }
 }

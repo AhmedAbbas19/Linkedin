@@ -16,11 +16,11 @@ export class MynetworkComponent implements OnInit, OnDestroy {
   RecivedConnections: User[] = [];
   peopleMayKnow: User[] = [];
   currentUserId: string;
-  private userSub: Subscription;
+  userSub: Subscription;
   netWorkSubscribtion: Subscription;
+  loadingSub: Subscription;
   constructor(
     private networkService: NetworkService,
-    private userService: UserService,
     private authService: AuthService
   ) {}
   ngOnInit() {
@@ -35,19 +35,14 @@ export class MynetworkComponent implements OnInit, OnDestroy {
             this.RecivedConnections = recived;
           }
         );
-        if (this.networkService.loaded) {
-          this.networkService.getById(this.currentUserId);
-          this.peopleMayKnow = this.networkService.getMayKnow(
-            this.currentUserId
-          );
-        } else {
-          setTimeout(() => {
+        this.loadingSub = this.networkService.dataLoaded.subscribe(res => {
+          if (res) {
             this.networkService.getById(this.currentUserId);
             this.peopleMayKnow = this.networkService.getMayKnow(
               this.currentUserId
             );
-          }, 1200);
-        }
+          }
+        });
       }
     });
   }
@@ -70,5 +65,6 @@ export class MynetworkComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();
     this.userSub.unsubscribe();
+    this.loadingSub.unsubscribe();
   }
 }
