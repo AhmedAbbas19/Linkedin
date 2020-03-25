@@ -110,13 +110,21 @@
           <li class="post" *ngFor="let post of posts">
             <div class="post__header">
               <div class="meta post__meta">
-                <img src="assets/salah.jpg" alt="" class="meta__img" />
+                <img
+                  [src]="post['author'].imagUrl"
+                  alt=""
+                  class="meta__img cursor-pointer"
+                  [routerLink]="['/profile', post['author'].username]"
+                />
                 <div class="meta__info">
-                  <h6 class="meta__author-name">
-                    Ahmed Abbas
+                  <h6
+                    class="meta__author-name cursor-pointer"
+                    [routerLink]="['/profile', post['author'].username]"
+                  >
+                    {{ post["author"].fname }} {{ post["author"].lname }}
                   </h6>
                   <p class="meta__author-about">
-                    {{ "Artist" }}
+                    {{ post["author"].headline }}
                   </p>
                   <span class="meta__date">{{ "3/10/2020" }}</span>
                 </div>
