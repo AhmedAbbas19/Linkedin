@@ -12,9 +12,19 @@
           </p>
           <li class="conn-card connections__card" *ngFor="let user of result">
             <div class="conn-card__info">
-              <img src="{{ user.imagUrl }}" class="rounded-circle" alt="" />
+              <img
+                [style.cursor]="'pointer'"
+                [routerLink]="['/profile', user.username]"
+                src="{{ user.imagUrl }}"
+                class="rounded-circle"
+                alt=""
+              />
               <div class="conn-card__content">
-                <h6 class="conn-card__title">
+                <h6
+                  [style.cursor]="'pointer'"
+                  [routerLink]="['/profile', user.username]"
+                  class="conn-card__title"
+                >
                   {{ user.fname }} {{ user.lname }}
                 </h6>
                 <p class="conn-card__disc">
