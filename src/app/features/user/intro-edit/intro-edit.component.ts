@@ -35,17 +35,22 @@ export class IntroEditComponent implements OnInit {
   ngOnInit() {
     this.countries = this.CountryService.getAll();
     this.industries = this.industryService.getAll();
-    this.route.params.subscribe(res => {
-      this.user = this.userService.getByUsername(res.username);
-      if (!this.user) {
-        this.router.navigate(["not-found"]);
-      }
-      this.introForm.setValue({
-        fname: this.user.fname,
-        lname: this.user.lname,
-        headline: this.user.headline,
-        country: this.user.country.name,
-        industry: this.user.industry.name
+
+    this.route.params.subscribe(param => {
+      this.userService.dataLoaded.subscribe(res => {
+        if (res) {
+          this.user = this.userService.getByUsername(param.username);
+          if (!this.user) {
+            this.router.navigate(["not-found"]);
+          }
+          this.introForm.setValue({
+            fname: this.user.fname,
+            lname: this.user.lname,
+            headline: this.user.headline,
+            country: this.user.country.name,
+            industry: this.user.industry.name
+          });
+        }
       });
     });
   }

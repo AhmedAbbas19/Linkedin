@@ -25,7 +25,9 @@ export class HeaderComponent implements OnInit {
     this.userSub = this.authService.activeUser.subscribe(user => {
       this.isAuthenticated = !!user;
       if (user) {
-        this.user = this.userService.getById(user.id);
+        this.userService.getById(user.id).subscribe(user => {
+          this.user = user;
+        });
       }
     });
   }

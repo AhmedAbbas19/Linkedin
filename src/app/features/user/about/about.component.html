@@ -1,11 +1,11 @@
-<div class="section mb-4">
+<div class="section mb-4" *ngIf="user && activeUser">
   <div class="d-flex">
     <h5 class="d-inline-block">About</h5>
     <a
       data-toggle="modal"
       data-target="#about-edit"
       class="ml-auto"
-      *ngIf="user === activeUser"
+      *ngIf="user.id === activeUser.id"
     >
       <i class="fa fa-pen"></i>
     </a>

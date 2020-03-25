@@ -25,7 +25,9 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userSub = this.authService.activeUser.subscribe(user => {
       this.currentUserId = user.id;
-      this.activeUser = this.userService.getById(this.currentUserId);
+      this.userService.getById(this.currentUserId).subscribe(user => {
+        this.activeUser = user;
+      });
       this.posts = this.newsfeedService.getAll(); // Delete this
     });
   }

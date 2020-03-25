@@ -1,32 +1,27 @@
 import { Injectable } from "@angular/core";
 import { User } from "src/_model/user";
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
   users: User[];
-  dataBaseURL = "https://linkedin-cc585.firebaseio.com/";
+  dataBaseURL = "http://localhost:3000/users/";
+  dataLoaded = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) {
     this.users = [];
-    this.http
-      .get(this.dataBaseURL + "users.json")
-      .pipe(
-        map(response => {
-          for (let key in response) {
-            this.users.push({ ...response[key] });
-          }
-        })
-      )
-      .subscribe();
+    this.http.get<User[]>(this.dataBaseURL).subscribe(users => {
+      this.users = users;
+      this.dataLoaded.next(true);
+    });
   }
   getAll(): User[] {
     return this.users;
   }
-  getById(id: string): User {
-    return this.users.find(u => u.id === id);
+  getById(id: string) {
+    return this.http.get<User>(this.dataBaseURL + id);
   }
   getByUsername(username: string): User {
     return this.users.find(u => u.username === username);

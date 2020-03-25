@@ -91,11 +91,11 @@ import { AuthInterceptorService } from "./auth/auth.interceptor.service";
     ])
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorService,
+    //   multi: true
+    // },
     AuthService
   ],
   bootstrap: [AppComponent]

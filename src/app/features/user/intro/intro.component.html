@@ -1,7 +1,6 @@
 <!-- <app-intro-edit></app-intro-edit> -->
-<section id="SECTION_1">
+<section id="SECTION_1" *ngIf="user && activeUser">
   <!---->
-
   <div id="DIV_2">
     <!---->
   </div>
@@ -30,7 +29,7 @@
       </div>
       <div id="DIV_14">
         <div id="DIV_15">
-          <section id="SECTION_16" *ngIf="user === activeUser">
+          <section id="SECTION_16" *ngIf="user.id === activeUser.id">
             <button id="BUTTON_17">
               <li id="LI-ICON_18">
                 <svg id="svg_19">
@@ -44,7 +43,7 @@
           <button
             class="btn btn-primary"
             style="padding:6px 12px !important; border: none !important;"
-            *ngIf="user !== activeUser"
+            *ngIf="user.id !== activeUser.id"
           >
             Message
           </button>
@@ -98,7 +97,7 @@
             data-toggle="modal"
             data-target="#intro-edit"
             id="A_49"
-            *ngIf="user === activeUser"
+            *ngIf="user.id === activeUser.id"
           >
             <i class="fa fa-pen"></i>
           </a>
@@ -155,7 +154,7 @@
         </ul>
       </div>
     </div>
-    <div id="DIV_75" *ngIf="user === activeUser">
+    <div id="DIV_75" *ngIf="user.id === activeUser.id">
       <div id="DIV_76">
         <!---->
 

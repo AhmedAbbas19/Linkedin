@@ -25,14 +25,20 @@ export class AboutEditComponent implements OnInit {
 
   ngOnInit() {
     this.authService.activeUser.subscribe(res => {
-      this.activeUser = this.userService.getById(res.id);
+      this.userService.getById(res.id).subscribe(user => {
+        this.activeUser = user;
+      });
     });
-    this.route.params.subscribe(res => {
-      this.user = this.userService.getByUsername(res.username);
-      if (!this.user) {
-        this.router.navigate(["not-found"]);
-      }
-      this.aboutForm.controls.about.setValue(this.user.about);
+    this.route.params.subscribe(param => {
+      this.userService.dataLoaded.subscribe(res => {
+        if (res) {
+          this.user = this.userService.getByUsername(param.username);
+          if (!this.user) {
+            this.router.navigate(["not-found"]);
+          }
+          this.aboutForm.controls.about.setValue(this.user.about);
+        }
+      });
     });
   }
   onSubmit() {

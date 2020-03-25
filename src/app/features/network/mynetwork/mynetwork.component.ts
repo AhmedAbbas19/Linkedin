@@ -11,16 +11,16 @@ import { AuthService } from "src/app/auth/auth.service";
   styleUrls: ["./mynetwork.component.scss"]
 })
 export class MynetworkComponent implements OnInit, OnDestroy {
-  connected: User[];
-  sentConnections: User[];
-  RecivedConnections: User[];
-  peopleMayKnow: User[];
+  connected: User[] = [];
+  sentConnections: User[] = [];
+  RecivedConnections: User[] = [];
+  peopleMayKnow: User[] = [];
   currentUserId: string;
-  private userSub: Subscription;
+  userSub: Subscription;
   netWorkSubscribtion: Subscription;
+  loadingSub: Subscription;
   constructor(
     private networkService: NetworkService,
-    private userService: UserService,
     private authService: AuthService
   ) {}
   ngOnInit() {
@@ -35,8 +35,14 @@ export class MynetworkComponent implements OnInit, OnDestroy {
             this.RecivedConnections = recived;
           }
         );
-        this.networkService.getById(this.currentUserId);
-        this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+        this.loadingSub = this.networkService.dataLoaded.subscribe(res => {
+          if (res) {
+            this.networkService.getById(this.currentUserId);
+            this.peopleMayKnow = this.networkService.getMayKnow(
+              this.currentUserId
+            );
+          }
+        });
       }
     });
   }
@@ -59,5 +65,6 @@ export class MynetworkComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();
     this.userSub.unsubscribe();
+    this.loadingSub.unsubscribe();
   }
 }
