@@ -23,6 +23,9 @@ export class UserService {
   getById(id: string) {
     return this.http.get<User>(this.dataBaseURL + id);
   }
+  getLoadedById(id: string) {
+    return this.users.find(u => u.id === id);
+  }
   getByUsername(username: string): User {
     return this.users.find(u => u.username === username);
   }
