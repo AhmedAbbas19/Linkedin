@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { NotificationService } from "./service/notification.service";
 import { Notification } from "./../../../_model/notification";
+import { UserService } from "./../user/user.service";
+import { Subscription } from "rxjs";
+import { AuthService } from "src/app/auth/auth.service";
+import { User } from "src/_model/user";
 
 @Component({
   selector: "app-notification",
@@ -9,9 +13,33 @@ import { Notification } from "./../../../_model/notification";
 })
 export class NotificationComponent implements OnInit {
   notifications: Notification[];
-  constructor(private notificationService: NotificationService) {}
+  userSub: Subscription;
+  user: User;
+  constructor(
+    private notificationService: NotificationService,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.notifications = this.notificationService.getAll();
+    this.userSub = this.authService.activeUser.subscribe(user => {
+      if (user) {
+        this.userService.getById(user.id).subscribe(user => {
+          this.user = user;
+          this.notifications = this.notificationService
+            .getAll()
+            .filter(n => n.reciverId === user.id);
+          this.userService.dataLoaded.subscribe(res => {
+            if (res) {
+              for (const notif of this.notifications) {
+                notif["actionUser"] = this.userService.getLoadedById(
+                  notif.actionUserId
+                );
+              }
+            }
+          });
+        });
+      }
+    });
   }
 }

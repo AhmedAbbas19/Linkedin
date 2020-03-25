@@ -32,14 +32,14 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
           this.connected = connected;
           this.sentConnections = sent;
           this.RecivedConnections = recived;
+          this.peopleMayKnow = this.networkService.getMayKnow(
+            this.currentUserId
+          );
         }
       );
       this.loadingSub = this.networkService.dataLoaded.subscribe(res => {
         if (res) {
           this.networkService.getById(this.currentUserId);
-          this.peopleMayKnow = this.networkService.getMayKnow(
-            this.currentUserId
-          );
         }
       });
     });

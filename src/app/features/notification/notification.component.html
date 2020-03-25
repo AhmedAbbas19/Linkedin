@@ -9,17 +9,45 @@
               class="sec-item section__item"
               *ngFor="let notif of notifications"
             >
-              <div class="sec-item__content">
-                <img src="{{ notif.image }}" alt="" class="sec-item__img" />
+              <div
+                class="sec-item__content cursor-pointer"
+                [routerLink]="[notif.url]"
+              >
+                <img
+                  src="{{ notif['actionUser'].imagUrl }}"
+                  alt=""
+                  class="sec-item__img"
+                />
                 <div class="sec-item__info">
+                  <h6>
+                    {{ notif["actionUser"].fname }}
+                    {{ notif["actionUser"].lname }}
+                  </h6>
                   <p class="sec-item__place m-0">
-                    {{ notif.text }}
+                    {{
+                      notif.type === "comment" ? "commented on your post" : ""
+                    }}
+                    {{ notif.type === "like" ? "liked your post" : "" }}
+                    {{ notif.type === "react" ? "reacted to your post" : "" }}
+                    {{
+                      notif.type === "accept" ? "accepted your invitation" : ""
+                    }}
+                    {{
+                      notif.type === "invite"
+                        ? "sent you a connection invitation"
+                        : ""
+                    }}
+                    {{
+                      notif.type === "decline"
+                        ? "declined your connection invitation"
+                        : ""
+                    }}
                   </p>
                 </div>
               </div>
               <div class="sec-item__control">
                 <i class="fa fa-ellipsis-h meta__control"></i>
-                <span class="sec-item__duration">{{ notif.created }}</span>
+                <span class="sec-item__duration">{{ notif.date }}</span>
               </div>
             </li>
           </ul>
