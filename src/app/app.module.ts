@@ -28,6 +28,7 @@ import { ExperienceComponent } from "./features/user/experience/experience.compo
 import { IntroComponent } from "./features/user/intro/intro.component";
 import { IntroEditComponent } from "./features/user/intro-edit/intro-edit.component";
 import { AuthInterceptorService } from "./auth/auth.interceptor.service";
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AuthInterceptorService } from "./auth/auth.interceptor.service";
     NewsfeedComponent,
     AuthComponent,
     NotFoundComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    FooterComponent
   ],
   imports: [
     Ng2SearchPipeModule,
