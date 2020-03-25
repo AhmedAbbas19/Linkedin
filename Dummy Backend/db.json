@@ -113,7 +113,7 @@
       "fname": "Ahmed",
       "headline": "Front-end Web Developer",
       "id": "MQXaAnYtikNBRFagmubthx7jLo02",
-      "imagUrl": "assets/last-phot15.jpg",
+      "imagUrl": "/assets/abbas.jpg",
       "industry": {
         "name": "Computer Software"
       },
@@ -211,7 +211,7 @@
       "fname": "Amir",
       "headline": "Full Stack Web Developer",
       "id": "URuhUcGWOGgnP4Wp63pznNCHHH82",
-      "imagUrl": "assets/last-phot15.jpg",
+      "imagUrl": "assets/amir.jpg",
       "industry": {
         "name": "Computer Software"
       },
@@ -554,7 +554,7 @@
       "fname": "Ahmed",
       "headline": "Full Stack Web Developer",
       "id": "6pJ3YZjBDwaqN33o4RpaEeC1OZH2",
-      "imagUrl": "assets/last-phot15.jpg",
+      "imagUrl": "assets/mostafa.jpg",
       "industry": {
         "name": "Computer Software"
       },
@@ -701,7 +701,7 @@
       "fname": "Abdullah",
       "headline": "Graphics Designer",
       "id": "dYBrGlZpaSbHAS4NRLfG1PVLGwE3",
-      "imagUrl": "assets/last-phot15.jpg",
+      "imagUrl": "assets/abdullah.jpg",
       "industry": {
         "name": "Computer Software"
       },
