@@ -14,7 +14,7 @@
   border-radius: 3px;
 }
 .signup-form {
-  // width: 500px;
+  // width: 1000px;
   margin: 0 auto;
   padding: 32px 0;
   .switcher-btn {
@@ -54,6 +54,16 @@
     top: 35px;
     color: #006097;
   }
+}
+
+.form-static {
+  color: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  margin-bottom: 15px;
+  background: #f2f3f7;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  position: relative;
 }
 .signup-form form {
   color: rgba(0, 0, 0, 0.8);

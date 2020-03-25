@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./core/header/header.component";
 import { UserProfileComponent } from "./features/user/user-profile/user-profile.component";
@@ -28,7 +29,13 @@ import { ExperienceComponent } from "./features/user/experience/experience.compo
 import { IntroComponent } from "./features/user/intro/intro.component";
 import { IntroEditComponent } from "./features/user/intro-edit/intro-edit.component";
 import { AuthInterceptorService } from "./auth/auth.interceptor.service";
-
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSelectModule } from "@angular/material/select";
+import { TestComponent } from "./features/test/test.component";
+import { ProfileEditComponent } from "./auth/profile-edit/profile-edit.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,14 +54,22 @@ import { AuthInterceptorService } from "./auth/auth.interceptor.service";
     NewsfeedComponent,
     AuthComponent,
     NotFoundComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    TestComponent,
+    ProfileEditComponent
   ],
   imports: [
     Ng2SearchPipeModule,
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
     RouterModule.forRoot([
       { path: "landing", component: LandingPageComponent },
       { path: "home", component: NewsfeedComponent, canActivate: [AuthGuard] },
@@ -81,6 +96,11 @@ import { AuthInterceptorService } from "./auth/auth.interceptor.service";
       {
         path: "notification",
         component: NotificationComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "start/profile-edit",
+        component: ProfileEditComponent,
         canActivate: [AuthGuard]
       },
       { path: "auth", redirectTo: "auth/login", pathMatch: "full" },
