@@ -76,6 +76,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.posts[this.posts.indexOf(post)].comments.unshift(event.target.value);
     event.target.value = "";
     event.target.blur();
+    this.commentForm.reset();
   }
 
   loadingfile(event) {
@@ -101,6 +102,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
             isLiked: false,
             comments: []
           };
+          this.imagePath = null;
           this.posts.unshift(newPost);
           this.postForm.get("post-content").setValue("");
         }

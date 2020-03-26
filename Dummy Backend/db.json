@@ -29,13 +29,6 @@
       "userTwoId": "Byt15qH3vFSlDiY0P31AJmlkJlz2"
     },
     {
-      "id": "5",
-      "actionUserId": "sam1Fx1xA5g4wPOlaKo9blkWCBr1",
-      "status": 2,
-      "userOneId": "MQXaAnYtikNBRFagmubthx7jLo02",
-      "userTwoId": "sam1Fx1xA5g4wPOlaKo9blkWCBr1"
-    },
-    {
       "id": "6",
       "actionUserId": "HjIIAzDYF5M38xgTIYaLUtAIxi52",
       "status": 1,
@@ -86,10 +79,17 @@
     },
     {
       "userOneId": "MQXaAnYtikNBRFagmubthx7jLo02",
-      "userTwoId": "yRnwMElGvQSMpdeB6fUAT4H9yvs2",
+      "userTwoId": "GhBZkciREbhOsYwtVIV24GUDsoH2",
       "status": 0,
       "actionUserId": "MQXaAnYtikNBRFagmubthx7jLo02",
-      "id": "g98xsxe"
+      "id": "LMCr_ya"
+    },
+    {
+      "userOneId": "MQXaAnYtikNBRFagmubthx7jLo02",
+      "userTwoId": "mLvVDOzXidWwm0QEzlEH4b3Y69R2",
+      "status": 0,
+      "actionUserId": "MQXaAnYtikNBRFagmubthx7jLo02",
+      "id": "iej56Qc"
     }
   ],
   "users": [
