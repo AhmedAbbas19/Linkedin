@@ -6,6 +6,7 @@ import { UserService } from "./../user/user.service";
 import { Subscription } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-newsfeed",
@@ -43,12 +44,22 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       this.userService.getById(this.currentUserId).subscribe(user => {
         this.activeUser = user;
       });
-      this.posts = this.newsfeedService.getAll(); // Delete this
-      for (const post of this.posts) {
-        this.userService.getById(post.authorId).subscribe(user => {
-          post["author"] = user;
-        });
-      }
+      this.newsfeedService.dataLoaded.subscribe(res => {
+        if (res) {
+          this.posts = this.newsfeedService.getAll(); // Delete this
+          for (const post of this.posts) {
+            post["isOpend"] = false;
+            for (const comment of post.comments) {
+              this.userService.getById(comment.authorId).subscribe(user => {
+                comment["author"] = user;
+              });
+            }
+            this.userService.getById(post.authorId).subscribe(user => {
+              post["author"] = user;
+            });
+          }
+        }
+      });
     });
   }
   ngOnDestroy() {
@@ -69,13 +80,26 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
 
   onCommenting(i) {
     this.postIndex = i;
+    this.posts[i]["isOpend"] = true;
     this.isCommentsShowen = true;
   }
 
   handleAddingComment(event, post) {
-    this.posts[this.posts.indexOf(post)].comments.unshift(event.target.value);
-    event.target.value = "";
-    event.target.blur();
+    if (event.target.value) {
+      let newPost = JSON.parse(JSON.stringify(post));
+      let newComment = {
+        authorId: this.currentUserId,
+        comment: event.target.value
+      };
+      newPost.comments.unsheft(newComment);
+      this.newsfeedService.save(newPost).subscribe();
+
+      newComment["author"] = this.userService.getLoadedById(this.currentUserId);
+      this.posts[this.posts.indexOf(post)].comments.unshift(newComment);
+
+      event.target.blur();
+      this.commentForm.reset();
+    }
   }
 
   loadingfile(event) {
@@ -90,7 +114,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     if (this.postForm.valid) {
       this.userService.dataLoaded.subscribe(res => {
         if (res) {
-          console.log(this.postForm.get("post-content").value);
+          // console.log(this.postForm.get("post-content").value);
           var newPost = {
             authorId: this.currentUserId,
             date: "11/05/2005",
@@ -101,6 +125,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
             isLiked: false,
             comments: []
           };
+          this.imagePath = null;
           this.posts.unshift(newPost);
           this.postForm.get("post-content").setValue("");
         }
