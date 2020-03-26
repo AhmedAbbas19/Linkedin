@@ -12,7 +12,7 @@ import { User } from "src/_model/user";
   styleUrls: ["./notification.component.scss"]
 })
 export class NotificationComponent implements OnInit {
-  notifications: Notification[];
+  notifications: Notification[] = [];
   userSub: Subscription;
   user: User;
   constructor(
@@ -28,7 +28,8 @@ export class NotificationComponent implements OnInit {
           this.user = user;
           this.notifications = this.notificationService
             .getAll()
-            .filter(n => n.reciverId === user.id);
+            .filter(n => n.reciverId === user.id)
+            .reverse();
           this.userService.dataLoaded.subscribe(res => {
             if (res) {
               for (const notif of this.notifications) {

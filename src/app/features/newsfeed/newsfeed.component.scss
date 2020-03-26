@@ -175,12 +175,11 @@
           padding-bottom: 4px;
           border-bottom: 1px solid #dadada;
           i {
-            padding: 2px;
+            padding-right: 5px;
           }
           span {
             font-size: 14px;
             font-weight: 600;
-            margin-left: 8px;
             color: #656565;
           }
           .like {
@@ -191,6 +190,10 @@
           }
           .insightful {
             color: #d6c108;
+          }
+          .comment {
+            color: #d60808;
+            margin-left: 10px;
           }
         }
         &__action {
@@ -218,7 +221,8 @@
         width: 100%;
         border-radius: 35px;
         border: 1px solid #c5c5c5;
-        padding: 8px 18px;
+        padding: 12px 18px;
+        font-size: 12px;
         &:focus {
           outline: none;
         }
@@ -395,7 +399,9 @@ ul {
   background-color: #f5f5f5;
   border-radius: 20px;
   margin-bottom: 5px;
-  padding: 15px 10px;
+  padding: 10px 15px;
+  display: inline-block;
+  width: 87%;
 }
 .comment-writer-info {
   display: flex;
@@ -404,6 +410,7 @@ ul {
   .meta__author-about {
     font-size: 12px;
     color: #6f6f6f;
+    margin-bottom: 5px;
   }
 }
 .comment-input {
@@ -421,4 +428,5 @@ ul {
 }
 .comment-body {
   margin: 0;
+  font-size: 14px;
 }

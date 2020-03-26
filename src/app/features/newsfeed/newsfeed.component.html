@@ -140,7 +140,10 @@
               <i class="fa fa-ellipsis-h meta__control"></i>
             </div>
             <div class="body post__body">
-              <p class="body__content">
+              <p
+                class="body__content"
+                [ngClass]="{ rtl: arabic.test(post.content[0]) }"
+              >
                 {{ post.content }}
               </p>
               <div class="body__img" *ngIf="post.imagUrl">
@@ -148,24 +151,28 @@
               </div>
             </div>
             <div class="reacts post__reacts">
-              <div class="reacts__counter" *ngIf="post.likesNumber.length">
-                <i class="fa fa-thumbs-up like"></i>
-                <!-- <i class="fa fa-heart love"></i>
-                <i class="fa fa-lightbulb insightful"></i> -->
-                <span>{{ post.likesNumber.length }}</span>
+              <div class="reacts__counter">
+                <ng-container *ngIf="post.likedIds.length">
+                  <i class="fa fa-thumbs-up like"></i>
+                  <span>{{ post.likedIds.length }}</span>
+                </ng-container>
+                <ng-container *ngIf="post.comments.length">
+                  <i class="fa fa-comment comment"></i>
+                  <span>{{ post.comments.length }}</span>
+                </ng-container>
               </div>
               <div class="reacts__action">
-                <i
-                  class="fa fa-thumbs-up "
-                  [ngClass]="post.isLiked ? 'like' : ''"
-                ></i>
                 <span
                   (click)="handleLike(post)"
-                  [ngClass]="post.isLiked ? 'like' : ''"
-                  >Like</span
+                  [ngClass]="{ like: post['isLiked'] }"
                 >
-                <i class="fa fa-comment comment"></i>
-                <span (click)="onCommenting(i)">Comment</span>
+                  <i class="fa fa-thumbs-up "></i>
+                  Like
+                </span>
+                <span (click)="onCommenting(i)">
+                  <i class="fa fa-comment comment"></i>
+                  Comment
+                </span>
                 <i class="fa fa-share share"></i>
                 <span>Share</span>
               </div>
@@ -188,16 +195,16 @@
                 class="meta post__meta"
                 *ngFor="let userComment of post.comments"
               >
+                <img
+                  [src]="userComment['author'].imagUrl"
+                  alt=""
+                  class="meta__img cursor-pointer comment-image"
+                  [routerLink]="['/profile', userComment['author'].username]"
+                />
                 <div class="comment-writer">
-                  <img
-                    [src]="userComment['author'].imagUrl"
-                    alt=""
-                    class="meta__img cursor-pointer comment-image"
-                    [routerLink]="['/profile', userComment['author'].username]"
-                  />
                   <div class="meta__info comment-writer-info ">
                     <h6
-                      class="meta__author-name"
+                      class="meta__author-name cursor-pointer"
                       [routerLink]="[
                         '/profile',
                         userComment['author'].username
@@ -209,7 +216,12 @@
                     <p class="meta__author-about">
                       {{ userComment["author"].headline }}
                     </p>
-                    <p class="comment-body">{{ userComment.comment }}</p>
+                    <p
+                      class="comment-body"
+                      [ngClass]="{ rtl: arabic.test(userComment.comment[0]) }"
+                    >
+                      {{ userComment.comment }}
+                    </p>
                   </div>
                 </div>
               </div>
