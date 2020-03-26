@@ -19,6 +19,13 @@ export class NewsfeedService {
   getAll() {
     return this.posts;
   }
+  getLoadedById(id: string): Post {
+    return this.posts.find(p => p.id === id);
+  }
+  add(post: Post) {
+    delete post.id;
+    return this.http.post(this.dataBaseURL, post);
+  }
   save(post: Post) {
     return this.http.put(this.dataBaseURL + "/" + post.id, post);
   }

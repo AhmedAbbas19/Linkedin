@@ -4,7 +4,6 @@ export interface Post {
   imagUrl?: string;
   authorId?: string;
   date?: string;
-  likesNumber?: any[];
-  isLiked?: boolean;
+  likedIds?: string[];
   comments?: any[];
 }
