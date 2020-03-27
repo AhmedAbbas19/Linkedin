@@ -3,9 +3,13 @@ import { Post } from "src/_model/post";
 import { NewsfeedService } from "./newsfeed.service";
 import { User } from "src/_model/user";
 import { UserService } from "./../user/user.service";
-import { Subscription } from "rxjs";
+import { Subscription, Observable, forkJoin, combineLatest } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { NotificationService } from "./../notification/service/notification.service";
+import { Notification } from "./../../../_model/notification";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-newsfeed",
@@ -13,69 +17,126 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./newsfeed.component.scss"]
 })
 export class NewsfeedComponent implements OnInit, OnDestroy {
+  arabic = /[\u0600-\u06FF]/;
   commentForm = new FormGroup({
     comment: new FormControl()
   });
-  isCommentsShowen: boolean;
+  isCommentsShowen: boolean = false;
   postIndex: number;
   imagePath: any;
   postForm = new FormGroup({
-    "post-content": new FormControl("", [
-      Validators.required
-      // Validators.minLength(5)
-    ]),
-    "post-image": new FormControl()
+    "post-content": new FormControl("", [Validators.required]),
+    "post-image": new FormControl("", Validators.required)
   });
   posts: Post[];
   activeUser: User;
-  currentUserId;
-  private userSub: Subscription;
+  currentUserId: string;
+  private dataLoadedSub: Subscription;
+  isLoading = true;
   constructor(
     private newsfeedService: NewsfeedService,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
-    this.isCommentsShowen = false;
-    this.userSub = this.authService.activeUser.subscribe(user => {
-      this.currentUserId = user.id;
-      this.userService.getById(this.currentUserId).subscribe(user => {
-        this.activeUser = user;
-      });
-      this.posts = this.newsfeedService.getAll(); // Delete this
-      for (const post of this.posts) {
-        this.userService.getById(post.authorId).subscribe(user => {
-          post["author"] = user;
-        });
+    const dataLoaded = combineLatest([
+      this.authService.activeUser,
+      this.userService.dataLoaded,
+      this.newsfeedService.dataLoaded
+    ]);
+
+    this.dataLoadedSub = dataLoaded.subscribe(loadedData => {
+      let [user, usersLoaded, newsfeedLoaded] = loadedData;
+      if (user && usersLoaded && newsfeedLoaded) {
+        this.isLoading = false;
+        this.currentUserId = user.id;
+        this.activeUser = this.userService.getLoadedById(user.id);
+
+        // deep clone
+        this.posts = JSON.parse(JSON.stringify(this.newsfeedService.getAll()));
+
+        for (const post of this.posts) {
+          post["isOpend"] = false;
+          post["isLiked"] = post.likedIds.includes(this.currentUserId);
+          for (const comment of post.comments) {
+            comment["author"] = this.userService.getLoadedById(
+              comment.authorId
+            );
+          }
+          post["author"] = this.userService.getLoadedById(post.authorId);
+        }
       }
     });
   }
   ngOnDestroy() {
-    this.userSub.unsubscribe();
-  }
-  handleLike(post) {
-    this.posts[this.posts.indexOf(post)].isLiked = !this.posts[
-      this.posts.indexOf(post)
-    ].isLiked;
-    if (this.posts[this.posts.indexOf(post)].isLiked) {
-      this.posts[this.posts.indexOf(post)].likesNumber.unshift(
-        this.currentUserId
-      );
-    } else {
-      this.posts[this.posts.indexOf(post)].likesNumber.shift();
-    }
+    this.dataLoadedSub.unsubscribe();
   }
 
-  onCommenting(i) {
+  handleLike(post: Post) {
+    post["isLiked"] = !post["isLiked"];
+    let newPost = this.newsfeedService.getLoadedById(post.id);
+    if (post["isLiked"]) {
+      post.likedIds.unshift(this.currentUserId);
+      newPost.likedIds.unshift(this.currentUserId);
+      //Notification
+      if (this.currentUserId !== post.authorId) {
+        const currentDate = new Date().toLocaleDateString("en-US");
+        const notif: Notification = {
+          actionUserId: this.currentUserId,
+          reciverId: post.authorId,
+          type: "like",
+          url: "/post/" + post.id,
+          date: currentDate,
+          isRead: false
+        };
+        this.notificationService.add(notif).subscribe();
+      }
+    } else {
+      const idx = post.likedIds.indexOf(this.currentUserId);
+      post.likedIds.splice(idx, 1);
+      newPost.likedIds.splice(idx, 1);
+    }
+    this.newsfeedService.save(newPost).subscribe();
+  }
+
+  onCommenting(i: number) {
     this.postIndex = i;
+    this.posts[i]["isOpend"] = true;
     this.isCommentsShowen = true;
   }
 
-  handleAddingComment(event, post) {
-    this.posts[this.posts.indexOf(post)].comments.unshift(event.target.value);
-    event.target.value = "";
-    event.target.blur();
+  handleAddingComment(event, post: Post) {
+    if (event.target.value) {
+      let newPost = this.newsfeedService.getLoadedById(post.id);
+      let newComment = {
+        authorId: this.currentUserId,
+        comment: event.target.value
+      };
+      newPost.comments.unshift(newComment);
+      this.newsfeedService.save(newPost).subscribe();
+
+      newComment["author"] = this.userService.getLoadedById(this.currentUserId);
+      post.comments.unshift(newComment);
+
+      //Notification
+      if (this.currentUserId !== post.authorId) {
+        const currentDate = new Date().toLocaleDateString("en-US");
+        const notif: Notification = {
+          actionUserId: this.currentUserId,
+          reciverId: post.authorId,
+          type: "comment",
+          url: "/post/" + post.id,
+          date: currentDate,
+          isRead: false
+        };
+        this.notificationService.add(notif).subscribe();
+      }
+
+      event.target.blur();
+      this.commentForm.reset();
+    }
   }
 
   loadingfile(event) {
@@ -86,23 +147,25 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       this.imagePath = reader.result;
     };
   }
-  handleSubmittingPost(event) {
+  handleSubmittingPost() {
     if (this.postForm.valid) {
       this.userService.dataLoaded.subscribe(res => {
         if (res) {
-          console.log(this.postForm.get("post-content").value);
+          const currentDate = new Date().toLocaleDateString("en-US");
           var newPost = {
             authorId: this.currentUserId,
-            date: "11/05/2005",
+            date: currentDate,
             content: this.postForm.get("post-content").value,
             imagUrl: this.imagePath,
             author: this.userService.getLoadedById(this.currentUserId),
-            likesNumber: [],
+            likedIds: [],
             isLiked: false,
             comments: []
           };
+          this.imagePath = null;
           this.posts.unshift(newPost);
           this.postForm.get("post-content").setValue("");
+          this.newsfeedService.add(newPost).subscribe();
         }
       });
     }

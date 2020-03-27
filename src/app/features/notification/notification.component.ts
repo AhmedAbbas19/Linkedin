@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { NotificationService } from "./service/notification.service";
 import { Notification } from "./../../../_model/notification";
 import { UserService } from "./../user/user.service";
-import { Subscription } from "rxjs";
+import { Subscription, combineLatest } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
 import { User } from "src/_model/user";
 
@@ -11,10 +11,11 @@ import { User } from "src/_model/user";
   templateUrl: "./notification.component.html",
   styleUrls: ["./notification.component.scss"]
 })
-export class NotificationComponent implements OnInit {
-  notifications: Notification[];
-  userSub: Subscription;
+export class NotificationComponent implements OnInit, OnDestroy {
+  notifications: Notification[] = [];
+  loadedDataSub: Subscription;
   user: User;
+  isLoading = true;
   constructor(
     private notificationService: NotificationService,
     private userService: UserService,
@@ -22,24 +23,31 @@ export class NotificationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userSub = this.authService.activeUser.subscribe(user => {
-      if (user) {
-        this.userService.getById(user.id).subscribe(user => {
-          this.user = user;
-          this.notifications = this.notificationService
-            .getAll()
-            .filter(n => n.reciverId === user.id);
-          this.userService.dataLoaded.subscribe(res => {
-            if (res) {
-              for (const notif of this.notifications) {
-                notif["actionUser"] = this.userService.getLoadedById(
-                  notif.actionUserId
-                );
-              }
-            }
-          });
-        });
+    const loadedData = combineLatest([
+      this.authService.activeUser,
+      this.userService.dataLoaded,
+      this.notificationService.dataLoaded
+    ]);
+
+    this.loadedDataSub = loadedData.subscribe(dataLoaded => {
+      let [user, usersLoaded, notifLoaded] = dataLoaded;
+      if (user && usersLoaded && notifLoaded) {
+        this.isLoading = false;
+        this.user = this.userService.getLoadedById(user.id);
+        this.notifications = this.notificationService
+          .getAll()
+          .filter(n => n.reciverId === user.id)
+          .reverse();
+        for (const notif of this.notifications) {
+          notif["actionUser"] = this.userService.getLoadedById(
+            notif.actionUserId
+          );
+        }
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.loadedDataSub.unsubscribe();
   }
 }

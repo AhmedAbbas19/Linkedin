@@ -1,6 +1,5 @@
 .auth {
   height: 96vh;
-  position: relative;
 }
 .form-control {
   height: 40px;
@@ -112,18 +111,4 @@
   left: 32%;
   top: 2%;
   text-align: center;
-}
-.loading-spinner {
-  position: relative;
-  text-align: center;
-  padding-top: 10%;
-}
-.loading-spinner img {
-  max-width: 48px;
-  position: absolute;
-}
-.spinner-border {
-  width: 3rem;
-  height: 3rem;
-  color: #57b5e6;
 }

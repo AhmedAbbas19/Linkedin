@@ -30,30 +30,16 @@
       <div id="DIV_14">
         <div id="DIV_15">
           <section id="SECTION_16" *ngIf="user.id === activeUser.id">
-            <div class="dropdown">
-              <button
-                class="btn btn-primary dropdown-toggle"
-                type="button"
-                style="padding:6px 12px !important; border: none !important;"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Add Profile Section
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a
-                  class="dropdown-item"
-                  data-toggle="modal"
-                  data-target="#about-edit"
-                  >About</a
-                >
-                <a class="dropdown-item" href="#">Skills</a>
-              </div>
-            </div>
+            <button id="BUTTON_17">
+              <li id="LI-ICON_18">
+                <svg id="svg_19">
+                  <path id="path_20"></path>
+                </svg>
+              </li>
+              <span id="SPAN_21">Add profile section</span>
+            </button>
+            <!---->
           </section>
-          <app-about-edit></app-about-edit>
           <button
             class="btn btn-primary"
             style="padding:6px 12px !important; border: none !important;"
@@ -130,7 +116,7 @@
           {{ user.headline }}
         </h2>
         <ul id="UL_61">
-          <li id="LI_62" class="ml-2">
+          <li id="LI_62">
             {{ user.country.name }}
           </li>
           <!---->
