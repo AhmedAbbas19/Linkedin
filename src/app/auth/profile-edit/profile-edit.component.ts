@@ -55,10 +55,10 @@ export class ProfileEditComponent implements OnInit {
     this.countries = this.CountryService.getAll();
     this.industries = this.industryService.getAll();
     this.authService.activeUser.subscribe(res => {
-      this.user = this.userService.getById(res.id);
-      console.log(res);
+      this.userService.getById(res.id).subscribe(user => {
+        this.user = user;
+      });
     });
-    console.log(this.user, "here");
   }
   handleSubmit() {
     this.user.fname = this.userData.get("fname").value;
