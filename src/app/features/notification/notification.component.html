@@ -1,16 +1,9 @@
-<div class="loading-spinner" *ngIf="isLoading">
-  <img src="assets/logo-512.png" alt="" />
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-</div>
-<div class="notifications" *ngIf="!isLoading">
+<div class="notifications">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <div class="section">
           <h5>Nofications</h5>
-          <p *ngIf="!notifications.length">You have no notifications.</p>
           <ul class="section__list">
             <li
               class="sec-item section__item"

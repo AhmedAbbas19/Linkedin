@@ -98,12 +98,12 @@ export class AuthService {
     const user = new User(
       resp.email,
       resp.localId,
+      // "0",
       resp.idToken,
       expirationDate
     );
     this.user.next(user);
     this.autoLogout(+resp.expiresIn * 1000);
     localStorage.setItem("userData", JSON.stringify(user));
-    this.router.navigate(["/home"]);
   }
 }

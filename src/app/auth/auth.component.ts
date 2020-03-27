@@ -65,7 +65,7 @@ export class AuthComponent implements OnInit {
       this.authService.login(email, password).subscribe(
         response => {
           this.isLoading = false;
-          console.log(response);
+          this.router.navigate(["/home"]);
         },
         ({ error }) => {
           this.isLoading = false;
@@ -76,7 +76,7 @@ export class AuthComponent implements OnInit {
       this.authService.signUp(email, password).subscribe(
         response => {
           this.isLoading = false;
-          console.log(response);
+          this.router.navigate(["/start/profile-add"]);
         },
         ({ error }) => {
           this.isLoading = false;

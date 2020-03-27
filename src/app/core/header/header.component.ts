@@ -4,7 +4,7 @@ import { User } from "./../../../_model/user";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { User as Us } from "src/app/auth/user.model";
-import { Subscription, combineLatest } from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-header",
@@ -22,15 +22,16 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const loadedData = combineLatest([
-      this.authService.activeUser,
-      this.userService.dataLoaded
-    ]);
-    loadedData.subscribe(dataLoaded => {
-      let [user, usersLoaded] = dataLoaded;
-      if (user && usersLoaded) {
-        this.isAuthenticated = !!user;
-        this.user = this.userService.getLoadedById(user.id);
+    this.userSub = this.authService.activeUser.subscribe(user => {
+      console.log(!!user, window.location.pathname);
+      this.isAuthenticated =
+        !!user &&
+        window.location.pathname !== "/start/profile-add" &&
+        window.location.pathname !== "/auth/signup";
+      if (user) {
+        this.userService.getById(user.id).subscribe(user => {
+          this.user = user;
+        });
       }
     });
   }
