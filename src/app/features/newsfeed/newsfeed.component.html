@@ -170,10 +170,7 @@
                 <span>Share</span>
               </div>
             </div>
-            <div
-              class="post__comments"
-              *ngIf="isCommentsShowen && i == postIndex"
-            >
+            <div class="post__comments" *ngIf="post['isOpend']">
               <div class="comment-input">
                 <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
                 <form [formGroup]="commentForm" class="comment-form">
@@ -189,26 +186,30 @@
               </div>
               <div
                 class="meta post__meta"
-                *ngFor="let comment of post.comments"
+                *ngFor="let userComment of post.comments"
               >
                 <div class="comment-writer">
                   <img
-                    [src]="post['author'].imagUrl"
+                    [src]="userComment['author'].imagUrl"
                     alt=""
                     class="meta__img cursor-pointer comment-image"
-                    [routerLink]="['/profile', post['author'].username]"
+                    [routerLink]="['/profile', userComment['author'].username]"
                   />
                   <div class="meta__info comment-writer-info ">
                     <h6
                       class="meta__author-name"
-                      [routerLink]="['/profile', post['author'].username]"
+                      [routerLink]="[
+                        '/profile',
+                        userComment['author'].username
+                      ]"
                     >
-                      {{ post["author"].fname }} {{ post["author"].lname }}
+                      {{ userComment["author"].fname }}
+                      {{ userComment["author"].lname }}
                     </h6>
                     <p class="meta__author-about">
-                      {{ post["author"].headline }}
+                      {{ userComment["author"].headline }}
                     </p>
-                    <p class="comment-body">{{ comment }}</p>
+                    <p class="comment-body">{{ userComment.comment }}</p>
                   </div>
                 </div>
               </div>
