@@ -5,13 +5,29 @@
       <mat-form-field>
         <input matInput placeholder="First name" formControlName="fname" />
         <mat-error *ngIf="userData.get('fname').hasError('required')"
-          >First name is required</mat-error
+          >First name is <strong>required</strong></mat-error
         >
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Last name" formControlName="lname" />
         <mat-error *ngIf="userData.get('lname').hasError('required')"
-          >Last name is required</mat-error
+          >Last name is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username" />
+        <mat-error *ngIf="userData.get('username').hasError('required')"
+          >Username is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="headline"
+          formControlName="headline"
+        ></textarea>
+        <mat-error *ngIf="userData.get('headline').hasError('required')"
+          >Headline is <strong>required</strong></mat-error
         >
       </mat-form-field>
       <mat-form-field>
@@ -43,6 +59,9 @@
           formControlName="address"
           placeholder="Ex. 1 Main St, New York, NY"
         />
+        <mat-error *ngIf="contactInfo.get('address').hasError('required')"
+          >Address is <strong>required</strong></mat-error
+        >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Phone Number</mat-label>
@@ -50,12 +69,143 @@
           matInput
           type="number"
           formControlName="phone"
-          placeholder="Ex. 1 Main St, New York, NY"
+          placeholder="Ex. 01021649914"
         />
+        <mat-error *ngIf="contactInfo.get('phone').hasError('required')"
+          >Phone Number is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Date Of Birth</mat-label>
+        <input
+          matInput
+          type="date"
+          formControlName="date"
+          placeholder="Ex. 13/11/1993"
+        />
+        <mat-error *ngIf="contactInfo.get('date').hasError('required')"
+          >Date Of Birth is <strong>required</strong></mat-error
+        >
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="educationForm">
+    <form [formGroup]="educationForm">
+      <ng-template matStepLabel>Education</ng-template>
+      <mat-form-field>
+        <mat-label>School or College/University</mat-label>
+        <input
+          matInput
+          formControlName="schoolOrCollege"
+          placeholder="Ex. Faculty of Petroleum/Suez University"
+        />
+        <mat-error
+          *ngIf="educationForm.get('schoolOrCollege').hasError('required')"
+          >School or College is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Degree</mat-label>
+        <input
+          matInput
+          formControlName="degree"
+          placeholder="Ex. Bachelor of Engineering - BE "
+        />
+        <mat-error *ngIf="educationForm.get('degree').hasError('required')"
+          >Degree is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Specialization</mat-label>
+        <input
+          matInput
+          formControlName="specialization"
+          placeholder="Ex. Petroleum Engineering"
+        />
+        <mat-error
+          *ngIf="educationForm.get('specialization').hasError('required')"
+          >Specialization is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Start Year</mat-label>
+        <input
+          matInput
+          type="number"
+          min="1961"
+          max="2020"
+          step="1"
+          formControlName="startYear"
+          placeholder="Ex. 2013"
+        />
+        <mat-error *ngIf="educationForm.get('startYear').hasError('required')"
+          >Start Year is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>End Year (or expected)</mat-label>
+        <input
+          matInput
+          formControlName="endYear"
+          type="number"
+          min="1967"
+          max="2027"
+          step="1"
+          placeholder="Ex. 2017"
+        />
+        <mat-error *ngIf="educationForm.get('endYear').hasError('required')"
+          >End Year is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="workInfoForm">
+    <form [formGroup]="workInfoForm">
+      <ng-template matStepLabel>Work Info</ng-template>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Most recent job title"
+          formControlName="jobTitle"
+        />
+        <mat-error *ngIf="workInfoForm.get('jobTitle').hasError('required')"
+          >Job Title is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Most recent company"
+          formControlName="company"
+        />
+        <mat-error *ngIf="workInfoForm.get('company').hasError('required')"
+          >Company name is <strong>required</strong></mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose your Industry</mat-label>
+        <mat-select formControlName="industry">
+          <mat-option
+            *ngFor="let industry of industries"
+            [value]="industry.name"
+            >{{ industry.name }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="workInfoForm.get('industry').hasError('required')"
+          >Please, choose an industry</mat-error
+        >
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext (click)="handleSubmit()">Next</button>
       </div>
     </form>
   </mat-step>
@@ -64,7 +214,7 @@
     <p>You are now done.</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
     </div>
   </mat-step>
 </mat-horizontal-stepper>

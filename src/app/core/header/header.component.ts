@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "./../../features/user/user.service";
 import { User } from "./../../../_model/user";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
-import { User as Us } from "src/app/auth/user.model";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -18,16 +17,20 @@ export class HeaderComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.userSub = this.authService.activeUser.subscribe(user => {
-      this.isAuthenticated = !!user;
+      this.isAuthenticated =
+        !!user && window.location.pathname !== "/start/profile-edit";
+      console.log(!!user, window.location.pathname);
       if (user) {
         this.user = this.userService.getById(user.id);
       }
     });
+    console.log(this.userSub);
   }
 
   submitSearchVal(event) {
