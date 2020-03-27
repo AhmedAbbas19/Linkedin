@@ -36,6 +36,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { TestComponent } from "./features/test/test.component";
 import { ProfileEditComponent } from "./auth/profile-edit/profile-edit.component";
+import { FooterComponent } from './core/footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,7 @@ import { ProfileEditComponent } from "./auth/profile-edit/profile-edit.component
     LandingPageComponent,
     TestComponent,
     ProfileEditComponent
+    FooterComponent
   ],
   imports: [
     Ng2SearchPipeModule,
@@ -111,11 +114,11 @@ import { ProfileEditComponent } from "./auth/profile-edit/profile-edit.component
     ])
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorService,
+    //   multi: true
+    // },
     AuthService
   ],
   bootstrap: [AppComponent]

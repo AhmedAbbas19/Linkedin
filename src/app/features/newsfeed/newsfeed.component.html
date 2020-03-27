@@ -1,4 +1,10 @@
-<div class="newsfeed">
+<div class="loading-spinner" *ngIf="isLoading">
+  <img src="assets/logo-512.png" alt="" />
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div class="newsfeed" *ngIf="activeUser && !isLoading">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
@@ -54,18 +60,85 @@
         </div>
       </div>
       <div class="col-md-6">
+        <!-- New Post -->
+        <div class="widget-post" aria-labelledby="post-header-title">
+          <div class="widget-post__header">
+            <h2 class="widget-post__title" id="post-header-title">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+              Write post
+            </h2>
+          </div>
+          <form
+            [formGroup]="postForm"
+            (submit)="handleSubmittingPost($event)"
+            id="widget-form"
+            class="widget-post__form"
+            name="form"
+            aria-label="post widget"
+          >
+            <div class="widget-post__content">
+              <label for="post-content" class="sr-only"
+                >share your moments</label
+              >
+              <textarea
+                #post_textarea
+                formControlName="post-content"
+                name="post"
+                rows="1"
+                id="post-content"
+                class="widget-post__textarea scroller"
+                placeholder="What is in your mind?"
+                (focus)="post_textarea.rows = 5"
+                (blur)="post_textarea.rows = 1"
+              ></textarea>
+            </div>
+
+            <div class="widget-post__actions post--actions">
+              <div class="post-actions__attachments">
+                <button
+                  type="button"
+                  class="btn post-actions__upload attachments--btn"
+                >
+                  <label for="upload-image" class="post-actions__label">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                  </label>
+                </button>
+                <input
+                  (change)="loadingfile($event)"
+                  formControlName="post-image"
+                  type="file"
+                  id="upload-image"
+                  accept="image/*"
+                  multiple
+                />
+              </div>
+              <div class="post-actions__widget">
+                <button class="btn post-actions__publish">Post</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- End of new post -->
         <div class="create-post"></div>
         <ul class="newsfeed__posts-list">
-          <li class="post" *ngFor="let post of posts">
+          <li class="post" *ngFor="let post of posts; let i = index">
             <div class="post__header">
-              <div class="meta post__meta">
-                <img src="assets/salah.jpg" alt="" class="meta__img" />
+              <div class="meta post__meta" *ngIf="post['author']">
+                <img
+                  [src]="post['author'].imagUrl"
+                  alt=""
+                  class="meta__img cursor-pointer"
+                  [routerLink]="['/profile', post['author'].username]"
+                />
                 <div class="meta__info">
-                  <h6 class="meta__author-name">
-                    Ahmed Abbas
+                  <h6
+                    class="meta__author-name cursor-pointer"
+                    [routerLink]="['/profile', post['author'].username]"
+                  >
+                    {{ post["author"].fname }} {{ post["author"].lname }}
                   </h6>
                   <p class="meta__author-about">
-                    {{ "Artist" }}
+                    {{ post["author"].headline }}
                   </p>
                   <span class="meta__date">{{ "3/10/2020" }}</span>
                 </div>
@@ -73,37 +146,100 @@
               <i class="fa fa-ellipsis-h meta__control"></i>
             </div>
             <div class="body post__body">
-              <p class="body__content">
+              <p
+                class="body__content"
+                [ngClass]="{ rtl: arabic.test(post.content[0]) }"
+              >
                 {{ post.content }}
               </p>
-              <div class="body__img">
+              <div class="body__img" *ngIf="post.imagUrl">
                 <img src="{{ post.imagUrl }}" alt="" />
               </div>
             </div>
             <div class="reacts post__reacts">
               <div class="reacts__counter">
-                <i class="fa fa-thumbs-up like"></i>
-                <i class="fa fa-heart love"></i>
-                <i class="fa fa-lightbulb insightful"></i>
-                <span>1.5K</span>
+                <p
+                  class="reacts__note"
+                  *ngIf="!post.likedIds.length && !post.comments.length"
+                >
+                  Be the first one to like this post
+                </p>
+                <ng-container *ngIf="post.likedIds.length">
+                  <i class="fa fa-thumbs-up like"></i>
+                  <span>{{ post.likedIds.length }}</span>
+                </ng-container>
+                <ng-container *ngIf="post.comments.length">
+                  <i class="fa fa-comment comment"></i>
+                  <span>{{ post.comments.length }}</span>
+                </ng-container>
               </div>
               <div class="reacts__action">
-                <i class="fa fa-thumbs-up like"></i>
-                <span>Like</span>
-                <i class="fa fa-comment comment"></i>
-                <span>Comment</span>
+                <span
+                  (click)="handleLike(post)"
+                  [ngClass]="{ like: post['isLiked'] }"
+                >
+                  <i class="fa fa-thumbs-up "></i>
+                  Like
+                </span>
+                <span (click)="onCommenting(i)">
+                  <i class="fa fa-comment comment"></i>
+                  Comment
+                </span>
                 <i class="fa fa-share share"></i>
                 <span>Share</span>
               </div>
             </div>
-            <div class="post__comments">
-              <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
-              <input
-                type="text"
-                name="comment"
-                id=""
-                placeholder="Add a comment"
-              />
+            <div class="post__comments" *ngIf="post['isOpend']">
+              <div
+                class="meta post__meta"
+                *ngFor="let userComment of post.comments"
+              >
+                <img
+                  [src]="userComment['author'].imagUrl"
+                  alt=""
+                  class="meta__img cursor-pointer comment-image"
+                  [routerLink]="['/profile', userComment['author'].username]"
+                />
+                <div class="comment-writer">
+                  <div class="meta__info comment-writer-info ">
+                    <h6
+                      class="meta__author-name cursor-pointer"
+                      [ngClass]="{
+                        like: userComment.authorId === post.authorId
+                      }"
+                      [routerLink]="[
+                        '/profile',
+                        userComment['author'].username
+                      ]"
+                    >
+                      {{ userComment["author"].fname }}
+                      {{ userComment["author"].lname }}
+                    </h6>
+                    <p class="meta__author-about">
+                      {{ userComment["author"].headline }}
+                    </p>
+                    <p
+                      class="comment-body"
+                      [ngClass]="{ rtl: arabic.test(userComment.comment[0]) }"
+                    >
+                      {{ userComment.comment }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="comment-input">
+                <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
+                <form [formGroup]="commentForm" class="comment-form">
+                  <input
+                    formControlName="comment"
+                    (keyup.enter)="handleAddingComment($event, post)"
+                    type="text"
+                    name="comment"
+                    id=""
+                    placeholder="Add a comment"
+                  />
+                </form>
+              </div>
             </div>
           </li>
         </ul>

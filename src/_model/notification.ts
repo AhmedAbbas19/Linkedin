@@ -1,8 +1,9 @@
 export interface Notification {
   id?: string;
   type?: string;
-  text?: string;
-  image?: string;
+  actionUserId?: string;
+  reciverId?: string;
   url?: string;
-  created?: string;
+  date?: string;
+  isRead?: boolean;
 }

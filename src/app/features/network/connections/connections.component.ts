@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { User } from "src/_model/user";
 import { NetworkService } from "./../network.service";
-import { Subscription } from "rxjs";
+import { Subscription, combineLatest } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
@@ -10,32 +10,42 @@ import { AuthService } from "src/app/auth/auth.service";
   styleUrls: ["./connections.component.scss"]
 })
 export class ConnectionsComponent implements OnInit, OnDestroy {
-  connected: User[];
-  sentConnections: User[];
-  RecivedConnections: User[];
+  connected: User[] = [];
+  sentConnections: User[] = [];
+  RecivedConnections: User[] = [];
+  peopleMayKnow: User[] = [];
   activeStatus: number = 1;
   currentUserId: string;
-  private userSub: Subscription;
-  peopleMayKnow: User[];
+  dataLoadedSub: Subscription;
   netWorkSubscribtion: Subscription;
+  isLoading = true;
   constructor(
     private networkService: NetworkService,
     private authService: AuthService
   ) {}
   ngOnInit() {
-    this.userSub = this.authService.activeUser.subscribe(user => {
-      this.currentUserId = user.id;
-      // this.currentUserId = 0;
-      this.netWorkSubscribtion = this.networkService.connectionSubject.subscribe(
-        value => {
-          let { connected, sent, recived } = value;
-          this.connected = connected;
-          this.sentConnections = sent;
-          this.RecivedConnections = recived;
-        }
-      );
-      this.networkService.getById(this.currentUserId);
-      this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+    this.netWorkSubscribtion = this.networkService.connectionSubject.subscribe(
+      value => {
+        let { connected, sent, recived } = value;
+        this.connected = connected;
+        this.sentConnections = sent;
+        this.RecivedConnections = recived;
+        this.peopleMayKnow = this.networkService.getMayKnow(this.currentUserId);
+      }
+    );
+
+    const dataLoaded = combineLatest([
+      this.authService.activeUser,
+      this.networkService.dataLoaded
+    ]);
+
+    this.dataLoadedSub = dataLoaded.subscribe(loadedData => {
+      let [user, networkLoaded] = loadedData;
+      if (user && networkLoaded) {
+        this.isLoading = false;
+        this.currentUserId = user.id;
+        this.networkService.getById(this.currentUserId);
+      }
     });
   }
   acceptInvitation(id: string) {
@@ -54,6 +64,6 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.netWorkSubscribtion.unsubscribe();
-    this.userSub.unsubscribe();
+    this.dataLoadedSub.unsubscribe();
   }
 }

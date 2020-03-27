@@ -3,7 +3,8 @@ import { UserService } from "./../../features/user/user.service";
 import { User } from "./../../../_model/user";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
-import { Subscription } from "rxjs";
+import { User as Us } from "src/app/auth/user.model";
+import { Subscription, combineLatest } from "rxjs";
 
 @Component({
   selector: "app-header",
@@ -28,6 +29,15 @@ export class HeaderComponent implements OnInit {
       console.log(!!user, window.location.pathname);
       if (user) {
         this.user = this.userService.getById(user.id);
+    const loadedData = combineLatest([
+      this.authService.activeUser,
+      this.userService.dataLoaded
+    ]);
+    loadedData.subscribe(dataLoaded => {
+      let [user, usersLoaded] = dataLoaded;
+      if (user && usersLoaded) {
+        this.isAuthenticated = !!user;
+        this.user = this.userService.getLoadedById(user.id);
       }
     });
     console.log(this.userSub);

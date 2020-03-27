@@ -8,6 +8,9 @@
     font-weight: normal;
     margin-bottom: 22px;
   }
+  h6 {
+    margin: 0;
+  }
   &__list {
     list-style: none;
     .sec-item {
@@ -25,7 +28,7 @@
         align-items: center;
       }
       &__img {
-        max-width: 70px;
+        max-width: 60px;
         border-radius: 50%;
       }
       &__info {

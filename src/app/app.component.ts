@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { AuthService } from "./auth/auth.service";
+import { NetworkService } from "./features/network/network.service";
 
 @Component({
   selector: "app-root",
@@ -8,7 +9,10 @@ import { AuthService } from "./auth/auth.service";
 })
 export class AppComponent {
   title = "linkedin";
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private networkService: NetworkService
+  ) {}
   ngOnInit() {
     this.authService.autoLogin();
   }
