@@ -9,7 +9,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit About</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="user.about">
+          Edit About
+        </h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="!user.about">
+          Add About
+        </h5>
         <button
           type="button"
           class="close"
@@ -42,10 +47,21 @@
             type="button"
             class="btn btn-primary"
             style="border: none !important;"
+            *ngIf="user.about"
             (click)="onSubmit()"
             data-dismiss="modal"
           >
             Save changes
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="border: none !important;"
+            *ngIf="!user.about"
+            (click)="onSubmit()"
+            data-dismiss="modal"
+          >
+            Add
           </button>
         </div>
       </form>

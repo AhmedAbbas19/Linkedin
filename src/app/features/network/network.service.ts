@@ -113,7 +113,7 @@ export class NetworkService {
                 .delete(this.dataBaseURL + "/" + connection.id)
                 .subscribe();
             }
-            this.notificationService.add(notif).subscribe();
+            this.notificationService.pushNotification(notif);
             this.fireConnectionsChanges();
             break;
           }
@@ -150,7 +150,7 @@ export class NetworkService {
       date: currentDate,
       isRead: false
     };
-    this.notificationService.add(notif).subscribe();
+    this.notificationService.pushNotification(notif);
   }
   getMayKnow(id: string) {
     return this.userService.getAll().filter(u => {

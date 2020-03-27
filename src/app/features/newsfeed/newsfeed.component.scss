@@ -4,8 +4,7 @@
   flex-direction: column;
   width: 220px;
   box-shadow: 3px 3px 5px 0px rgba(209, 201, 209, 1);
-  position: sticky;
-  top: 30px;
+  position: relative;
   z-index: 0;
   background-color: #fff;
   border: 1px solid #dcdcdc;
@@ -168,23 +167,20 @@
       }
     }
     &__reacts {
+      cursor: pointer;
       user-select: none;
       padding: 15px;
       .reacts {
-        &__note {
-          font-size: 12px;
-          margin: 0;
-          color: #5d5d5d;
-        }
         &__counter {
           padding-bottom: 4px;
           border-bottom: 1px solid #dadada;
           i {
-            padding-right: 5px;
+            padding: 2px;
           }
           span {
             font-size: 14px;
             font-weight: 600;
+            margin-left: 8px;
             color: #656565;
           }
           .like {
@@ -196,10 +192,6 @@
           .insightful {
             color: #d6c108;
           }
-          .comment {
-            color: #d60808;
-            margin-left: 10px;
-          }
         }
         &__action {
           color: #5f5f5f;
@@ -210,7 +202,6 @@
           span {
             font-weight: 600;
             margin-right: 20px;
-            cursor: pointer;
           }
         }
       }
@@ -227,8 +218,7 @@
         width: 100%;
         border-radius: 35px;
         border: 1px solid #c5c5c5;
-        padding: 12px 18px;
-        font-size: 12px;
+        padding: 8px 18px;
         &:focus {
           outline: none;
         }
@@ -405,9 +395,7 @@ ul {
   background-color: #f5f5f5;
   border-radius: 20px;
   margin-bottom: 5px;
-  padding: 10px 15px;
-  display: inline-block;
-  width: 87%;
+  padding: 15px 10px;
 }
 .comment-writer-info {
   display: flex;
@@ -416,11 +404,10 @@ ul {
   .meta__author-about {
     font-size: 12px;
     color: #6f6f6f;
-    margin-bottom: 5px;
   }
 }
 .comment-input {
-  margin-top: 10px;
+  margin-bottom: 15px;
   display: flex;
 }
 .comment-form {
@@ -434,5 +421,4 @@ ul {
 }
 .comment-body {
   margin: 0;
-  font-size: 14px;
 }

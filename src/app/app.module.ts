@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./core/header/header.component";
 import { UserProfileComponent } from "./features/user/user-profile/user-profile.component";
@@ -9,6 +8,8 @@ import { ConnectionsComponent } from "./features/network/connections/connections
 import { MynetworkComponent } from "./features/network/mynetwork/mynetwork.component";
 import { SearchComponent } from "./features/search/search.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material.module";
 
 import { NotificationComponent } from "./features/notification/notification.component";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
@@ -29,14 +30,8 @@ import { ExperienceComponent } from "./features/user/experience/experience.compo
 import { IntroComponent } from "./features/user/intro/intro.component";
 import { IntroEditComponent } from "./features/user/intro-edit/intro-edit.component";
 import { AuthInterceptorService } from "./auth/auth.interceptor.service";
-import { MatStepperModule } from "@angular/material/stepper";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material";
-import { MatButtonModule } from "@angular/material/button";
-import { MatSelectModule } from "@angular/material/select";
-import { TestComponent } from "./features/test/test.component";
-import { ProfileEditComponent } from "./auth/profile-edit/profile-edit.component";
-import { FooterComponent } from './core/footer/footer.component';
+import { FooterComponent } from "./core/footer/footer.component";
+import { ProfileAddComponent } from "./features/user/profile-add/profile-add.component";
 
 @NgModule({
   declarations: [
@@ -57,22 +52,17 @@ import { FooterComponent } from './core/footer/footer.component';
     AuthComponent,
     NotFoundComponent,
     LandingPageComponent,
-    TestComponent,
-    ProfileEditComponent
-    FooterComponent
+    FooterComponent,
+    ProfileAddComponent
   ],
   imports: [
     Ng2SearchPipeModule,
     FormsModule,
     BrowserModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     HttpClientModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     RouterModule.forRoot([
       { path: "landing", component: LandingPageComponent },
       { path: "home", component: NewsfeedComponent, canActivate: [AuthGuard] },
@@ -102,8 +92,8 @@ import { FooterComponent } from './core/footer/footer.component';
         canActivate: [AuthGuard]
       },
       {
-        path: "start/profile-edit",
-        component: ProfileEditComponent,
+        path: "start/profile-add",
+        component: ProfileAddComponent,
         canActivate: [AuthGuard]
       },
       { path: "auth", redirectTo: "auth/login", pathMatch: "full" },

@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "./../../features/user/user.service";
 import { User } from "./../../../_model/user";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { User as Us } from "src/app/auth/user.model";
-import { Subscription, combineLatest } from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-header",
@@ -18,29 +18,22 @@ export class HeaderComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private authService: AuthService,
-    private route: ActivatedRoute
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.userSub = this.authService.activeUser.subscribe(user => {
-      this.isAuthenticated =
-        !!user && window.location.pathname !== "/start/profile-edit";
       console.log(!!user, window.location.pathname);
+      this.isAuthenticated =
+        !!user &&
+        window.location.pathname !== "/start/profile-add" &&
+        window.location.pathname !== "/auth/signup";
       if (user) {
-        this.user = this.userService.getById(user.id);
-    const loadedData = combineLatest([
-      this.authService.activeUser,
-      this.userService.dataLoaded
-    ]);
-    loadedData.subscribe(dataLoaded => {
-      let [user, usersLoaded] = dataLoaded;
-      if (user && usersLoaded) {
-        this.isAuthenticated = !!user;
-        this.user = this.userService.getLoadedById(user.id);
+        this.userService.getById(user.id).subscribe(user => {
+          this.user = user;
+        });
       }
     });
-    console.log(this.userSub);
   }
 
   submitSearchVal(event) {

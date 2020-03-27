@@ -1,10 +1,4 @@
-<div class="loading-spinner" *ngIf="isLoading">
-  <img src="assets/logo-512.png" alt="" />
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-</div>
-<div class="newsfeed" *ngIf="activeUser && !isLoading">
+<div class="newsfeed" *ngIf="activeUser">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
@@ -146,10 +140,7 @@
               <i class="fa fa-ellipsis-h meta__control"></i>
             </div>
             <div class="body post__body">
-              <p
-                class="body__content"
-                [ngClass]="{ rtl: arabic.test(post.content[0]) }"
-              >
+              <p class="body__content">
                 {{ post.content }}
               </p>
               <div class="body__img" *ngIf="post.imagUrl">
@@ -157,76 +148,32 @@
               </div>
             </div>
             <div class="reacts post__reacts">
-              <div class="reacts__counter">
-                <p
-                  class="reacts__note"
-                  *ngIf="!post.likedIds.length && !post.comments.length"
-                >
-                  Be the first one to like this post
-                </p>
-                <ng-container *ngIf="post.likedIds.length">
-                  <i class="fa fa-thumbs-up like"></i>
-                  <span>{{ post.likedIds.length }}</span>
-                </ng-container>
-                <ng-container *ngIf="post.comments.length">
-                  <i class="fa fa-comment comment"></i>
-                  <span>{{ post.comments.length }}</span>
-                </ng-container>
+              <div class="reacts__counter" *ngIf="post.likesNumber.length">
+                <i class="fa fa-thumbs-up like"></i>
+                <!-- <i class="fa fa-heart love"></i>
+                <i class="fa fa-lightbulb insightful"></i> -->
+                <span>{{ post.likesNumber.length }}</span>
               </div>
               <div class="reacts__action">
+                <i
+                  class="fa fa-thumbs-up "
+                  [ngClass]="post.isLiked ? 'like' : ''"
+                ></i>
                 <span
                   (click)="handleLike(post)"
-                  [ngClass]="{ like: post['isLiked'] }"
+                  [ngClass]="post.isLiked ? 'like' : ''"
+                  >Like</span
                 >
-                  <i class="fa fa-thumbs-up "></i>
-                  Like
-                </span>
-                <span (click)="onCommenting(i)">
-                  <i class="fa fa-comment comment"></i>
-                  Comment
-                </span>
+                <i class="fa fa-comment comment"></i>
+                <span (click)="onCommenting(i)">Comment</span>
                 <i class="fa fa-share share"></i>
                 <span>Share</span>
               </div>
             </div>
-            <div class="post__comments" *ngIf="post['isOpend']">
-              <div
-                class="meta post__meta"
-                *ngFor="let userComment of post.comments"
-              >
-                <img
-                  [src]="userComment['author'].imagUrl"
-                  alt=""
-                  class="meta__img cursor-pointer comment-image"
-                  [routerLink]="['/profile', userComment['author'].username]"
-                />
-                <div class="comment-writer">
-                  <div class="meta__info comment-writer-info ">
-                    <h6
-                      class="meta__author-name cursor-pointer"
-                      [ngClass]="{
-                        like: userComment.authorId === post.authorId
-                      }"
-                      [routerLink]="[
-                        '/profile',
-                        userComment['author'].username
-                      ]"
-                    >
-                      {{ userComment["author"].fname }}
-                      {{ userComment["author"].lname }}
-                    </h6>
-                    <p class="meta__author-about">
-                      {{ userComment["author"].headline }}
-                    </p>
-                    <p
-                      class="comment-body"
-                      [ngClass]="{ rtl: arabic.test(userComment.comment[0]) }"
-                    >
-                      {{ userComment.comment }}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div
+              class="post__comments"
+              *ngIf="isCommentsShowen && i == postIndex"
+            >
               <div class="comment-input">
                 <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
                 <form [formGroup]="commentForm" class="comment-form">
@@ -239,6 +186,31 @@
                     placeholder="Add a comment"
                   />
                 </form>
+              </div>
+              <div
+                class="meta post__meta"
+                *ngFor="let comment of post.comments"
+              >
+                <div class="comment-writer">
+                  <img
+                    [src]="post['author'].imagUrl"
+                    alt=""
+                    class="meta__img cursor-pointer comment-image"
+                    [routerLink]="['/profile', post['author'].username]"
+                  />
+                  <div class="meta__info comment-writer-info ">
+                    <h6
+                      class="meta__author-name"
+                      [routerLink]="['/profile', post['author'].username]"
+                    >
+                      {{ post["author"].fname }} {{ post["author"].lname }}
+                    </h6>
+                    <p class="meta__author-about">
+                      {{ post["author"].headline }}
+                    </p>
+                    <p class="comment-body">{{ comment }}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </li>

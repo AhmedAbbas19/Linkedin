@@ -1,5 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidationErrors
+} from "@angular/forms";
 import { AuthService } from "./auth.service";
 import { Subscription } from "rxjs";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -36,7 +41,7 @@ export class AuthComponent implements OnInit {
     });
 
     this.userSub = this.authService.activeUser.subscribe(user => {
-      if (user && this.loginMode) {
+      if (user) {
         this.router.navigate(["/home"]);
       }
     });
@@ -60,7 +65,7 @@ export class AuthComponent implements OnInit {
       this.authService.login(email, password).subscribe(
         response => {
           this.isLoading = false;
-          console.log(response);
+          this.router.navigate(["/home"]);
         },
         ({ error }) => {
           this.isLoading = false;
@@ -70,7 +75,8 @@ export class AuthComponent implements OnInit {
     } else {
       this.authService.signUp(email, password).subscribe(
         response => {
-          this.router.navigate(["/start/profile-edit"]);
+          this.isLoading = false;
+          this.router.navigate(["/start/profile-add"]);
         },
         ({ error }) => {
           this.isLoading = false;

@@ -1,35 +1,65 @@
 import { Injectable } from "@angular/core";
 import { Notification } from "./../../../../_model/notification";
-import { Subject, BehaviorSubject } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class NotificationService {
   notifCounter = new Subject<number>();
-  notifications: Notification[];
-  dataLoaded = new BehaviorSubject<boolean>(false);
-  databaseUrl = "http://localhost:3000/notifications";
-  constructor(private http: HttpClient) {
-    this.http.get<Notification[]>(this.databaseUrl).subscribe(notifications => {
-      this.notifications = notifications;
-      this.dataLoaded.next(true);
-    });
-  }
+  notifications: Notification[] = [
+    {
+      id: "1",
+      type: "like",
+      actionUserId: "MQXaAnYtikNBRFagmubthx7jLo02",
+      reciverId: "MQXaAnYtikNBRFagmubthx7jLo02",
+      url: "/post/123",
+      date: "1h",
+      isRead: false
+    },
+    {
+      id: "2",
+      type: "comment",
+      url: "/comment/123",
+      actionUserId: "tc0lctpnf9RiUvZcNEDjOsvv2an1",
+      reciverId: "MQXaAnYtikNBRFagmubthx7jLo02",
+      date: "18h",
+      isRead: false
+    },
+    {
+      id: "3",
+      type: "invite",
+      url: "/post/123",
+      actionUserId: "URuhUcGWOGgnP4Wp63pznNCHHH82",
+      reciverId: "URuhUcGWOGgnP4Wp63pznNCHHH82",
+      date: "1d",
+      isRead: false
+    },
+    {
+      id: "4",
+      type: "decline",
+      url: "/post/123",
+      actionUserId: "Byt15qH3vFSlDiY0P31AJmlkJlz2",
+      reciverId: "MQXaAnYtikNBRFagmubthx7jLo02",
+      date: "2d",
+      isRead: false
+    },
+    {
+      id: "5",
+      type: "react",
+      url: "/profile/123",
+      actionUserId: "Byt15qH3vFSlDiY0P31AJmlkJlz2",
+      reciverId: "URuhUcGWOGgnP4Wp63pznNCHHH82",
+      date: "1w",
+      isRead: false
+    }
+  ];
+  constructor() {}
 
   getAll() {
     return this.notifications;
   }
-  add(notif: Notification) {
-    return this.http.post(this.databaseUrl, notif);
-  }
-  save(notif: Notification) {
-    return this.http.put(this.databaseUrl + "/" + notif.id, notif);
-  }
-  delete(notif: Notification) {
-    return this.http.delete(this.databaseUrl + "/" + notif.id);
-  }
+
   pushNotification(notif: Notification) {
     this.notifications.unshift(notif);
   }

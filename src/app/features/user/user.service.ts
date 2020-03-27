@@ -30,8 +30,12 @@ export class UserService {
     return this.users.find(u => u.username === username);
   }
   add(user: User) {
-    user.id = (this.users.length + 1).toString();
-    this.users.push(user);
+    // user.id = (this.users.length + 1).toString();
+    // this.users.push(user);
+    this.http.post(this.dataBaseURL, user).subscribe(response => {
+      user["id"] = response["id"];
+      this.users.unshift(user);
+    });
   }
 
   save(user: User) {
