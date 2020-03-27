@@ -15,6 +15,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];
   loadedDataSub: Subscription;
   user: User;
+  isLoading = true;
   constructor(
     private notificationService: NotificationService,
     private userService: UserService,
@@ -31,6 +32,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     this.loadedDataSub = loadedData.subscribe(dataLoaded => {
       let [user, usersLoaded, notifLoaded] = dataLoaded;
       if (user && usersLoaded && notifLoaded) {
+        this.isLoading = false;
         this.user = this.userService.getLoadedById(user.id);
         this.notifications = this.notificationService
           .getAll()
