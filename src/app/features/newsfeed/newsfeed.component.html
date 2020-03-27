@@ -205,6 +205,9 @@
                   <div class="meta__info comment-writer-info ">
                     <h6
                       class="meta__author-name cursor-pointer"
+                      [ngClass]="{
+                        like: userComment.authorId === post.authorId
+                      }"
                       [routerLink]="[
                         '/profile',
                         userComment['author'].username

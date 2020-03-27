@@ -3,12 +3,13 @@ import { Post } from "src/_model/post";
 import { NewsfeedService } from "./newsfeed.service";
 import { User } from "src/_model/user";
 import { UserService } from "./../user/user.service";
-import { Subscription } from "rxjs";
+import { Subscription, Observable, forkJoin, combineLatest } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { NotificationService } from "./../notification/service/notification.service";
 import { Notification } from "./../../../_model/notification";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-newsfeed",
@@ -20,7 +21,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   commentForm = new FormGroup({
     comment: new FormControl()
   });
-  isCommentsShowen: boolean;
+  isCommentsShowen: boolean = false;
   postIndex: number;
   imagePath: any;
   postForm = new FormGroup({
@@ -30,7 +31,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   posts: Post[];
   activeUser: User;
   currentUserId: string;
-  private userSub: Subscription;
+  private dataLoadedSub: Subscription;
   constructor(
     private newsfeedService: NewsfeedService,
     private userService: UserService,
@@ -39,41 +40,35 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.isCommentsShowen = false;
-    this.userSub = this.authService.activeUser.subscribe(user => {
-      if (user) {
+    const dataLoaded = combineLatest([
+      this.authService.activeUser,
+      this.userService.dataLoaded,
+      this.newsfeedService.dataLoaded
+    ]);
+
+    this.dataLoadedSub = dataLoaded.subscribe(loadedData => {
+      let [user, usersLoaded, newsfeedLoaded] = loadedData;
+      if (user && usersLoaded && newsfeedLoaded) {
         this.currentUserId = user.id;
-        this.userService.getById(this.currentUserId).subscribe(user => {
-          this.activeUser = user;
-          this.newsfeedService.dataLoaded.subscribe(res => {
-            if (res) {
-              this.posts = JSON.parse(
-                JSON.stringify(this.newsfeedService.getAll())
-              );
-              for (const post of this.posts) {
-                post["isOpend"] = false;
-                post["isLiked"] = post.likedIds.includes(this.currentUserId);
-                // post["isLiked"] = false;
-                // for (let like of post.likedIds) {
-                //   post["isLiked"] = like === this.currentUserId;
-                // }
-                for (const comment of post.comments) {
-                  this.userService.getById(comment.authorId).subscribe(user => {
-                    comment["author"] = user;
-                  });
-                }
-                this.userService.getById(post.authorId).subscribe(user => {
-                  post["author"] = user;
-                });
-              }
-            }
-          });
-        });
+        this.activeUser = this.userService.getLoadedById(user.id);
+
+        this.posts = JSON.parse(JSON.stringify(this.newsfeedService.getAll()));
+
+        for (const post of this.posts) {
+          post["isOpend"] = false;
+          post["isLiked"] = post.likedIds.includes(this.currentUserId);
+          for (const comment of post.comments) {
+            comment["author"] = this.userService.getLoadedById(
+              comment.authorId
+            );
+          }
+          post["author"] = this.userService.getLoadedById(post.authorId);
+        }
       }
     });
   }
   ngOnDestroy() {
-    this.userSub.unsubscribe();
+    this.dataLoadedSub.unsubscribe();
   }
 
   handleLike(post: Post) {

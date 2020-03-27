@@ -2040,7 +2040,12 @@
         "943A6viR4YbKYlhZnSZsThidqEx1",
         "MQXaAnYtikNBRFagmubthx7jLo02"
       ],
-      "comments": []
+      "comments": [
+        {
+          "authorId": "MQXaAnYtikNBRFagmubthx7jLo02",
+          "comment": "I'm the post author"
+        }
+      ]
     },
     {
       "id": "5",
@@ -2131,6 +2136,15 @@
       "date": "3/26/2020",
       "isRead": false,
       "id": "kgy4pRx"
+    },
+    {
+      "actionUserId": "MQXaAnYtikNBRFagmubthx7jLo02",
+      "reciverId": "MQXaAnYtikNBRFagmubthx7jLo02",
+      "type": "comment",
+      "url": "/post/4",
+      "date": "3/27/2020",
+      "isRead": false,
+      "id": "c4DFyTw"
     }
   ]
 }
