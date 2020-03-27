@@ -32,6 +32,7 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
   activeUser: User;
   currentUserId: string;
   private dataLoadedSub: Subscription;
+  isLoading = true;
   constructor(
     private newsfeedService: NewsfeedService,
     private userService: UserService,
@@ -49,9 +50,11 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
     this.dataLoadedSub = dataLoaded.subscribe(loadedData => {
       let [user, usersLoaded, newsfeedLoaded] = loadedData;
       if (user && usersLoaded && newsfeedLoaded) {
+        this.isLoading = false;
         this.currentUserId = user.id;
         this.activeUser = this.userService.getLoadedById(user.id);
 
+        // deep clone
         this.posts = JSON.parse(JSON.stringify(this.newsfeedService.getAll()));
 
         for (const post of this.posts) {
@@ -78,16 +81,18 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       post.likedIds.unshift(this.currentUserId);
       newPost.likedIds.unshift(this.currentUserId);
       //Notification
-      const currentDate = new Date().toLocaleDateString("en-US");
-      const notif: Notification = {
-        actionUserId: this.currentUserId,
-        reciverId: post.authorId,
-        type: "like",
-        url: "/post/" + post.id,
-        date: currentDate,
-        isRead: false
-      };
-      this.notificationService.add(notif).subscribe();
+      if (this.currentUserId !== post.authorId) {
+        const currentDate = new Date().toLocaleDateString("en-US");
+        const notif: Notification = {
+          actionUserId: this.currentUserId,
+          reciverId: post.authorId,
+          type: "like",
+          url: "/post/" + post.id,
+          date: currentDate,
+          isRead: false
+        };
+        this.notificationService.add(notif).subscribe();
+      }
     } else {
       const idx = post.likedIds.indexOf(this.currentUserId);
       post.likedIds.splice(idx, 1);
@@ -116,16 +121,18 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
       post.comments.unshift(newComment);
 
       //Notification
-      const currentDate = new Date().toLocaleDateString("en-US");
-      const notif: Notification = {
-        actionUserId: this.currentUserId,
-        reciverId: post.authorId,
-        type: "comment",
-        url: "/post/" + post.id,
-        date: currentDate,
-        isRead: false
-      };
-      this.notificationService.add(notif).subscribe();
+      if (this.currentUserId !== post.authorId) {
+        const currentDate = new Date().toLocaleDateString("en-US");
+        const notif: Notification = {
+          actionUserId: this.currentUserId,
+          reciverId: post.authorId,
+          type: "comment",
+          url: "/post/" + post.id,
+          date: currentDate,
+          isRead: false
+        };
+        this.notificationService.add(notif).subscribe();
+      }
 
       event.target.blur();
       this.commentForm.reset();

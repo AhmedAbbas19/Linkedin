@@ -18,6 +18,7 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   currentUserId: string;
   dataLoadedSub: Subscription;
   netWorkSubscribtion: Subscription;
+  isLoading = true;
   constructor(
     private networkService: NetworkService,
     private authService: AuthService
@@ -41,6 +42,7 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
     this.dataLoadedSub = dataLoaded.subscribe(loadedData => {
       let [user, networkLoaded] = loadedData;
       if (user && networkLoaded) {
+        this.isLoading = false;
         this.currentUserId = user.id;
         this.networkService.getById(this.currentUserId);
       }

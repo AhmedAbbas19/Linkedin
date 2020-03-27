@@ -1,4 +1,10 @@
-<div class="newsfeed" *ngIf="activeUser">
+<div class="loading-spinner" *ngIf="isLoading">
+  <img src="assets/logo-512.png" alt="" />
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div class="newsfeed" *ngIf="activeUser && !isLoading">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
@@ -152,6 +158,12 @@
             </div>
             <div class="reacts post__reacts">
               <div class="reacts__counter">
+                <p
+                  class="reacts__note"
+                  *ngIf="!post.likedIds.length && !post.comments.length"
+                >
+                  Be the first one to like this post
+                </p>
                 <ng-container *ngIf="post.likedIds.length">
                   <i class="fa fa-thumbs-up like"></i>
                   <span>{{ post.likedIds.length }}</span>
@@ -178,19 +190,6 @@
               </div>
             </div>
             <div class="post__comments" *ngIf="post['isOpend']">
-              <div class="comment-input">
-                <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
-                <form [formGroup]="commentForm" class="comment-form">
-                  <input
-                    formControlName="comment"
-                    (keyup.enter)="handleAddingComment($event, post)"
-                    type="text"
-                    name="comment"
-                    id=""
-                    placeholder="Add a comment"
-                  />
-                </form>
-              </div>
               <div
                 class="meta post__meta"
                 *ngFor="let userComment of post.comments"
@@ -227,6 +226,19 @@
                     </p>
                   </div>
                 </div>
+              </div>
+              <div class="comment-input">
+                <img src="{{ activeUser.imagUrl }}" alt="" srcset="" />
+                <form [formGroup]="commentForm" class="comment-form">
+                  <input
+                    formControlName="comment"
+                    (keyup.enter)="handleAddingComment($event, post)"
+                    type="text"
+                    name="comment"
+                    id=""
+                    placeholder="Add a comment"
+                  />
+                </form>
               </div>
             </div>
           </li>

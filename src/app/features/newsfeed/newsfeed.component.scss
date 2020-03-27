@@ -4,7 +4,8 @@
   flex-direction: column;
   width: 220px;
   box-shadow: 3px 3px 5px 0px rgba(209, 201, 209, 1);
-  position: relative;
+  position: sticky;
+  top: 30px;
   z-index: 0;
   background-color: #fff;
   border: 1px solid #dcdcdc;
@@ -167,10 +168,14 @@
       }
     }
     &__reacts {
-      cursor: pointer;
       user-select: none;
       padding: 15px;
       .reacts {
+        &__note {
+          font-size: 12px;
+          margin: 0;
+          color: #5d5d5d;
+        }
         &__counter {
           padding-bottom: 4px;
           border-bottom: 1px solid #dadada;
@@ -205,6 +210,7 @@
           span {
             font-weight: 600;
             margin-right: 20px;
+            cursor: pointer;
           }
         }
       }
@@ -414,7 +420,7 @@ ul {
   }
 }
 .comment-input {
-  margin-bottom: 15px;
+  margin-top: 10px;
   display: flex;
 }
 .comment-form {
