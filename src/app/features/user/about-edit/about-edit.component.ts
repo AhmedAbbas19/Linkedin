@@ -11,7 +11,7 @@ import { FormGroup, FormControl } from "@angular/forms";
   styleUrls: ["./about-edit.component.scss"]
 })
 export class AboutEditComponent implements OnInit {
-  user: User = {};
+  user: User;
   activeUser: User;
   aboutForm = new FormGroup({
     about: new FormControl()
@@ -36,9 +36,7 @@ export class AboutEditComponent implements OnInit {
           if (!this.user) {
             this.router.navigate(["not-found"]);
           }
-          if (this.user.about) {
-            this.aboutForm.controls.about.setValue(this.user.about);
-          }
+          this.aboutForm.controls.about.setValue(this.user.about);
         }
       });
     });

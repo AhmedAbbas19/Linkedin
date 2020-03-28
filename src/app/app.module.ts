@@ -8,8 +8,6 @@ import { ConnectionsComponent } from "./features/network/connections/connections
 import { MynetworkComponent } from "./features/network/mynetwork/mynetwork.component";
 import { SearchComponent } from "./features/search/search.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MaterialModule } from "./material.module";
 
 import { NotificationComponent } from "./features/notification/notification.component";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
@@ -30,8 +28,7 @@ import { ExperienceComponent } from "./features/user/experience/experience.compo
 import { IntroComponent } from "./features/user/intro/intro.component";
 import { IntroEditComponent } from "./features/user/intro-edit/intro-edit.component";
 import { AuthInterceptorService } from "./auth/auth.interceptor.service";
-import { FooterComponent } from "./core/footer/footer.component";
-import { ProfileAddComponent } from "./features/user/profile-add/profile-add.component";
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +49,7 @@ import { ProfileAddComponent } from "./features/user/profile-add/profile-add.com
     AuthComponent,
     NotFoundComponent,
     LandingPageComponent,
-    FooterComponent,
-    ProfileAddComponent
+    FooterComponent
   ],
   imports: [
     Ng2SearchPipeModule,
@@ -61,8 +57,6 @@ import { ProfileAddComponent } from "./features/user/profile-add/profile-add.com
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule,
     RouterModule.forRoot([
       { path: "landing", component: LandingPageComponent },
       { path: "home", component: NewsfeedComponent, canActivate: [AuthGuard] },
@@ -89,11 +83,6 @@ import { ProfileAddComponent } from "./features/user/profile-add/profile-add.com
       {
         path: "notification",
         component: NotificationComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: "start/profile-add",
-        component: ProfileAddComponent,
         canActivate: [AuthGuard]
       },
       { path: "auth", redirectTo: "auth/login", pathMatch: "full" },
