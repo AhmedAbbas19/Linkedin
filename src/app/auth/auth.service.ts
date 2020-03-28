@@ -104,6 +104,5 @@ export class AuthService {
     this.user.next(user);
     this.autoLogout(+resp.expiresIn * 1000);
     localStorage.setItem("userData", JSON.stringify(user));
-    this.router.navigate(["/home"]);
   }
 }

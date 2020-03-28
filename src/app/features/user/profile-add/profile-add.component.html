@@ -26,7 +26,7 @@
           matInput
           placeholder="Last name"
           formControlName="lname"
-          maxlength="15"
+          maxlength="20"
         />
         <mat-error *ngIf="userData.get('lname').hasError('required')"
           >Last name is <strong>required</strong></mat-error
@@ -44,7 +44,7 @@
           matInput
           placeholder="Username"
           formControlName="username"
-          maxlength="15"
+          maxlength="20"
         />
         <mat-error *ngIf="userData.get('username').hasError('required')"
           >Username is <strong>required</strong></mat-error
@@ -66,7 +66,7 @@
           matInput
           placeholder="headline"
           formControlName="headline"
-          maxlength="20"
+          maxlength="30"
         />
         <mat-error *ngIf="userData.get('headline').hasError('required')"
           >Headline is <strong>required</strong></mat-error

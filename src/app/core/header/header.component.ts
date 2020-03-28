@@ -29,7 +29,10 @@ export class HeaderComponent implements OnInit {
     loadedData.subscribe(dataLoaded => {
       let [user, usersLoaded] = dataLoaded;
       if (user && usersLoaded) {
-        this.isAuthenticated = !!user;
+        this.isAuthenticated =
+          !!user &&
+          window.location.pathname !== "/start/profile-add" &&
+          window.location.pathname !== "/auth/signup";
         this.user = this.userService.getLoadedById(user.id);
       }
     });
@@ -43,6 +46,7 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.authService.logout();
+    this.isAuthenticated = false;
   }
   ngOnDestroy() {
     this.userSub.unsubscribe();
