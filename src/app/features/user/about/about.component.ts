@@ -10,8 +10,8 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./about.component.scss"]
 })
 export class AboutComponent implements OnInit {
-  user: User;
-  activeUser: User;
+  user: User = null;
+  activeUser: User = null;
   constructor(
     public userService: UserService,
     private authService: AuthService,

@@ -8,6 +8,8 @@ import { ConnectionsComponent } from "./features/network/connections/connections
 import { MynetworkComponent } from "./features/network/mynetwork/mynetwork.component";
 import { SearchComponent } from "./features/search/search.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material.module";
 
 import { NotificationComponent } from "./features/notification/notification.component";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
@@ -24,11 +26,11 @@ import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { AboutComponent } from "./features/user/about/about.component";
 import { AboutEditComponent } from "./features/user/about-edit/about-edit.component";
 import { ContactInfoComponent } from "./features/user/contact-info/contact-info.component";
-import { ExperienceComponent } from "./features/user/experience/experience.component";
 import { IntroComponent } from "./features/user/intro/intro.component";
 import { IntroEditComponent } from "./features/user/intro-edit/intro-edit.component";
 import { AuthInterceptorService } from "./auth/auth.interceptor.service";
-import { FooterComponent } from './core/footer/footer.component';
+import { FooterComponent } from "./core/footer/footer.component";
+import { ProfileAddComponent } from "./features/user/profile-add/profile-add.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,6 @@ import { FooterComponent } from './core/footer/footer.component';
     AboutComponent,
     AboutEditComponent,
     ContactInfoComponent,
-    ExperienceComponent,
     IntroComponent,
     IntroEditComponent,
     ConnectionsComponent,
@@ -49,7 +50,8 @@ import { FooterComponent } from './core/footer/footer.component';
     AuthComponent,
     NotFoundComponent,
     LandingPageComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileAddComponent
   ],
   imports: [
     Ng2SearchPipeModule,
@@ -57,6 +59,8 @@ import { FooterComponent } from './core/footer/footer.component';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     RouterModule.forRoot([
       { path: "landing", component: LandingPageComponent },
       { path: "home", component: NewsfeedComponent, canActivate: [AuthGuard] },
@@ -83,6 +87,11 @@ import { FooterComponent } from './core/footer/footer.component';
       {
         path: "notification",
         component: NotificationComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: "start/profile-add",
+        component: ProfileAddComponent,
         canActivate: [AuthGuard]
       },
       { path: "auth", redirectTo: "auth/login", pathMatch: "full" },
