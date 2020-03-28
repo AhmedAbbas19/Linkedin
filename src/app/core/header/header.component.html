@@ -51,9 +51,10 @@
             <div class=" font-weight-normal nav-link-text">Jobs</div>
           </a>
         </li> -->
-        <li class="nav-item">
+        <li class="nav-item notifs">
           <a class="mr-3 nav-link" routerLink="notification">
             <i class="nav_icon-font fa fa-bell" aria-hidden="true"> </i>
+            <span class="notif-count" *ngIf="notifCount">{{ notifCount }}</span>
             <div class=" font-weight-normal nav-link-text">Notification</div>
           </a>
         </li>

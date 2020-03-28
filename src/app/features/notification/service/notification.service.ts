@@ -7,7 +7,6 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class NotificationService {
-  notifCounter = new Subject<number>();
   notifications: Notification[];
   dataLoaded = new BehaviorSubject<boolean>(false);
   databaseUrl = "http://localhost:3000/notifications";
@@ -20,6 +19,9 @@ export class NotificationService {
 
   getAll() {
     return this.notifications;
+  }
+  getLoadedById(id: string) {
+    return this.notifications.filter(n => n.reciverId === id);
   }
   add(notif: Notification) {
     return this.http.post(this.databaseUrl, notif);

@@ -140,7 +140,7 @@
                   <p class="meta__author-about">
                     {{ post["author"].headline }}
                   </p>
-                  <span class="meta__date">{{ "3/10/2020" }}</span>
+                  <span class="meta__date">{{ post.date }}</span>
                 </div>
               </div>
               <i class="fa fa-ellipsis-h meta__control"></i>
@@ -185,8 +185,10 @@
                   <i class="fa fa-comment comment"></i>
                   Comment
                 </span>
-                <i class="fa fa-share share"></i>
-                <span>Share</span>
+                <span>
+                  <i class="fa fa-share share"></i>
+                  Share
+                </span>
               </div>
             </div>
             <div class="post__comments" *ngIf="post['isOpend']">

@@ -13,6 +13,8 @@ import { User } from "src/_model/user";
 })
 export class NotificationComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];
+  latestNotif: Notification[] = [];
+  oldNotif: Notification[] = [];
   loadedDataSub: Subscription;
   user: User;
   isLoading = true;
@@ -34,15 +36,45 @@ export class NotificationComponent implements OnInit, OnDestroy {
       if (user && usersLoaded && notifLoaded) {
         this.isLoading = false;
         this.user = this.userService.getLoadedById(user.id);
-        this.notifications = this.notificationService
-          .getAll()
-          .filter(n => n.reciverId === user.id)
+        this.notifications = this.notificationService.getAll();
+        this.latestNotif = this.notifications
+          .filter(n => {
+            const daysNum =
+              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24);
+            if (n.reciverId === user.id && daysNum < 3) {
+              return true;
+            }
+          })
+          .map(n => {
+            const daysNum = Math.floor(
+              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24)
+            );
+            return {
+              ...n,
+              date: daysNum ? daysNum + "d" : "Today",
+              actionUser: this.userService.getLoadedById(n.actionUserId)
+            };
+          })
           .reverse();
-        for (const notif of this.notifications) {
-          notif["actionUser"] = this.userService.getLoadedById(
-            notif.actionUserId
-          );
-        }
+        this.oldNotif = this.notifications
+          .filter(n => {
+            const daysNum =
+              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24);
+            if (n.reciverId === user.id && daysNum > 2) {
+              return true;
+            }
+          })
+          .map(n => {
+            const daysNum = Math.floor(
+              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24)
+            );
+            return {
+              ...n,
+              date: daysNum ? daysNum + "d" : "Today",
+              actionUser: this.userService.getLoadedById(n.actionUserId)
+            };
+          })
+          .reverse();
       }
     });
   }
