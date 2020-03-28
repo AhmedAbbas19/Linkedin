@@ -204,6 +204,8 @@
         &__action {
           color: #5f5f5f;
           margin-top: 10px;
+          display: flex;
+          justify-content: space-between;
           i {
             margin-right: 5px;
           }

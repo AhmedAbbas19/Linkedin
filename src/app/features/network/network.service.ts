@@ -63,8 +63,8 @@ export class NetworkService {
     //notification
     const currentDate = new Date().toLocaleDateString("en-US");
     let notif: Notification = {
-      actionUserId: oneId,
-      reciverId: twoId,
+      actionUserId: twoId,
+      reciverId: oneId,
       url: "/mynetwork",
       date: currentDate,
       isRead: false

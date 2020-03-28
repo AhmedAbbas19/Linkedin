@@ -8,14 +8,61 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <div class="section">
-          <h5>Nofications</h5>
-          <p *ngIf="!notifications.length">You have no notifications.</p>
+        <div class="section recent" *ngIf="latestNotif.length">
+          <p *ngIf="latestNotif.length">Reacent</p>
           <ul class="section__list">
             <li
               class="sec-item section__item"
-              *ngFor="let notif of notifications"
+              *ngFor="let notif of latestNotif"
             >
+              <div
+                class="sec-item__content cursor-pointer"
+                [routerLink]="[notif.url]"
+              >
+                <img
+                  src="{{ notif['actionUser'].imagUrl }}"
+                  alt=""
+                  class="sec-item__img"
+                />
+                <div class="sec-item__info">
+                  <h6>
+                    {{ notif["actionUser"].fname }}
+                    {{ notif["actionUser"].lname }}
+                  </h6>
+                  <p class="sec-item__place m-0">
+                    {{
+                      notif.type === "comment" ? "commented on your post" : ""
+                    }}
+                    {{ notif.type === "like" ? "liked your post" : "" }}
+                    {{ notif.type === "react" ? "reacted to your post" : "" }}
+                    {{
+                      notif.type === "accept" ? "accepted your invitation" : ""
+                    }}
+                    {{
+                      notif.type === "invite"
+                        ? "sent you a connection invitation"
+                        : ""
+                    }}
+                    {{
+                      notif.type === "decline"
+                        ? "declined your connection invitation"
+                        : ""
+                    }}
+                  </p>
+                </div>
+              </div>
+              <div class="sec-item__control">
+                <i class="fa fa-ellipsis-h meta__control"></i>
+                <span class="sec-item__duration">{{ notif.date }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="section old" *ngIf="oldNotif.length || !latestNotif.length">
+          <p *ngIf="!oldNotif.length">You have no notifications.</p>
+          <p *ngIf="oldNotif.length">Earlier</p>
+          <ul class="section__list">
+            <li class="sec-item section__item" *ngFor="let notif of oldNotif">
               <div
                 class="sec-item__content cursor-pointer"
                 [routerLink]="[notif.url]"

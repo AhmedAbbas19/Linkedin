@@ -60,6 +60,10 @@ export class NewsfeedComponent implements OnInit, OnDestroy {
         for (const post of this.posts) {
           post["isOpend"] = false;
           post["isLiked"] = post.likedIds.includes(this.currentUserId);
+          const daysNum = Math.floor(
+            (Date.now() - Date.parse(post.date)) / (1000 * 60 * 60 * 24)
+          );
+          post.date = daysNum ? daysNum + "d" : "Today";
           for (const comment of post.comments) {
             comment["author"] = this.userService.getLoadedById(
               comment.authorId
