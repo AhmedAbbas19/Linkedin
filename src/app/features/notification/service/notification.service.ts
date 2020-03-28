@@ -10,6 +10,7 @@ export class NotificationService {
   notifications: Notification[];
   dataLoaded = new BehaviorSubject<boolean>(false);
   databaseUrl = "http://localhost:3000/notifications";
+  notifCount = new Subject<number>();
   constructor(private http: HttpClient) {
     this.http.get<Notification[]>(this.databaseUrl).subscribe(notifications => {
       this.notifications = notifications;
@@ -19,6 +20,9 @@ export class NotificationService {
 
   getAll() {
     return this.notifications;
+  }
+  getById(id: number) {
+    return this.http.get(this.databaseUrl + "/" + id);
   }
   getLoadedById(id: string) {
     return this.notifications.filter(n => n.reciverId === id);
@@ -32,8 +36,8 @@ export class NotificationService {
   delete(notif: Notification) {
     return this.http.delete(this.databaseUrl + "/" + notif.id);
   }
-  pushNotification(notif: Notification) {
-    this.notifications.unshift(notif);
+  fireNotifCount(count: number) {
+    this.notifCount.next(count);
   }
   setNotification(notification) {
     // for API
