@@ -66,6 +66,7 @@ export class AuthComponent implements OnInit {
         response => {
           this.isLoading = false;
           console.log(response);
+          this.router.navigate(["/home"]);
         },
         ({ error }) => {
           this.isLoading = false;
@@ -77,6 +78,7 @@ export class AuthComponent implements OnInit {
         response => {
           this.isLoading = false;
           console.log(response);
+          this.router.navigate(["/start/profile-add"]);
         },
         ({ error }) => {
           this.isLoading = false;
@@ -117,6 +119,5 @@ export class AuthComponent implements OnInit {
           "You can't complete this process now, Try again later.";
         break;
     }
-    console.log(this.authFormErrors);
   }
 }

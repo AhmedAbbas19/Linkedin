@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
       let [user, usersLoaded, notifsLoaded] = dataLoaded;
       this.isAuthenticated = !!user;
       if (user && usersLoaded) {
+        this.isAuthenticated =
+          !!user &&
+          window.location.pathname !== "/start/profile-add" &&
+          window.location.pathname !== "/auth/signup";
         this.user = this.userService.getLoadedById(user.id);
         if (notifsLoaded) {
           console.log(this.notificationService.getLoadedById(user.id));
@@ -54,6 +58,7 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.authService.logout();
+    this.isAuthenticated = false;
   }
   ngOnDestroy() {
     this.userSub.unsubscribe();

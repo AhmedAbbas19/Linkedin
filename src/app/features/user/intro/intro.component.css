@@ -72,8 +72,8 @@
   perspective-origin: 395.984px 98.9844px;
   transform-origin: 395.992px 98.9922px;
   caret-color: rgba(0, 0, 0, 0.9);
-  background: rgba(0, 0, 0, 0) url("../../../../assets/no-profile-bg.svg") repeat scroll 50%
-    50% / cover padding-box border-box;
+  background: rgba(0, 0, 0, 0) url("../../../../assets/no-profile-bg.svg")
+    repeat scroll 50% 50% / cover padding-box border-box;
   border: 0px none rgba(0, 0, 0, 0.9);
   font: 16px / 24px -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans",
@@ -3142,7 +3142,6 @@
   display: inline-block;
   height: 24px;
   text-decoration: none solid rgba(0, 0, 0, 0.9);
-  width: 55.9531px;
   column-rule-color: rgba(0, 0, 0, 0.9);
   perspective-origin: 27.9688px 12px;
   transform-origin: 27.9766px 12px;
@@ -3155,19 +3154,6 @@
   list-style: outside none none;
   outline: rgba(0, 0, 0, 0.9) none 0px;
 } /*#LI_62*/
-
-#LI_62:after {
-  box-sizing: border-box;
-  content: "·";
-  perspective-origin: 0px 0px;
-  transform-origin: 0px 0px;
-  font: 16px / 24px -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans",
-    Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
-  list-style: outside none none;
-  padding: 0px 4px;
-} /*#LI_62:after*/
 
 #LI_62:before {
   box-sizing: border-box;
@@ -3190,7 +3176,6 @@
   display: inline-block;
   height: 24px;
   text-decoration: none solid rgba(0, 0, 0, 0.9);
-  width: 125.563px;
   column-rule-color: rgba(0, 0, 0, 0.9);
   perspective-origin: 62.7813px 12px;
   transform-origin: 62.7813px 12px;
