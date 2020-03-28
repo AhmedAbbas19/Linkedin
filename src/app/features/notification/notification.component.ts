@@ -36,45 +36,29 @@ export class NotificationComponent implements OnInit, OnDestroy {
       if (user && usersLoaded && notifLoaded) {
         this.isLoading = false;
         this.user = this.userService.getLoadedById(user.id);
-        this.notifications = this.notificationService.getAll();
-        this.latestNotif = this.notifications
-          .filter(n => {
-            const daysNum =
-              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24);
-            if (n.reciverId === user.id && daysNum < 3) {
-              return true;
-            }
-          })
-          .map(n => {
-            const daysNum = Math.floor(
-              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24)
-            );
-            return {
-              ...n,
-              date: daysNum ? daysNum + "d" : "Today",
-              actionUser: this.userService.getLoadedById(n.actionUserId)
-            };
-          })
-          .reverse();
-        this.oldNotif = this.notifications
-          .filter(n => {
-            const daysNum =
-              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24);
-            if (n.reciverId === user.id && daysNum > 2) {
-              return true;
-            }
-          })
-          .map(n => {
-            const daysNum = Math.floor(
-              (Date.now() - Date.parse(n.date)) / (1000 * 60 * 60 * 24)
-            );
-            return {
-              ...n,
-              date: daysNum ? daysNum + "d" : "Today",
-              actionUser: this.userService.getLoadedById(n.actionUserId)
-            };
-          })
-          .reverse();
+        this.notifications = JSON.parse(
+          JSON.stringify(this.notificationService.getLoadedById(user.id))
+        );
+        for (const notif of this.notifications) {
+          if (!notif.isRead) {
+            notif.isRead = true;
+            const notification = JSON.parse(JSON.stringify(notif));
+            this.notificationService.save(notification).subscribe();
+          }
+          this.notificationService.fireNotifCount(0);
+          const daysNum = Math.floor(
+            (Date.now() - Date.parse(notif.date)) / (1000 * 60 * 60 * 24)
+          );
+          notif.date = daysNum ? daysNum + "d" : "Today";
+          notif["actionUser"] = this.userService.getLoadedById(
+            notif.actionUserId
+          );
+          if (daysNum < 3) {
+            this.latestNotif.unshift(notif);
+          } else {
+            this.oldNotif.unshift(notif);
+          }
+        }
       }
     });
   }

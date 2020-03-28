@@ -32,19 +32,19 @@ export class HeaderComponent implements OnInit {
     ]);
     loadedData.subscribe(dataLoaded => {
       let [user, usersLoaded, notifsLoaded] = dataLoaded;
-      this.isAuthenticated = !!user;
+      this.isAuthenticated =
+        !!user &&
+        window.location.pathname !== "/start/profile-add" &&
+        window.location.pathname !== "/auth/signup";
       if (user && usersLoaded) {
-        this.isAuthenticated =
-          !!user &&
-          window.location.pathname !== "/start/profile-add" &&
-          window.location.pathname !== "/auth/signup";
         this.user = this.userService.getLoadedById(user.id);
         if (notifsLoaded) {
-          console.log(this.notificationService.getLoadedById(user.id));
-
           this.notifCount = this.notificationService
             .getLoadedById(user.id)
             .filter(n => !n.isRead).length;
+          this.notificationService.notifCount.subscribe(count => {
+            this.notifCount = count;
+          });
         }
       }
     });
@@ -58,7 +58,6 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.authService.logout();
-    this.isAuthenticated = false;
   }
   ngOnDestroy() {
     this.userSub.unsubscribe();
